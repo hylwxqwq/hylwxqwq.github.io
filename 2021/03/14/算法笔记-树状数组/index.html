@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="前言：记得去年五一的时候我买了lxl的那个数据结构的五一专题。 结果当时死活听不懂…… 现在回头来看看，真的学着挺轻松的。 所以写个简单的总结吧。  树状数组（Binary Index Tree）现在真的觉得这个东西神奇的一批。 也不知道是哪个天才想到这种数据结构。 居然可以用 $\log n$ 个元素来查询前缀和。 真的很牛逼啊。  树状数组真的玄乎，所以直接上原理图吧。  这就是一个树状数组。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-树状数组">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="black_trees">
+<meta property="og:description" content="前言：记得去年五一的时候我买了lxl的那个数据结构的五一专题。 结果当时死活听不懂…… 现在回头来看看，真的学着挺轻松的。 所以写个简单的总结吧。  树状数组（Binary Index Tree）现在真的觉得这个东西神奇的一批。 也不知道是哪个天才想到这种数据结构。 居然可以用 $\log n$ 个元素来查询前缀和。 真的很牛逼啊。  树状数组真的玄乎，所以直接上原理图吧。  这就是一个树状数组。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/10/BtcDWsvNFPqSC2w.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/10/NDP5QGLXfZy8itY.png">
+<meta property="article:published_time" content="2021-03-14T01:42:57.000Z">
+<meta property="article:modified_time" content="2021-03-14T01:46:34.444Z">
+<meta property="article:author" content="black_trees">
+<meta property="article:tag" content="algorithm note">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>算法笔记-树状数组 | black_trees</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">black_trees</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">An Oier's blog</p>
+      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/uploads/custom-logo.jpg" alt="black_trees">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%EF%BC%88Binary-Index-Tree%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">树状数组（Binary Index Tree）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">单点修改操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">2.2.</span> <span class="nav-text">前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">区间修改：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%8A%A0%E5%8C%BA%E9%97%B4%E5%92%8C%EF%BC%9A"><span class="nav-number">2.4.</span> <span class="nav-text">区间加区间和：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E5%BC%82%E6%88%96%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84"><span class="nav-number">2.5.</span> <span class="nav-text">维护异或前缀和的树状数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E6%95%B0%E5%9C%A8%E5%8C%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E7%9A%84%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84"><span class="nav-number">2.6.</span> <span class="nav-text">统计数在区间中的出现次数的树状数组</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">hylwxqwq</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法笔记-树状数组
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 09:42:57 / 修改时间：09:46:34" itemprop="dateCreated datePublished" datetime="2021-03-14T09:42:57+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>记得去年五一的时候我买了lxl的那个数据结构的五一专题。</p>
+<p>结果当时死活听不懂……</p>
+<p>现在回头来看看，真的学着挺轻松的。</p>
+<p>所以写个简单的总结吧。</p>
+<hr>
+<h2 id="树状数组（Binary-Index-Tree）"><a href="#树状数组（Binary-Index-Tree）" class="headerlink" title="树状数组（Binary Index Tree）"></a>树状数组（Binary Index Tree）</h2><p>现在真的觉得这个东西神奇的一批。</p>
+<p>也不知道是哪个天才想到这种数据结构。</p>
+<p>居然可以用 $\log n$ 个元素来查询前缀和。</p>
+<p>真的很牛逼啊。</p>
+<hr>
+<p>树状数组真的玄乎，所以直接上原理图吧。</p>
+<p><img src="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png" alt="bit1.PNG"></p>
+<p>这就是一个树状数组。</p>
+<p>我们设 $a[]$ 为原序列，$t[]$ 为树状数组。</p>
+<p>那么这样的构造有什么用呢？</p>
+<p>看一下 $t[]$ 的特点：</p>
+<p>$$t_1=a_1$$<br>$$t_2=a_1+a_2$$<br>$$t_3=a_3$$<br>$$t_4=a_1+a_2+a_3+a_4$$<br>$$t_5=a_5$$<br>$$t_6=a_5+a_6$$<br>$$t_7=a_7$$<br>$$t_8=a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8$$</p>
+<p>发现了么？树状数组里下标和 $2$ 有关系的似乎表示的长度要长的多？</p>
+<p>那么这就牵扯到树状数组的基本原理了。</p>
+<blockquote>
+<p>正如所有的整数都可以表示成2的幂和，我们也可以把一串序列表示成一系列子序列的和。</p>
+</blockquote>
+<blockquote>
+<p>采用这个想法，我们可将一个前缀和划分成多个子序列的和</p>
+</blockquote>
+<blockquote>
+<p>而划分的方法与数的2的幂和具有极其相似的方式。</p>
+</blockquote>
+<blockquote>
+<p>一方面，子序列的个数是其二进制表示中1的个数，</p>
+</blockquote>
+<blockquote>
+<p>另一方面，子序列代表的t[i]的个数也是2的幂。</p>
+</blockquote>
+<pre><code>                                ——Peter M. Fenwick，1994
+</code></pre>
+<p>看不懂？没事，我们先看看它能干些什么。</p>
+<hr>
+<h3 id="单点修改操作"><a href="#单点修改操作" class="headerlink" title="单点修改操作"></a>单点修改操作</h3><p><img src="https://i.loli.net/2021/02/10/BtcDWsvNFPqSC2w.png" alt="bit2.PNG"></p>
+<p>如果我们修改 $a[3]$ 的值。</p>
+<p>考虑会影响到哪些 $t[i]$</p>
+<p>看一下我最开始列的那一个表。</p>
+<p>会发现这只会影响 $t_3,t_4,t_8$</p>
+<p>那我们修改这些 $t[i]$ 就好。</p>
+<p>你会发现，这里我们所用的数的个数是小于等于 $\log(n)$的</p>
+<p>也就是说它可以在 $\log (n)$ 的时间内完成单点修改。</p>
+<hr>
+<h3 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3><p><img src="https://i.loli.net/2021/02/10/NDP5QGLXfZy8itY.png" alt="bit3.PNG"></p>
+<p>前面你也可以看到。</p>
+<p>$$t_8=a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8$$</p>
+<p>所以树状数组能否维护前缀和？</p>
+<p>可以的。</p>
+<p>看上面的图。</p>
+<p>我们如果要查询 $a[1,3]$ 的前缀和。</p>
+<p>只需要用 $t_2+t_3$ 就可以了。</p>
+<p>这里我们查询的时候用的数的个数也是小于等于 $\log (n)$的。</p>
+<p>所以结合上文。</p>
+<p>我们可以发现。</p>
+<p>树状数组是一个利用 $\log(n)$ 以内个的元素去凑出子序列的信息，以此来维护序列的数据结构。</p>
+<p>当然，如果你要区间查询和，用一下 $sum(r)-sum(l-1)$ 不就好了？</p>
+<p>这时候有人就要问了：怎么去确定要用那些元素来维护呢？</p>
+<p>这时候就要请出 <code>lowbit</code> 先生了~</p>
+<p>它可以返回一个数二进制表示下的最低位。</p>
+<p>那么这个性质可以干啥？因为树状数组的本身性质。</p>
+<p>我们可以直接用  <code>for(初值;条件;i+(-)=lowbit(i))</code> 来找出要用的元素。</p>
+<p>真妙啊~。</p>
+<p>那么代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=n;i+=lowbit(i))&#123;</span><br><span class="line">        t[i]+=y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=lowbit(i))&#123;</span><br><span class="line">        res+=t[i];</span><br><span class="line">    &#125;<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(r)-sum(l<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="区间修改："><a href="#区间修改：" class="headerlink" title="区间修改："></a>区间修改：</h3><p>这个也比较容易。</p>
+<p>我们知道差分珂以 $\text{O}(1)$ 修改区间。</p>
+<p>所以我们直接用树状数组维护一个差分数组就好了。</p>
+<hr>
+<h3 id="区间加区间和："><a href="#区间加区间和：" class="headerlink" title="区间加区间和："></a>区间加区间和：</h3><p>这个是在上一个的基础上推出来的。</p>
+<p>我们知道，我们维护在树状数组上维护的那个差分数组 $t[]$</p>
+<p>它的前缀和 $\sum^x_{i=1}t[i]$ 就是 $a[x]$ 的增加的值。</p>
+<p>所以也就是说：原序列$a$中前缀和$sum[1,x]$的总增加量就是:</p>
+<p>$$\sum^x_{i=1}\sum^i_{j=1} t[j]$$</p>
+<p>上式又等于：</p>
+<p>$$\sum^x_{i=1}(x-i+1)\times t[i]$$</p>
+<p>$$=(x+1)\sum^x_{i=1}t[i]-\sum^x_{i=1}i\times t[i]$$</p>
+<p>看一下最终的这个柿子。</p>
+<p>也就是说，我们如果要维护原序列中前缀和的“增量”</p>
+<p>我们只需要在树状数组上维护两个差分数组。一个维护 $t[i]$ ，一个维护 $i\times t[i]$ 然后就可以维护了。</p>
+<p>至于前缀和怎么维护？<br>很简单。</p>
+<p>我们知道树状数组是一个能维护动态前缀和的数据结构。</p>
+<p>而我们这里把动态的“增量” 单独提出来维护。</p>
+<p>所以我们可以直接在读入原数组的时候维护一下原始的前缀和。</p>
+<p>然后询问动态前缀和的时候就直接用前缀和加上增量就可以了。</p>
+<p>区间询问同理。</p>
+<hr>
+<h3 id="维护异或前缀和的树状数组"><a href="#维护异或前缀和的树状数组" class="headerlink" title="维护异或前缀和的树状数组"></a>维护异或前缀和的树状数组</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5057">P5057 [CQOI2006]简单题</a></li>
+</ul>
+<p>这题是一个典型例子。</p>
+<p>当然lg上有四道和它基本一样的重题，可以自行到讨论区寻找。</p>
+<p>这道题要你维护一个01序列。支持查询某个数的值。还有对于 $[l,r]$ 中的0，1，让0变成1,1变成0。</p>
+<p>很简单。</p>
+<p>看到01序列我们第一时间就应该想到 异或。</p>
+<p>因为 $0/1 \operatorname{xor} 1$ 就是给这个数取反。</p>
+<p>根据异或本身具有的运算性质。</p>
+<p>我们可以直接给异或维护前缀和。</p>
+<p>所以这道题直接维护异或的区间加和单点查就好。</p>
+<p>code：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=n;i+=lowbit(i))&#123;</span><br><span class="line">        t[i]^=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=lowbit(i))&#123;</span><br><span class="line">        res^=t[i];</span><br><span class="line">    &#125;<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//in function main():</span></span><br><span class="line"></span><br><span class="line">    read(n),read(q);</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="keyword">int</span> op,l,r;read(op);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;read(l),read(r),modify(l),modify(r+<span class="number">1</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;read(l),write(sum(l))ent;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="统计数在区间中的出现次数的树状数组"><a href="#统计数在区间中的出现次数的树状数组" class="headerlink" title="统计数在区间中的出现次数的树状数组"></a>统计数在区间中的出现次数的树状数组</h3><p>设 $t[i] $表示 $i$ 在集合 $A$ 中出现的次数。</p>
+<p>那么 $\sum^r_{i=l}t[i]$ 就是范围 $[l,r]$ 中 有多少个数。同理用树状数组维护即可。</p>
+<p>（上面的那题的4道重题就要用这个）</p>
+<hr>
+<p>例题：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3368">P3368 【模板】树状数组 2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3374">P3374 【模板】树状数组 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2068">P2068 统计和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2357">P2357 守墓人</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/algorithm-note/" rel="tag"># algorithm note</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="prev" title="算法笔记-线段树">
+                  <i class="fa fa-chevron-left"></i> 算法笔记-线段树
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">black_trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>
