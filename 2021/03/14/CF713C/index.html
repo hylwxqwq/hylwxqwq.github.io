@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="题解 CF713C 【Sonya and Problem Wihtout a Legend】$O(n^2)$ DP方法 $update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。 这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。  思路：既然这是线性 $DP$ 。 从以下两个角度出发：  我从哪里来？（当前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF713C">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/CF713C/index.html">
+<meta property="og:site_name" content="black_trees">
+<meta property="og:description" content="题解 CF713C 【Sonya and Problem Wihtout a Legend】$O(n^2)$ DP方法 $update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。 这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。  思路：既然这是线性 $DP$ 。 从以下两个角度出发：  我从哪里来？（当前">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/b332zzat.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/29mcz86j.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/29mcz86j.png">
+<meta property="article:published_time" content="2021-03-14T02:08:08.000Z">
+<meta property="article:modified_time" content="2021-03-14T02:08:16.206Z">
+<meta property="article:author" content="black_trees">
+<meta property="article:tag" content="solution">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/b332zzat.png">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/CF713C/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>CF713C | black_trees</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">black_trees</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">An Oier's blog</p>
+      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/uploads/custom-logo.jpg" alt="black_trees">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3-CF713C-%E3%80%90Sonya-and-Problem-Wihtout-a-Legend%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">题解 CF713C 【Sonya and Problem Wihtout a Legend】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-n-2-DP%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">$O(n^2)$ DP方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.0.2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-re-i-a-i-i"><span class="nav-number">1.0.3.</span> <span class="nav-text">为什么是 $re[i]&#x3D;a[i]-i$</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">hylwxqwq</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/CF713C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CF713C
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 10:08:08 / 修改时间：10:08:16" itemprop="dateCreated datePublished" datetime="2021-03-14T10:08:08+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】"><a href="#题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】" class="headerlink" title="题解 CF713C 【Sonya and Problem Wihtout a Legend】"></a>题解 CF713C 【Sonya and Problem Wihtout a Legend】</h1><h3 id="O-n-2-DP方法"><a href="#O-n-2-DP方法" class="headerlink" title="$O(n^2)$ DP方法"></a>$O(n^2)$ DP方法</h3><hr>
+<p>$update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。</p>
+<p>这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。</p>
+<hr>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>既然这是线性 $DP$ 。</p>
+<p>从以下两个角度出发：</p>
+<ul>
+<li><p>我从哪里来？（当前状态可以由哪些状态得到？）</p>
+</li>
+<li><p>我到哪里去？（当前状态可以去到哪几个状态？）</p>
+</li>
+</ul>
+<p>我们不难想到：</p>
+<p>设 $f[i][j]$ 表示 $a[i]$ 变成 $re[j]$ 所需的最小操作次数。</p>
+<p>路人：诶诶诶，你 $a[i]$ 和 $re[j]$ 哪里来的啊？</p>
+<p>这台子拆的好！</p>
+<p>我们设原序列为 $a[]$ ，我们想要达到的“理想”序列为 $re[]$。</p>
+<p>那么，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   for(register long long i&#x3D;1;i&lt;&#x3D;n;++i)&#123;</span><br><span class="line">	cin&gt;&gt;a[i];</span><br><span class="line">	a[i]-&#x3D;i;</span><br><span class="line">	re[i]&#x3D;a[i];</span><br><span class="line">&#125;</span><br><span class="line">sort(re+1,re+n+1);</span><br></pre></td></tr></table></figure>
+
+
+<p>接下来我就讲讲为什么要这样做：</p>
+<hr>
+<h3 id="为什么是-re-i-a-i-i"><a href="#为什么是-re-i-a-i-i" class="headerlink" title="为什么是 $re[i]=a[i]-i$"></a>为什么是 $re[i]=a[i]-i$</h3><p>很好理解，我在这里举个例子。</p>
+<p>（这里举的例子是<a target="_blank" rel="noopener" href="http://poj.org/problem?id=3666">POJ3666</a>，因为离散的方法和此题一样，所以我就以POJ3666作为例子讲解这题的离散化）</p>
+<p>先不管这道题的要求。我们先假设加一减一的操作变为了修改操作（POJ3666）。</p>
+<p>那么：</p>
+<p>$n=5$</p>
+<p>$a[]:{1,3,2,3,5}$</p>
+<p>如果我们想要修改它，使得它是单调不减（这里也是POJ3666）的。要怎么修改？</p>
+<p>很明显，我们的第一思路是这么修改：</p>
+<p>$a[]:{1,2,3,4,5}$</p>
+<p>很明显，因为这里有重复的 $3$ 。所以，我们需要更多的次数去修改它。</p>
+<p>为了避免这种情况，我们给每个 $a[i]$ 减去 $i$。</p>
+<p>为什么呢？</p>
+<p>因为 $i$ 在这里一定是严格递增的（你从头往后扫，下标难道不递增？），现在看一下减去 $i$ 之后是怎么样的：</p>
+<p>$re[]:{ 0,1,-1,-1,0}$</p>
+<p>现在还是有重复的，不过先不要着急。</p>
+<p>我画一个图。</p>
+<p>这是你的 $re$ 序列（不下降）：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/b332zzat.png"></p>
+<p>这是你的 $i$ （所有的 $i$ 组成的序列）</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/29mcz86j.png"></p>
+<p>那我们将这两个序列合并，这个合并的序列一定是这样的：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/29mcz86j.png"></p>
+<p>其实就是一个不等式的加减。</p>
+<p>举个例子：</p>
+<p>$re[]={ 1,2,3,3,3}$</p>
+<p>$i[]={1,2,3,4,5}$</p>
+<p>合并之后：</p>
+<p>$2,4,6,7,8$,是不是满足严格递增？</p>
+<p>好的，这里可能会有一点绕（看完就能理解的）。</p>
+<p>我们再重新看一看:</p>
+<p>$re[]:{ 0,1,-1,-1,0}$</p>
+<p>现在我们只需要使这一个 $re$ 中不下降的元素尽量多，那么我们需要修改的次数就会尽量的少（最优）（也就是要求一个最长不下降子序列再减去元素个数）。</p>
+<p>好了，把这一个离散的思路放到我们这一题，只需要改一下条件就可以啦。</p>
+<p>（没听懂自行返回再来几遍，我讲的已经比网上绝大部分的题解要清晰了。）</p>
+<hr>
+<p>现在离散化已经搞定了。那么是时候看方程了。</p>
+<p>方程（这里推得过程省去，都做到这种题了，这种普通的线性 $DP$ 方程不可能推不出来）：</p>
+<p>$$ \begin{cases}minn=\min(minn,f[i-1][j])\f[i][j]=minn+|a[i]-re[j]|\end{cases}$$</p>
+<p>（最开始的时候 $minn$ 要赋值为一个超级大的值）</p>
+<hr>
+<p>很好，到这里这道题就基本完成了，如果没有听懂的同学请自觉从头再多看几遍。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/36064380">AC记录</a></p>
+<p>下面给出代码实现（数据太恶心所以用long long）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">3001</span>][<span class="number">3001</span>];<span class="comment">//f[i][j]表示a[i]变为re[j]时的最小操作次数 </span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[<span class="number">3001</span>];<span class="comment">//原序列 </span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> re[<span class="number">3001</span>];<span class="comment">//目标序列 </span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> minn,res=<span class="number">2e18</span>;<span class="comment">//这里要赋很大的值，否则以CF的毒瘤数据你会WA。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">abs_ll</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a&gt;=<span class="number">0</span>?a:-a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Accepted&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">zjk_ak_ioi</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;<span class="comment">//对神zjk的膜拜 （这里不用管啦，你直接输出res就可以了）</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		a[i]-=i;</span><br><span class="line">		re[i]=a[i];<span class="comment">//离散化 </span></span><br><span class="line">	&#125;</span><br><span class="line">	sort(re+<span class="number">1</span>,re+n+<span class="number">1</span>);<span class="comment">//排一遍，使目标序列严格递增 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		f[<span class="number">1</span>][i]=abs_ll(a[<span class="number">1</span>]-re[i]);<span class="comment">//给f一个初值，这里是预处理</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">2</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		minn=<span class="number">2e18</span>;<span class="comment">//这里每一次都要赋值，否则会错（因为每次操作都要用 ） </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> j=<span class="number">1</span>;j&lt;=n;++j)&#123;</span><br><span class="line">			minn=min(minn,f[i<span class="number">-1</span>][j]);</span><br><span class="line">			f[i][j]=minn+abs_ll(a[i]-re[j]);<span class="comment">//转移方程 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		res=min(res,f[n][i]);<span class="comment">//从整个序列的情况去找最小值 </span></span><br><span class="line">	&#125;</span><br><span class="line">	Accepted::zjk_ak_ioi();<span class="comment">//喊出zjkAKIOI，借用神的力量，让我AC！ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码里那个奇怪的函数不用管啦（个人习惯），你只需要直接输出 $res$ 就好了。</p>
+<hr>
+<p>管理员求过，看在我已经讲得比较清晰了的份上了吧QAQ。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solution/" rel="tag"># solution</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/14/IOI2020-postoffice/" rel="prev" title="IOI2020-postoffice">
+                  <i class="fa fa-chevron-left"></i> IOI2020-postoffice
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">black_trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

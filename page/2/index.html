@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="hylwxqwq">
+<meta property="og:type" content="website">
+<meta property="og:title" content="black_trees">
+<meta property="og:url" content="http://hylwxqwq.github.io/page/2/index.html">
+<meta property="og:site_name" content="black_trees">
+<meta property="og:description" content="hylwxqwq">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="black_trees">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/page/2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>black_trees</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">black_trees</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">An Oier's blog</p>
+      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/uploads/custom-logo.jpg" alt="black_trees">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">hylwxqwq</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-SSSP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-SSSP/" class="post-title-link" itemprop="url">算法笔记-SSSP</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 09:54:17 / 修改时间：09:54:32" itemprop="dateCreated datePublished" datetime="2021-03-14T09:54:17+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为发现自己对好多算法的理解都不深，所以想起来写这么个东西。</p>
+<h2 id="SSSP"><a href="#SSSP" class="headerlink" title="SSSP"></a>SSSP</h2><p>SSSP(单源最短路径)是求从源点 $s$ 到其它所有点的最短路径问题。</p>
+<p>也可以说是：对在权图 $G=(V,E)$,从一个源点 $s$ 到汇点 $t$ 有很多路径，其中路径上权和最少的路径，称从 $s$ 到 $t$ 的最短路径。</p>
+<p>一般常用的有几种算法：</p>
+<ul>
+<li><code>Dijkstra</code></li>
+<li><code>SPFA</code></li>
+<li><code>Bellman-ford</code></li>
+<li><code>Floyd</code></li>
+</ul>
+<p>那么，先从最基础也是最实用的 <code>Dijkstra</code> 说起。</p>
+<h3 id="Dijkstra-算法："><a href="#Dijkstra-算法：" class="headerlink" title="Dijkstra 算法："></a>Dijkstra 算法：</h3><p>该算法于 1959 年由荷兰的计算机科学家 Dijkstra 发明。</p>
+<p>简单来说还是基于SSSP最基础的思想：松弛。</p>
+<p>Dijkstra采用贪心算法的策略。</p>
+<p>他每次遍历到始点距离最近且未访问过的顶点的邻接节点，直到扩展到终点为止。</p>
+<p>根据我们松弛的三角形不等式：</p>
+<p>$$dist[x] + w[x][y] &gt;= dist[y]$$</p>
+<p>这个算法主要分为以下的几个步骤：</p>
+<ol>
+<li><p>将我们的顶点集合 $V$ 分成两个部分：$S$ 和 $T$ ，定义 $S$ 是已经求出（就是跑过的）的顶点集合（开始的时候只有一个点，就是源点 $s$）， 对于 $T$ : $V-S =T$ （就是剩下的部分）</p>
+</li>
+<li><p>将 $T$ 中的所有元素依次（按编号递增）加入到 $S$ 里面。 保证以下两个条件：$\alpha$ : <code>源点 到 S 中的任意一个点的距离都不大于源点到 T 中的任意一个点的最短路长度</code>。  $\beta$ ： <code>S中的点的 dist = 源点到这个点的距离，T中的点的 dist = 从源点到这个点的最短路长度，且中间经过的点只有在S中的顶点。</code></p>
+</li>
+</ol>
+<p>那么有一个结论：源点到 $T$ 中顶点的，或是从源点到$T$ 中顶点的直接路径的权值；或是从源点经过 $S$ 中的顶点到该顶点的路径权值之和。</p>
+<p>不过这里有一个更加易于理解的过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. memset(dist,INF,sizeof(dist);</span><br><span class="line"></span><br><span class="line">2. dist[1]&#x3D;0;</span><br><span class="line"></span><br><span class="line">3.找出一个没有被标记的节点 v，标记一下。</span><br><span class="line"></span><br><span class="line">4.对于每个和 v 相连的节点，如果它满足三角形不等式，更新。</span><br><span class="line"></span><br><span class="line">5. 直到v是终点。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下面来模拟一下这个过程。</p>
+<p>这是一个具有 $6$ 个顶点的赋权有向图，其顶点集合为 $V = { v_1,v_2,v_3,v_4，v_5，v_6}$，其权值分别为：</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Bmatrix%7D+w_%7B1,2%7D%5Cleft(e_%7B1,2%7D%5Cright)=10&+w_%7B2,3%7D%5Cleft(e_%7B2,3%7D%5Cright)=7%5C%5C+w_%7B4,3%7D%5Cleft(e_%7B4,3%7D%5Cright)=4&+w_%7B4,5%7D%5Cleft(e_%7B4,5%7D%5Cright)=7%5C%5C++w_%7B6,5%7D%5Cleft(e_%7B6,5%7D%5Cright)=1&++w_%7B1,6%7D%5Cleft(e_%7B1,6%7D%5Cright)=3%5C%5C++w_%7B6,2%7D%5Cleft(e_%7B6,2%7D%5Cright)=2&++w_%7B4,1%7D%5Cleft(e_%7B4,1%7D%5Cright)=3%5C%5C++w_%7B2,4%7D%5Cleft(e_%7B2,4%7D%5Cright)=5&++w_%7B6,4%7D%5Cleft(e_%7B6,4%7D%5Cright)=6+%5Cend%7Bmatrix%7D%5Ctag%7B1%7D"></p>
+<p>现在假设 $v_1$ 就是源点 $s$ 。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-3efe1805d5487018b65b470643f463de_720w.jpg"></p>
+<p>那么我们可以发现： $s$ 到其他点的 $dist$ （最短路）是这样的</p>
+<p><img src="https://pic2.zhimg.com/80/v2-f065fe99f3a8884e025fa1feb5dfd391_720w.jpg"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign*%7D++&%5Cmathrm%7Bshort%7D%5Cleft%5B2%5Cright%5D:%5Ccolor%7Bred%7D%7Bv_1%7D%5Cto+v_6%5Cto+v_2%5CRightarrow+%5Cmathrm%7Bshort%7D%5Cleft%5B2%5Cright%5D=w_%7B1,6%7D+w_%7B6,2%7D=5%5Ctag%7B2%7D%5C%5C+&%5Cmathrm%7Bshort%7D%5Cleft%5B3%5Cright%5D:%5Ccolor%7Bred%7D%7Bv_1%7D%5Cto+v_6%5Cto+v_2%5Cto+v_3%5CRightarrow+%5Cmathrm%7Bshort%7D%5Cleft%5B3%5Cright%5D=w_%7B1,6%7D+w_%7B6,2%7D+w_%7B2,3%7D=12%5Ctag%7B3%7D%5C%5C+&%5Cmathrm%7Bshort%7D%5Cleft%5B4%5Cright%5D:%5Ccolor%7Bred%7D%7Bv_1%7D%5Cto+v_6%5Cto+v_4%5CRightarrow+%5Cmathrm%7Bshort%7D%5Cleft%5B4%5Cright%5D=w_%7B1,6%7D+w_%7B6,4%7D=9%5Ctag%7B4%7D%5C%5C+&%5Cmathrm%7Bshort%7D%5Cleft%5B5%5Cright%5D:%5Ccolor%7Bred%7D%7Bv_1%7D%5Cto+v_6%5Cto+v_5%5CRightarrow+%5Cmathrm%7Bshort%7D%5Cleft%5B5%5Cright%5D=w_%7B1,6%7D+w_%7B6,5%7D=4%5Ctag%7B5%7D%5C%5C+&%5Cmathrm%7Bshort%7D%5Cleft%5B6%5Cright%5D:%5Ccolor%7Bred%7D%7Bv_1%7D%5Cto+v_6%5CRightarrow+%5Cmathrm%7Bshort%7D%5Cleft%5B6%5Cright%5D=w_%7B1,6%7D=3%5Ctag%7B6%7D+%5Cend%7Balign*%7D"></p>
+<p>所以可以得出一段伪代码：</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cboxed%7B%5Clarge%5Cbegin%7Balign*%7D+&%5Clarge%7B%5Cbm%7B%5Crm%7BAlgorithm:Dijkstra%7D%7D%7D%5C%5C+&%5C%5C+&%5Cbm%7B%5Cmathrm%7BInput:%7D%7D%5Cmathrm%7BDirected%5C,%5C,+graph%5C,%5C,%7DG=(V,E,W)%5C,%5C,%5Cmathrm%7Bwith%5C,%5C,+weight%7D%5C%5C+&%5C%5C+&%5Cbm%7B%5Cmathrm%7BOutput:%7D%7D%5Cmathrm%7BAll%5C,%5C,+the%5C,%5C,shortest%5C,%5C,paths%5C,%5C,+from%5C,%5C,+the%5C,%5C,+source%5C,%5C,vertex%5C,%5C,%7Ds%5Cmathrm%7B%5C,%5C,to%5C,%5C,every%5C,%5C,vertex%5C,%5C,%7Dv_i%5Cin+V%5Csetminus%5Cleft%5C%7Bs%5Cright%5C%7D%5C%5C+&%5C%5C+&1:S%5Cleftarrow+%5Cleft+%5C%7B+s+%5Cright+%5C%7D%5C%5C+&2:%5Cmathrm%7Bdist%7D%5Bs,s%5D%5Cleftarrow+0%5C%5C+&3:%5Cbm%7B%5Cmathrm%7Bfor%7D%7D%5C,%5C,+v_i%5Cin+V-%5Cleft+%5C%7B+s+%5Cright+%5C%7D%5C,%5C,%5Cbm%7B%5Cmathrm%7Bdo%7D%7D%5C%5C+&4:%5Cquad%5C,%5C,+%5Cmathrm%7Bdist%7D%5Bs,v_i%5D%5Cleftarrow+w(s,v_i)%5C%5C+&%5Cquad+%5C,%5C,%5C,%5Cquad+(%5Cmathrm%7Bwhen%5C,%5C,%7Dv_i%5C,%5C,%5Cmathrm%7Bnot%5C,%5C,found%7D,%5Cmathrm%7Bdist%7D%5Bs,v_i%5D%5Cleftarrow+%5Cinfty)%5C%5C+&5:%5Cbm%7B%5Cmathrm%7Bwhile%7D%7D%5C,%5C,V-S%5Cne%5Cvarnothing+%5C,%5C,%5Cbm%7B%5Cmathrm%7Bdo%7D%7D%5C%5C+&6:%5Cquad%5C,%5C,%5C,%5C,+%5Cmathrm%7Bfind%5C,%5C,%7D%5Cmin_%7Bv_j%5Cin+V%7D%5C,%5Cmathrm%7Bdist%7D%5Bs,v_i%5D%5C,%5C,%5Cmathrm%7Bfrom%5C,%5C,+the%5C,%5C,+set%5C,%5C,%7DV-S%5C%5C+&7:%5Cquad%5C,%5C,%5C,%5C,+S%5Cleftarrow+S%5Ccup+%5Cleft%5C%7Bv_j%5Cright%5C%7D%5C%5C+&8:%5C,%5C,%5C,%5C,%5Cquad+%5Cbm%7B%5Cmathrm%7Bfor%5C,%5C,%7D%7Dv_i%5Cin+V-S%5C,%5C,%5Cbm%7B%5Cmathrm%7Bdo%7D%7D%5C%5C+&9:%5C,%5C,%5C,%5C,%5C,%5C,%5C,%5Cquad%5Cquad+%5Cbm%7B%5Cmathrm%7Bif%5C,%5C,%7D%7D%5Cmathrm%7Bdist%7D%5Bs,v_j%5D+w_%7Bj,i%7D%3C%5Cmathrm%7Bdist%7D%5Bs,v_i%5D%5C,%5C,%5Cbm%7B%5Cmathrm%7Bthen%7D%7D%5C%5C+&10:%5C,%5C,%5C,%5C,%5C,%5Cquad%5Cquad%5Cquad+%5Cmathrm%7Bdist%7D%5Bs,v_i%5D%5Cleftarrow+%5Cmathrm%7Bdist%7D%5Bs,v_j%5D+w_%7Bj,i%7D+%5Cend%7Balign*%7D%7D%5Ctag%7B10%7D"></p>
+<p>但是这个算法的复杂度是 $O(n^2)$ 的。</p>
+<p>根据它贪心的本质，有了用堆优化的方法。</p>
+<p>对于它的实现是这样的：</p>
+<ul>
+<li><p>将源点 $s$ 加入堆。</p>
+</li>
+<li><p>取出堆顶，维护一下堆的性质。</p>
+</li>
+<li><p>我们从这个堆顶的点出发，利用三角形不等式去松弛和它相邻的所有点。 如果它不在堆里（以前没访问过），就加入堆，并更新 <code>dist</code>。</p>
+</li>
+<li><p>如果它已经在堆里了，也就是说从源点到这个点有更短的路径（以前来过），更新<code>dist</code> </p>
+</li>
+<li><p>如果我们的堆顶取出来的时候是终点 $t$ 了，因为 dij 和 heap 的贪心本质，可以知道这个时候就已经有了最短的路径，不会再有更短的了，结束。</p>
+</li>
+</ul>
+<p>例题：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4779">P4779 【模板】单源最短路径（标准版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3371">P3371 【模板】单源最短路径（弱化版）</a></li>
+</ul>
+<p>（上面的两道题都可以用dij过掉）</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> si=<span class="number">2e6</span>+<span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,s;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;g[si];</span><br><span class="line"><span class="built_in">priority_queue</span>&lt;<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;q;</span><br><span class="line"><span class="keyword">int</span> dis[si];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>,x,y,z;i&lt;=m;++i)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">        g[x].push_back(<span class="built_in">make_pair</span>(y,z));</span><br><span class="line">       <span class="comment">// g[y].push_back(make_pair(x,z));</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        dis[i]=<span class="number">1e9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dis[s]=<span class="number">0</span>;</span><br><span class="line">    q.push(<span class="built_in">make_pair</span>(<span class="number">0</span>,s));</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        <span class="keyword">register</span> <span class="keyword">int</span> x,y;</span><br><span class="line">        x=q.top().second;</span><br><span class="line">        y=-q.top().first;</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">if</span>(dis[x]!=y)&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>,to,val;i&lt;g[x].size();++i)&#123;</span><br><span class="line">            to=g[x][i].first;</span><br><span class="line">            val=g[x][i].second;</span><br><span class="line">            <span class="keyword">if</span>(dis[to]&gt;dis[x]+val)&#123;</span><br><span class="line">                dis[to]=dis[x]+val;</span><br><span class="line">                q.push(<span class="built_in">make_pair</span>(-dis[to],to));</span><br><span class="line">            &#125;<span class="comment">//松弛</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;dis[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//每次从dis最小的开始松弛</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="bellman-frod-amp-SPFA"><a href="#bellman-frod-amp-SPFA" class="headerlink" title="bellman-frod &amp; SPFA"></a>bellman-frod &amp; SPFA</h3><p>这两个算法对我来说其实一般是用来判断负环的，所以简单讲一下。</p>
+<p>bellman 是基于迭代思想的算法。</p>
+<p>做法十分简单。</p>
+<p>扫描所有边，如果 $dist[y] &gt; dist[x] + w[x][y]$ ,那么用 $dist[x] + w[x][y]$ 更新 $dist [y]$ 。直到它没有更新操作发生。</p>
+<p>很明显的，它的复杂度是 $O(nm)$ 级别的。</p>
+<p>这里有一个流程图，可以理解一下。</p>
+<p><img src="https://img-my.csdn.net/uploads/201301/06/1357469178_6118.PNG"></p>
+<p><img src="https://img-my.csdn.net/uploads/201301/06/1357469181_6115.PNG"></p>
+<p><img src="https://img-my.csdn.net/uploads/201301/06/1357469183_3822.PNG"></p>
+<p><img src="https://img-my.csdn.net/uploads/201301/06/1357469186_2354.PNG"></p>
+<p>而 SPFA ， 则是对 Bellman的一个队列优化。</p>
+<p>开始的时候会有一个队列，让源点处在其中。</p>
+<p>每次执行Bellman的那种松弛操作之后，将其放入队列，直到队列是空的为止。</p>
+<p>但是 SPFA ，常常成为毒瘤出题人卡的主要对象。</p>
+<p>（在随机图上是比较优秀的，但是如果出题人构造了一个菊花图一类的东西……那您就可以原地去世了）。</p>
+<p>例题：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3371">P3371 【模板】单源最短路径（弱化版）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4768"><del>P4768 [NOI2018]归程</del></a></p>
+</li>
+</ul>
+<p>（当然，如果您用堆优化Bellman-Frod，那么它和Dij就没有本质上的差别了。）</p>
+<p>代码（P3371）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,s,len;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">int</span> dis[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">int</span> head[<span class="number">500010</span>];</span><br><span class="line"><span class="keyword">int</span> dl[<span class="number">500010</span>],l,r;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> next_,to,w;</span><br><span class="line">&#125;c[<span class="number">500010</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> y,<span class="keyword">int</span> o)</span></span>&#123;</span><br><span class="line">    len++;</span><br><span class="line">    c[len].next_=head[u];</span><br><span class="line">    c[len].to=y;</span><br><span class="line">    c[len].w=o;</span><br><span class="line">    head[u]=len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SPFA</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        vis[i]=INF;</span><br><span class="line">    &#125;</span><br><span class="line">    vis[s]=<span class="number">0</span>;</span><br><span class="line">    l=<span class="number">0</span>;r=<span class="number">1</span>;dl[r]=s;dis[s]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l^r)&#123;</span><br><span class="line">        l++;</span><br><span class="line">        <span class="keyword">int</span> u=dl[l];</span><br><span class="line">        dis[u]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[u];i;i=c[i].next_)&#123;</span><br><span class="line">            <span class="keyword">int</span> v=c[i].to;</span><br><span class="line">            <span class="keyword">if</span>(vis[v]&gt;vis[u]+c[i].w)&#123;</span><br><span class="line">                vis[v]=vis[u]+c[i].w;</span><br><span class="line">                <span class="keyword">if</span>(!dis[v])&#123;</span><br><span class="line">                    dis[v]=<span class="number">1</span>;</span><br><span class="line">                    r++;</span><br><span class="line">                    dl[r]=v;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>,u,y,o;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;u,&amp;y,&amp;o);</span><br><span class="line">        add(u,y,o);</span><br><span class="line">    &#125;</span><br><span class="line">    SPFA();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[i]==INF)&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="number">2147483647</span>&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">		    <span class="built_in">cout</span>&lt;&lt;vis[i]&lt;&lt;<span class="string">&quot; &quot;</span>;	</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="关于SPFA和Bellman判断负环"><a href="#关于SPFA和Bellman判断负环" class="headerlink" title="关于SPFA和Bellman判断负环"></a>关于SPFA和Bellman判断负环</h3><h4 id="Bellman："><a href="#Bellman：" class="headerlink" title="Bellman："></a>Bellman：</h4><p>如果经过 $n$ 轮迭代，迭代仍然未结束，那么就没有负环。</p>
+<p>如果在 $n-1$ 轮之内结束了，那么就有负环。</p>
+<h4 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h4><p>假设 $cnt[x]$ 表示 $1$ 到 $x$ 的最短路里有多少边。</p>
+<p>且 $cnt[1] = 0$ 。</p>
+<p>在松弛的时候，更新一下 $cnt[]$ 。</p>
+<p>那么怎么更新?</p>
+<p>$$cnt[y]=cnt[x]+1$$<br>（zz都应该看得懂吧）</p>
+<p>如果更新的时候， $n \le cnt[y] $ ，那么就有负环。</p>
+<p>反之则亦然。</p>
+<p>（这个东西在差分约束里面很有用）</p>
+<p>（下面是我一两个月以前写差分约束的时候写的Bellman判负环）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bellman_ford</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        dist[i]=<span class="number">0</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;++j)&#123;</span><br><span class="line">            edge &amp;e=es[j];</span><br><span class="line">            <span class="keyword">if</span>(dist[e.to]&gt;dist[e.from]+e.dist)&#123;</span><br><span class="line">                dist[e.to]=dist[e.from]+e.dist;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;++j)&#123;</span><br><span class="line">        edge &amp;e=es[j];</span><br><span class="line">        <span class="keyword">if</span>(dist[e.to]&gt;dist[e.from]+e.dist)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>附：关于负边权处理</p>
+<table>
+<thead>
+<tr>
+<th align="center">算法</th>
+<th align="center">能否处理负边权</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$Dijkstra -O(n^2)$</td>
+<td align="center">不行</td>
+</tr>
+<tr>
+<td align="center">$HeapDij - O(m \log n)$</td>
+<td align="center">不行</td>
+</tr>
+<tr>
+<td align="center">$SPFA -O(nm/km) $</td>
+<td align="center">可以</td>
+</tr>
+<tr>
+<td align="center">$Bellman-Ford - O(nm)$</td>
+<td align="center">可以</td>
+</tr>
+</tbody></table>
+<p>（您会发现，所有基于贪心的算法都不行，您可以想一想为什么（这应该很好想））。</p>
+<hr>
+<h4 id="未完工-（Floyd有点忘了，以后再说吧）"><a href="#未完工-（Floyd有点忘了，以后再说吧）" class="headerlink" title="未完工 （Floyd有点忘了，以后再说吧）"></a>未完工 （Floyd有点忘了，以后再说吧）</h4>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Trie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Trie/" class="post-title-link" itemprop="url">算法笔记-Trie</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 09:53:02 / 修改时间：09:53:38" itemprop="dateCreated datePublished" datetime="2021-03-14T09:53:02+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我的数学老师说过：你学精通一个东西比学很多东西有用的多。</p>
+<p>于是就有了这个。</p>
+<h2 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h2><p>Trie（字典树），又被叫做 <del>踹树</del></p>
+<p>它珂以实现快速的字符串搜索。</p>
+<p>我们在搜索引擎里面输入词汇的时候，搜索引擎可能会给你跳出它猜测你可能要搜索的内容，这里就是运用了Trie树的。</p>
+<p>（所以它还是挺实用的）</p>
+<p>它的结构原理其实有一点点像单词接龙。</p>
+<p>比如：</p>
+<p><code>luogu</code> 和 <code>luogugubird</code> </p>
+<p>字典树就会将其储存成 <code>luogugubird</code> （在我们开的线性表角度看）</p>
+<p>也就是说，它会把单词的重叠前缀叠加储存。</p>
+<h3 id="Trie-的基本结构"><a href="#Trie-的基本结构" class="headerlink" title="Trie 的基本结构"></a>Trie 的基本结构</h3><p>我们首先要知道的是，<code>Trie</code> 的每一个节点都有很多个字符指针，它们分别对应着一些字符。</p>
+<p>这是字典树的一张图：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8u6hqyov.png"></p>
+<p>（当然单词应该是<strong>小写</strong>的，我的画板出了一些问题，见谅）</p>
+<p> <code>Trie</code> 树开始时只有一个根节点（蓝色节点）。</p>
+<p> 而每一个节点都有几个字符指针，它们储存（对应）着一些字符<br> (<code>c,a,t,e,p</code>)</p>
+<p>而我为什么把最后的节点都标红了呢？</p>
+<p>这就涉及到了 <code>Trie</code> 的思想了。</p>
+<p>简单来说，Trie的结构是这样的：</p>
+<blockquote>
+<p>对于英文字符串，其每个节点包括26个字符指针.</p>
+</blockquote>
+<blockquote>
+<p>每个指针对应一个字母，即每一条边为一个字母.</p>
+</blockquote>
+<blockquote>
+<p>同时每个节点包括一个标识，表示从根节点到该节点的边是否组成了一个单词。</p>
+</blockquote>
+<p>而我们查找一个单词的关键，就是这个红色的标记（代表着一个单词的结尾）。</p>
+<p>它可以帮助我们判断我们检索到的字符串是不是一个单词。</p>
+<p>同时也是插入和检索的终止的一个标志。</p>
+<h3 id="Trie树的两个操作：插入与查找"><a href="#Trie树的两个操作：插入与查找" class="headerlink" title="Trie树的两个操作：插入与查找"></a>Trie树的两个操作：插入与查找</h3><h4 id="插入（Insert）"><a href="#插入（Insert）" class="headerlink" title="插入（Insert）"></a>插入（Insert）</h4><p>假设现在我们有一个字符串 $s$</p>
+<p>那么先让一个指针（指向节点） $P$ 指向 $root$ 。</p>
+<p>然后再依次扫描 $s$ 的每一个字符 $c$ , 过程如下：</p>
+<ol>
+<li><p>如果 $P$ 的 $c$ 字符指针指向了一个已经存在的节点 $q$ ，让 $P =q$ （有存储过这个字符，让它与相同的字符的重合）</p>
+</li>
+<li><p>如果 $P$ 的 $c$ 字符指针没有指向任何一个节点，新建一个节点，让 $P$ 的 $c$ 字符指针指向这个节点，然后让 $P =$ 这个节点。（没有就新加入一个）</p>
+</li>
+</ol>
+<p> （说再多还不如一个动画）：</p>
+<p> <img src="https://ftp.bmp.ovh/imgs/2020/12/2cf5da847b998b42.gif"></p>
+<p> <code>Code</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span>* str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;len;++k)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch=str[k]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(trie[p][ch]==<span class="number">0</span>)&#123;<span class="comment">//没有指向任何一个节点</span></span><br><span class="line">            trie[p][ch]=++tot;</span><br><span class="line">        &#125;</span><br><span class="line">        p=trie[p][ch];  </span><br><span class="line">    &#125;</span><br><span class="line">    end[p]=<span class="literal">true</span>; <span class="comment">//打标记</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h4 id="检索-search"><a href="#检索-search" class="headerlink" title="检索(search)"></a>检索(search)</h4><p>如果我们需要检索一个单词是否存在于<code>Trie    </code> 之中，很明显需要那个<code>end[]</code>标记的帮助，他可以帮助我们快速判定当前字符串的情况。</p>
+<p>那么，和<code>Insert</code>一样 ，我们令一个指针（指向节点） $P$ 指向 $root$ ,然后向下检索 $s$ 的每一个字符 $c$。</p>
+<p>会出现以下的两种情况：</p>
+<ol>
+<li><p>当前的 $P$ 的 $c$ 字符指针  指向了一个空的节点（没有指向节点）。证明这个字符串 $s$ 的剩下的字符都没有按顺序插入过 $Trie$ ，结束。</p>
+</li>
+<li><p>当前的 $P$ 的 $c$ 字符指针  指向了一个节点 $q$  ，则令 $P=q$ ，继续搜索。</p>
+</li>
+</ol>
+<p>如果我们搜索完 $s$ 的时候，刚好节点 $P$ 是被打过标记的(<code>color=red</code>) ，证明 $s$ 存在于这个<code>Trie</code> 之中，返回真。</p>
+<p>图的话可以看一看上面那一个（做这个gif很麻烦的啊），唯二的区别就是在没找到的时候 $Insert$ 是加入 而 $Search$ 是返回。在搜完的时候 $Insert$ 是打上标记， $Search$ 是确认标记.</p>
+<p>Code:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="keyword">char</span>* str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;len;++k)&#123;</span><br><span class="line">        p=trie[p][str[k]-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span>(p==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> end[p];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还有一点一定要记住， <code>Trie</code> 在开始的时候一定要记得<strong>初始化！</strong></p>
+<p>Code：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(trie[<span class="number">0</span>],<span class="number">0</span>,<span class="keyword">sizeof</span>(trie[<span class="number">0</span>]));</span><br><span class="line">    <span class="built_in">memset</span>(end,<span class="number">0</span>,<span class="keyword">sizeof</span>(end));</span><br><span class="line">    tot=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>另外，说一下，<code>Trie</code>不是只能维护26个英文字符。你可以自己改进（比如后三道题就是维护异或和的（_01Trie_））</p>
+<hr>
+<h3 id="Trie例题："><a href="#Trie例题：" class="headerlink" title="Trie例题："></a>Trie例题：</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1481">P1481 魔族密码</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">P2580 于是他错误的点名开始了</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA11362">UVA11362 Phone List （下面那一道的重题）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP4033">SP4033 PHONELST - Phone List</a></p>
+</li>
+</ul>
+<h2 id="01Trie"><a href="#01Trie" class="headerlink" title="01Trie"></a>01Trie</h2><p><code>01Trie</code>是一种主要用于维护<strong>异或</strong>问题的数据结构。</p>
+<p>你也可以把它看做是只有 <code>0 1</code> 的<code>Trie</code></p>
+<p>（也就是把数字转成2进制存进 <code>Trie</code> 里面）。</p>
+<p>它在插入的时候和正常 <code>Trie</code> 不太一样。</p>
+<p>他是把数字 <strong>按位</strong> 插入进 <code>Trie</code> 里面的。</p>
+<p>也就是把数字从最高位依次插入进 <code>Trie</code> 里面。</p>
+<p>所以我们需要用到一点点位运算技巧：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cacid</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (num&gt;&gt;pos)&amp;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>也就是,对于一个数 $num$ ， $\operatorname{cacid}(num,pos)$ 返回 $num$ 第 $pos$ 位的<code>bit</code>值。 </p>
+<p>一般情况下，我们处理的都是 <code>32位整数</code>(int) ,所以01Trie一般最多有 <code>32</code> 层。</p>
+<p>那么，我们用 $\operatorname{cacid}()$ 函数，还有一点点二进制思想。</p>
+<p>可以改出来一个这样子的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cacid</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (num&gt;&gt;pos)&amp;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">32</span>;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch=cacid(num,i);</span><br><span class="line">        <span class="keyword">if</span>(!trie[p][ch])&#123;<span class="comment">//如果节点未被访问过</span></span><br><span class="line">            trie[tot][<span class="number">0</span>]=trie[tot][<span class="number">1</span>]=<span class="number">0</span>;<span class="comment">//将当前节点的指针初始化 </span></span><br><span class="line">            value[tot]=<span class="number">0</span>;<span class="comment">//节点值为0，表示到此不是一个数 </span></span><br><span class="line">            trie[p][ch]=++tot;</span><br><span class="line">        &#125;</span><br><span class="line">        p=trie[p][ch];</span><br><span class="line">    &#125;</span><br><span class="line">    value[p]=num;<span class="comment">//节点值为 num，即到此是一个数 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>我们每次在查询的时候，最基础的操作都是查询和 $num$ $\operatorname{xor}$ 之后的结果最大的数是多少。</p>
+<p>怎么做呢？</p>
+<p>和检索<code>search()</code>肯定是类似的。</p>
+<p>不过我们要根据 $\operatorname{xor}$ 的性质来检索。</p>
+<p>还是去取一个指针 $P$ ，扫描$num$ 的每一位 $bit$ 值:</p>
+<ol>
+<li><p>每一次都去访问和当前位 $ch$ 相反的那一个指针. </p>
+</li>
+<li><p>如果没有（相反位指针指向空），那就只能访问 $P$ 对应的的 $ch$ 指针。</p>
+</li>
+</ol>
+<p>根据异或的性质，我们就可以找到和 $num  $ 异或之后是最大值的那个数。</p>
+<p>举个例子(这里为了方便，简化成了$3$位)：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/skoxubna.png"></p>
+<p>那么询问 $011$ 时，就是这样的：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/tc99qhbo.png"></p>
+<p>代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">32</span>;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch=cacid(num,i);</span><br><span class="line">        <span class="keyword">if</span>(trie[p][ch^<span class="number">1</span>])&#123;</span><br><span class="line">            p=trie[p][ch^<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            p=trie[p][ch];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value[p];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你会发现，我只是把 <code>end[]</code> 搞成了 <code>value[]</code>。<br>策略改了一改。</p>
+<p>因为<code>01Trie</code> 和 <code>Trie</code> 并没有太大的不同。</p>
+<p>那么，来几道题练一下手：</p>
+<hr>
+<h3 id="01Trie例题："><a href="#01Trie例题：" class="headerlink" title="01Trie例题："></a>01Trie例题：</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://loj.ac/p/10050">Loj10050  （可能是P6018的基础）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://loj.ac/p/10056">Loj10056 (可能是P6018的基础)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6018">（选做）P6018 [Ynoi2010]Fusion tree</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="可持久化Trie"><a href="#可持久化Trie" class="headerlink" title="可持久化Trie"></a>可持久化Trie</h2><p>没开工（没学完）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">算法笔记-树状数组</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 09:42:57 / 修改时间：09:46:34" itemprop="dateCreated datePublished" datetime="2021-03-14T09:42:57+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>记得去年五一的时候我买了lxl的那个数据结构的五一专题。</p>
+<p>结果当时死活听不懂……</p>
+<p>现在回头来看看，真的学着挺轻松的。</p>
+<p>所以写个简单的总结吧。</p>
+<hr>
+<h2 id="树状数组（Binary-Index-Tree）"><a href="#树状数组（Binary-Index-Tree）" class="headerlink" title="树状数组（Binary Index Tree）"></a>树状数组（Binary Index Tree）</h2><p>现在真的觉得这个东西神奇的一批。</p>
+<p>也不知道是哪个天才想到这种数据结构。</p>
+<p>居然可以用 $\log n$ 个元素来查询前缀和。</p>
+<p>真的很牛逼啊。</p>
+<hr>
+<p>树状数组真的玄乎，所以直接上原理图吧。</p>
+<p><img src="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png" alt="bit1.PNG"></p>
+<p>这就是一个树状数组。</p>
+<p>我们设 $a[]$ 为原序列，$t[]$ 为树状数组。</p>
+<p>那么这样的构造有什么用呢？</p>
+<p>看一下 $t[]$ 的特点：</p>
+<p>$$t_1=a_1$$<br>$$t_2=a_1+a_2$$<br>$$t_3=a_3$$<br>$$t_4=a_1+a_2+a_3+a_4$$<br>$$t_5=a_5$$<br>$$t_6=a_5+a_6$$<br>$$t_7=a_7$$<br>$$t_8=a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8$$</p>
+<p>发现了么？树状数组里下标和 $2$ 有关系的似乎表示的长度要长的多？</p>
+<p>那么这就牵扯到树状数组的基本原理了。</p>
+<blockquote>
+<p>正如所有的整数都可以表示成2的幂和，我们也可以把一串序列表示成一系列子序列的和。</p>
+</blockquote>
+<blockquote>
+<p>采用这个想法，我们可将一个前缀和划分成多个子序列的和</p>
+</blockquote>
+<blockquote>
+<p>而划分的方法与数的2的幂和具有极其相似的方式。</p>
+</blockquote>
+<blockquote>
+<p>一方面，子序列的个数是其二进制表示中1的个数，</p>
+</blockquote>
+<blockquote>
+<p>另一方面，子序列代表的t[i]的个数也是2的幂。</p>
+</blockquote>
+<pre><code>                                ——Peter M. Fenwick，1994
+</code></pre>
+<p>看不懂？没事，我们先看看它能干些什么。</p>
+<hr>
+<h3 id="单点修改操作"><a href="#单点修改操作" class="headerlink" title="单点修改操作"></a>单点修改操作</h3><p><img src="https://i.loli.net/2021/02/10/BtcDWsvNFPqSC2w.png" alt="bit2.PNG"></p>
+<p>如果我们修改 $a[3]$ 的值。</p>
+<p>考虑会影响到哪些 $t[i]$</p>
+<p>看一下我最开始列的那一个表。</p>
+<p>会发现这只会影响 $t_3,t_4,t_8$</p>
+<p>那我们修改这些 $t[i]$ 就好。</p>
+<p>你会发现，这里我们所用的数的个数是小于等于 $\log(n)$的</p>
+<p>也就是说它可以在 $\log (n)$ 的时间内完成单点修改。</p>
+<hr>
+<h3 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3><p><img src="https://i.loli.net/2021/02/10/NDP5QGLXfZy8itY.png" alt="bit3.PNG"></p>
+<p>前面你也可以看到。</p>
+<p>$$t_8=a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8$$</p>
+<p>所以树状数组能否维护前缀和？</p>
+<p>可以的。</p>
+<p>看上面的图。</p>
+<p>我们如果要查询 $a[1,3]$ 的前缀和。</p>
+<p>只需要用 $t_2+t_3$ 就可以了。</p>
+<p>这里我们查询的时候用的数的个数也是小于等于 $\log (n)$的。</p>
+<p>所以结合上文。</p>
+<p>我们可以发现。</p>
+<p>树状数组是一个利用 $\log(n)$ 以内个的元素去凑出子序列的信息，以此来维护序列的数据结构。</p>
+<p>当然，如果你要区间查询和，用一下 $sum(r)-sum(l-1)$ 不就好了？</p>
+<p>这时候有人就要问了：怎么去确定要用那些元素来维护呢？</p>
+<p>这时候就要请出 <code>lowbit</code> 先生了~</p>
+<p>它可以返回一个数二进制表示下的最低位。</p>
+<p>那么这个性质可以干啥？因为树状数组的本身性质。</p>
+<p>我们可以直接用  <code>for(初值;条件;i+(-)=lowbit(i))</code> 来找出要用的元素。</p>
+<p>真妙啊~。</p>
+<p>那么代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=n;i+=lowbit(i))&#123;</span><br><span class="line">        t[i]+=y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=lowbit(i))&#123;</span><br><span class="line">        res+=t[i];</span><br><span class="line">    &#125;<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(r)-sum(l<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="区间修改："><a href="#区间修改：" class="headerlink" title="区间修改："></a>区间修改：</h3><p>这个也比较容易。</p>
+<p>我们知道差分珂以 $\text{O}(1)$ 修改区间。</p>
+<p>所以我们直接用树状数组维护一个差分数组就好了。</p>
+<hr>
+<h3 id="区间加区间和："><a href="#区间加区间和：" class="headerlink" title="区间加区间和："></a>区间加区间和：</h3><p>这个是在上一个的基础上推出来的。</p>
+<p>我们知道，我们维护在树状数组上维护的那个差分数组 $t[]$</p>
+<p>它的前缀和 $\sum^x_{i=1}t[i]$ 就是 $a[x]$ 的增加的值。</p>
+<p>所以也就是说：原序列$a$中前缀和$sum[1,x]$的总增加量就是:</p>
+<p>$$\sum^x_{i=1}\sum^i_{j=1} t[j]$$</p>
+<p>上式又等于：</p>
+<p>$$\sum^x_{i=1}(x-i+1)\times t[i]$$</p>
+<p>$$=(x+1)\sum^x_{i=1}t[i]-\sum^x_{i=1}i\times t[i]$$</p>
+<p>看一下最终的这个柿子。</p>
+<p>也就是说，我们如果要维护原序列中前缀和的“增量”</p>
+<p>我们只需要在树状数组上维护两个差分数组。一个维护 $t[i]$ ，一个维护 $i\times t[i]$ 然后就可以维护了。</p>
+<p>至于前缀和怎么维护？<br>很简单。</p>
+<p>我们知道树状数组是一个能维护动态前缀和的数据结构。</p>
+<p>而我们这里把动态的“增量” 单独提出来维护。</p>
+<p>所以我们可以直接在读入原数组的时候维护一下原始的前缀和。</p>
+<p>然后询问动态前缀和的时候就直接用前缀和加上增量就可以了。</p>
+<p>区间询问同理。</p>
+<hr>
+<h3 id="维护异或前缀和的树状数组"><a href="#维护异或前缀和的树状数组" class="headerlink" title="维护异或前缀和的树状数组"></a>维护异或前缀和的树状数组</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5057">P5057 [CQOI2006]简单题</a></li>
+</ul>
+<p>这题是一个典型例子。</p>
+<p>当然lg上有四道和它基本一样的重题，可以自行到讨论区寻找。</p>
+<p>这道题要你维护一个01序列。支持查询某个数的值。还有对于 $[l,r]$ 中的0，1，让0变成1,1变成0。</p>
+<p>很简单。</p>
+<p>看到01序列我们第一时间就应该想到 异或。</p>
+<p>因为 $0/1 \operatorname{xor} 1$ 就是给这个数取反。</p>
+<p>根据异或本身具有的运算性质。</p>
+<p>我们可以直接给异或维护前缀和。</p>
+<p>所以这道题直接维护异或的区间加和单点查就好。</p>
+<p>code：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=n;i+=lowbit(i))&#123;</span><br><span class="line">        t[i]^=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=lowbit(i))&#123;</span><br><span class="line">        res^=t[i];</span><br><span class="line">    &#125;<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//in function main():</span></span><br><span class="line"></span><br><span class="line">    read(n),read(q);</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="keyword">int</span> op,l,r;read(op);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;read(l),read(r),modify(l),modify(r+<span class="number">1</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;read(l),write(sum(l))ent;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="统计数在区间中的出现次数的树状数组"><a href="#统计数在区间中的出现次数的树状数组" class="headerlink" title="统计数在区间中的出现次数的树状数组"></a>统计数在区间中的出现次数的树状数组</h3><p>设 $t[i] $表示 $i$ 在集合 $A$ 中出现的次数。</p>
+<p>那么 $\sum^r_{i=l}t[i]$ 就是范围 $[l,r]$ 中 有多少个数。同理用树状数组维护即可。</p>
+<p>（上面的那题的4道重题就要用这个）</p>
+<hr>
+<p>例题：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3368">P3368 【模板】树状数组 2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3374">P3374 【模板】树状数组 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2068">P2068 统计和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2357">P2357 守墓人</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/" class="post-title-link" itemprop="url">算法笔记-线段树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 09:41:29 / 修改时间：09:46:35" itemprop="dateCreated datePublished" datetime="2021-03-14T09:41:29+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>以前有一段时间喜欢疯狂往后学东西。</p>
+<p>但是学了只会贺一贺模板的题解代码。</p>
+<p>变个花样就不会做了。</p>
+<p>现在有时间，那么就下点功夫搞懂这些东西吧。</p>
+<hr>
+<h2 id="线段树-（Segment-Tree）"><a href="#线段树-（Segment-Tree）" class="headerlink" title="线段树 （Segment Tree）"></a>线段树 （Segment Tree）</h2><p>这是个很liupi的数据结构。</p>
+<p>我把它叫做DS完全制霸的第一步完全不为过。</p>
+<p>这个东西真的既重要又有用。</p>
+<p>那么看看线段树是啥吧。</p>
+<hr>
+<p>它是一种基于分治思想的结构。</p>
+<p>简单来说。</p>
+<p>它将一个序列从中间切开。</p>
+<p>然后再把切开之后的一半的序列再折半。</p>
+<p>这么套娃下去一直到每个切出来的小块都是一个元素。</p>
+<p>也就是一个 $l=r$ 的区间。（叶子节点，你也可以理解成最小的那个娃（</p>
+<p>然后每一个节点会维护一个区间的 <strong>信息</strong></p>
+<p>这个信息可以是区间和，区间 $\min$ 值，区间 $\sin$ 和等等。</p>
+<p>那么你在维护的时候直接改一改维护的方式就好（运算符/计算方法）</p>
+<p>我们从区间的角度来看，它是这样子的。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/z5nvu0wg.png" alt="seg1"></p>
+<p>从二叉树的角度就是这样的</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/xfnpcr9n.png"></p>
+<p>（这里$dat$表示的是它维护的是哪个区间的信息，我省略了一些。）</p>
+<p>然后你会发现，假设我们这样子按顺序给它的节点标个号</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5qz8xs0y.png"></p>
+<p>那么你会发现对于<strong>任意一个非叶子</strong>节点</p>
+<p>都有这样子的结构：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/kyrf4fb9.png"></p>
+<p>也就是说，我们可以直接用一个结构体来储存线段树。</p>
+<p>上面保存了它的 $dat,value,lazytag,pos……$</p>
+<p>然后对于 $pos$ ，我们可以直接用上图的 “公式” 计算。</p>
+<p>这个也可以用位运算写成：</p>
+<p><code>x&lt;&lt;1</code> 和 <code>x&lt;&lt;1|1</code></p>
+<p>然后有的时候我们建完树之后是在最后一层会有空余的，根据二叉树的性质。</p>
+<p>我们至少需要<strong>四倍</strong>空间才不会炸掉。</p>
+<p>然后就这么写（define是为了调试方便）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">segment_tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r;<span class="comment">//dat interval</span></span><br><span class="line">    <span class="keyword">int</span> value,lazy;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> l(o) t[o].l</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> r(o) t[o].r</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> sum(o) t[o].value</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> tag(o) t[o].lazy</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> lson(o) o&lt;&lt;1</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> rson(o) o&lt;&lt;1|1</span></span><br><span class="line">&#125;t[si*<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h3><p>我们清楚，一个非$l=r$区间的信息是要由它的左<strong>子树</strong>和右<strong>子树</strong>合并而成的。</p>
+<p>然后这么<strong>递归</strong>下去，也就是说我们只需要让这个区间的信息等于它左右<strong>儿子</strong>合并之后的值就好了。</p>
+<p>那么维护 区间 $\min$ 就是这样的：</p>
+<p><code>minval(fa)=min(minval(ls),minval(rs));</code></p>
+<p>区间和就是 <code>sum(fa)=sum(ls)+sum(rs);</code></p>
+<p>当然为了更新我们要递归（</p>
+<p>然后递归边界就是$l=r$ 的叶子节点。</p>
+<p>code（维护区间和）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    l(p)=l,r(p)=r;<span class="comment">//这里是在 **赋值**</span></span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        sum(p)=a[l];<span class="comment">//or a[nr];//value of leaf</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(lson(p),l,mid);</span><br><span class="line">    build(rson(p),mid+<span class="number">1</span>,r);</span><br><span class="line">    sum(p)=sum(lson(p))+sum(rson(p));<span class="comment">//Update(or minv,maxv,sin,cos……)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="单点修改"><a href="#单点修改" class="headerlink" title="单点修改"></a>单点修改</h3><p>我们知道一个叶子节点的信息是会被它的上层所有节点包含的。</p>
+<p>所以在修改的时候要一起修改它的上层节点信息。</p>
+<p>递归的时候判一下$pos$在左右子树的哪里就好了</p>
+<p>不过在维护一些特殊信息是需要保留序列的原值来修改的。</p>
+<p>这时候多加一个维护信息和原信息就好了</p>
+<p>code:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> x,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=l(p),r=r(p);</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;<span class="comment">//find leaf</span></span><br><span class="line">        sum(p)=val;<span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=mid)&#123;<span class="comment">//in leftson</span></span><br><span class="line">        modify(lson(p),x,val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;<span class="comment">//in rightson</span></span><br><span class="line">        modify(rson(p),x,val);</span><br><span class="line">    &#125;</span><br><span class="line">    sum(p)=sum(lson(p))+sum(rson(p));<span class="comment">//Update</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="区间查询"><a href="#区间查询" class="headerlink" title="区间查询"></a>区间查询</h3><p>我们知道，一个区间被查询的时候，在线段树里有这么几种情况。</p>
+<h4 id="当前的-l-r-直接覆盖了查询的区间"><a href="#当前的-l-r-直接覆盖了查询的区间" class="headerlink" title="当前的[l,r]直接覆盖了查询的区间"></a>当前的[l,r]直接覆盖了查询的区间</h4><p>直接<code>return sum;</code></p>
+<h4 id="它需要分割查询（如图）："><a href="#它需要分割查询（如图）：" class="headerlink" title="它需要分割查询（如图）："></a>它需要分割查询（如图）：</h4><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/66s0bbyb.png"></p>
+<p>你会发现在一些地方我停止了。</p>
+<p>其实就是满足了第一种情况（</p>
+<p>而且到最后是一定满足第一种情况的，可以想想为啥（</p>
+<p>所以我们直接判一下第一种条件（作为递归边界）</p>
+<p>但是如果你这是在维护 $\min$ 一类的东西。</p>
+<p>你需要把它变成“候选”的，因为递归之后的其它区间可能有最值。(递归的时候取个min就好)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求和</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>,nl=l(p),nr=r(p); </span><br><span class="line">    <span class="keyword">if</span>(l&lt;=nl&amp;&amp;nr&lt;=r)&#123;</span><br><span class="line">        <span class="keyword">return</span> sum(p);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> mid=(nl+nr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)&#123;</span><br><span class="line">        res+=query(lson(p),l,r);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)&#123;</span><br><span class="line">        res+=query(rson(p),l,r);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="区间修改-amp-lazytag"><a href="#区间修改-amp-lazytag" class="headerlink" title="区间修改 &amp; lazytag"></a>区间修改 &amp; lazytag</h3><p>重头戏来了 /cy</p>
+<p>我们知道如果你用暴力的话……</p>
+<p>那么多子树（其实也不多，就是 一个<strong>稍微</strong>有点大的数$\times \log n$），早就爆掉了（/xyx</p>
+<p>所以我在之前没提到但是写了的</p>
+<p><code>lazytag</code> 就要派上用场力。</p>
+<p>我们设想，假设我们修改了节点p完全覆盖的一个区间 $[l,r]$，<br>而且还递归搞了下子树（</p>
+<p>但是我们之后没有用到，那NMD不是浪费空间和时间么？？？</p>
+<p>所以这时候就用 $tag[p]$ 表示它欠它的<strong>子树</strong>一个更新。</p>
+<p>比如维护区间和的时候，$tag[p]=114514$ 就表示$p$这个节点的子树都少了一个 $value=114514$ 的值。</p>
+<p>那么之后我们查询的时候如果发现它用到了。</p>
+<p>下传标记，然后把自己的标记清除（烧债券）</p>
+<p>当然标记下传之后我们也要把子树维护的<strong>信息</strong>更新。</p>
+<p>（注意这子树不仅要打tag还要更新信息。）</p>
+<p>用图举个例子。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1v4hgalv.png"></p>
+<p>update value 那里用 $v\times$ $区间长度$ 应该没什么问题。</p>
+<p>这个地方update要看题目情况而定。</p>
+<p>所以在之前的一些操作里面就要加上打标记和下传标记（</p>
+<p>然后区间修改就很简单啦，如果完全覆盖，就打一个标记然后更新信息。</p>
+<p>然后递归完之后在update一下就好。</p>
+<p>既然之前都要改，所以我干脆写一份完整版的叭。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">namespace</span> fastIO&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> spc ;putchar(<span class="meta-string">&#x27; &#x27;</span>);</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> ent ;puts(<span class="meta-string">&quot;&quot;</span>);</span></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">        x=<span class="number">0</span>;<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> ch=getchar();</span><br><span class="line">        <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=<span class="number">-1</span>;</span><br><span class="line">            ch=getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">            x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(ch^<span class="number">48</span>),ch=getchar();</span><br><span class="line">        &#125;x*=f;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            x=-x,<span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x&gt;<span class="number">9</span>)&#123;</span><br><span class="line">            write(x/<span class="number">10</span>);</span><br><span class="line">        &#125;<span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="number">48</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readrange</span><span class="params">(T *a,<span class="keyword">int</span> begin_,<span class="keyword">int</span> end_)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(begin_&lt;=end_)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=begin_;i&lt;=end_;++i)&#123;</span><br><span class="line">                read(a[i]);</span><br><span class="line">            &#125;<span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=begin_;i&gt;=end_;--i)&#123;</span><br><span class="line">            read(a[i]);</span><br><span class="line">        &#125;<span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> fastIO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> si=<span class="number">4e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[si];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">segment_tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r;<span class="comment">//dat interval</span></span><br><span class="line">    <span class="keyword">int</span> value,lazy;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> l(o) t[o].l</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> r(o) t[o].r</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> sum(o) t[o].value</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> tag(o) t[o].lazy</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> lson(o) o&lt;&lt;1</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> rson(o) o&lt;&lt;1|1</span></span><br><span class="line">&#125;t[si*<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tag(p))&#123;</span><br><span class="line">        sum(lson(p))+=tag(p)*(r(lson(p))-l(lson(p))+<span class="number">1</span>);</span><br><span class="line">        sum(rson(p))+=tag(p)*(r(rson(p))-l(rson(p))+<span class="number">1</span>);<span class="comment">//update information</span></span><br><span class="line">        tag(lson(p))+=tag(p),tag(rson(p))+=tag(p);<span class="comment">//spread tag </span></span><br><span class="line">        tag(p)=<span class="number">0</span>;<span class="comment">//delete</span></span><br><span class="line">    &#125;<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    l(p)=l,r(p)=r;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        sum(p)=a[l];<span class="comment">//or a[nr];//value of leaf</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(lson(p),l,mid);</span><br><span class="line">    build(rson(p),mid+<span class="number">1</span>,r);</span><br><span class="line">    sum(p)=sum(lson(p))+sum(rson(p));<span class="comment">//Update(or minv,maxv,sin,cos……)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> x,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=l(p),r=r(p);</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;<span class="comment">//find leaf</span></span><br><span class="line">        sum(p)=val;<span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=mid)&#123;<span class="comment">//in leftson</span></span><br><span class="line">        modify(lson(p),x,val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;<span class="comment">//in rightson</span></span><br><span class="line">        modify(rson(p),x,val);</span><br><span class="line">    &#125;</span><br><span class="line">    sum(p)=sum(lson(p))+sum(rson(p));<span class="comment">//Update</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res=<span class="number">0</span>,nl=l(p),nr=r(p); </span><br><span class="line">    <span class="keyword">if</span>(l&lt;=nl&amp;&amp;nr&lt;=r)&#123;</span><br><span class="line">        <span class="keyword">return</span> sum(p);</span><br><span class="line">	&#125;</span><br><span class="line">    pushdown(p);</span><br><span class="line">    <span class="keyword">int</span> mid=(nl+nr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)&#123;</span><br><span class="line">        res+=query(lson(p),l,r);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)&#123;</span><br><span class="line">        res+=query(rson(p),l,r);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nl=l(p),nr=r(p);</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=nl&amp;&amp;nr&lt;=r)&#123;</span><br><span class="line">        sum(p)+=v*(nr-nl+<span class="number">1</span>);</span><br><span class="line">        tag(p)+=v;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pushdown(p);</span><br><span class="line">    <span class="keyword">int</span> mid=(nl+nr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)&#123;</span><br><span class="line">        update(lson(p),l,r,v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)&#123;</span><br><span class="line">        update(rson(p),l,r,v);</span><br><span class="line">    &#125;</span><br><span class="line">    sum(p)=sum(lson(p))+sum(rson(p));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    read(n),read(m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        read(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="keyword">int</span> op,x,y,k;</span><br><span class="line">        read(op),read(x),read(y);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;</span><br><span class="line">            read(k);</span><br><span class="line">            update(<span class="number">1</span>,x,y,k);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            write(query(<span class="number">1</span>,x,y))ent;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="关于复杂度"><a href="#关于复杂度" class="headerlink" title="关于复杂度"></a>关于复杂度</h3><p>所有的查询和修改操作正常来说都是</p>
+<p>$\text{O} (\log \texttt{n})$ 的 ，因为线段树的深度就是$\log (\texttt{n})$</p>
+<hr>
+<p>例题：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3373">P3373 【模板】线段树 2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6242">P6242 【模板】线段树 3（吉老师线段树建议熟练之后再看论文或者lg日报自学（</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6327">P6327 区间加区间sin和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1471">P1471 方差</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1531">P1531 I Hate It</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1883">P1883 函数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1972">P1972 [SDOI2009]HH的项链</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2023">P2023 [AHOI2009] 维护序列</a></li>
+</ul>
+<hr>
+<p>一些犯过的错：</p>
+<blockquote>
+<ol>
+<li><code>build()</code> 里面不给 <code>l(p),r(p)</code> 赋值。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><code>lson(p)</code>写成 <code>p&gt;&gt;1</code> （方向反了）</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>维护<code>max/min</code> 的时候如果是单点修改，完全可以不用<code>lazytag</code>，而且也不用维护一个原序列的值（因为当 <code>p</code> 是叶子节点的时候<code>maxv(p)</code>就是<code>a[]</code>）</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/14/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-14 08:48:16" itemprop="dateCreated datePublished" datetime="2021-03-14T08:48:16+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">black_trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="NMD初始化害死人錒。记得区分清楚初始化的顺序。还有赋的初值的意义。 初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题 特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序 断环成链记得在最后取一下最值。  才发现自己区间DP有好多bug没补上。 借DC的讲义改了一些部分。  划分型：所谓区间分割问题，是指在长度为n的线性序列上，分割为m部分，每个部分对应的权值不同，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂-区间DP">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/%E6%9D%82-%E5%8C%BA%E9%97%B4DP/index.html">
+<meta property="og:site_name" content="black_trees">
+<meta property="og:description" content="NMD初始化害死人錒。记得区分清楚初始化的顺序。还有赋的初值的意义。 初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题 特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序 断环成链记得在最后取一下最值。  才发现自己区间DP有好多bug没补上。 借DC的讲义改了一些部分。  划分型：所谓区间分割问题，是指在长度为n的线性序列上，分割为m部分，每个部分对应的权值不同，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png">
+<meta property="article:published_time" content="2021-03-14T01:56:21.000Z">
+<meta property="article:modified_time" content="2021-03-14T01:56:57.818Z">
+<meta property="article:author" content="black_trees">
+<meta property="article:tag" content="unknown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/%E6%9D%82-%E5%8C%BA%E9%97%B4DP/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>杂-区间DP | black_trees</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">black_trees</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">An Oier's blog</p>
+      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/uploads/custom-logo.jpg" alt="black_trees">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%92%E5%88%86%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">划分型：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%A6%82%EF%BC%9A%E6%9C%89m%E4%B8%AA%E4%BD%8D%E7%BD%AE%EF%BC%8Cn%E7%A7%8D%E8%8A%B1%E7%9B%86%EF%BC%8C%E7%BC%96%E5%8F%B7%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%EF%BC%8C%E6%AF%8F%E7%A7%8D%E8%8A%B1%E7%9B%86%E6%9C%89a-i-%E4%B8%AA%EF%BC%8C%E6%AF%8F%E7%A7%8D%E8%8A%B1%E7%9B%86%E6%91%86%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%8C%E9%97%AE%E4%B8%80%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%8A%B1%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">例如：有m个位置，n种花盆，编号从小到大，每种花盆有a[i]个，每种花盆摆在一起，问一共有多少种花方案？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems"><span class="nav-number">1.2.</span> <span class="nav-text">Problems:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E7%B1%BB%E5%9E%8B%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">合并类型。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems-1"><span class="nav-number">2.1.</span> <span class="nav-text">Problems:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">hylwxqwq</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E6%9D%82-%E5%8C%BA%E9%97%B4DP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="hylwxqwq">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          杂-区间DP
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-14 09:56:21 / 修改时间：09:56:57" itemprop="dateCreated datePublished" datetime="2021-03-14T09:56:21+08:00">2021-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>NMD初始化害死人錒。<br>记得区分清楚初始化的顺序。<br>还有赋的初值的意义。</p>
+<p>初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题</p>
+<p>特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序</p>
+<p>断环成链记得在最后取一下最值。</p>
+<hr>
+<p>才发现自己区间DP有好多bug没补上。</p>
+<p>借DC的讲义改了一些部分。</p>
+<hr>
+<h3 id="划分型："><a href="#划分型：" class="headerlink" title="划分型："></a>划分型：</h3><p>所谓区间分割问题，是指在长度为n的线性序列上，分割为m部分，每个部分对应的权值不同，问如何分割才能使总权值最大。</p>
+<p>我们定义$f[i][j]$表示长度为i的序列，分割为j部分所能获得的最大权值，这是个前i前j问题，那么我们先考虑最后一个分割，即第j个分割，肯定存在一个分割点k，使得k+1到i构成前j部分，获得权值和为$w[k+1][i]$，那么问题转化为前面长度为k的序列分割成j-1个部分获得的最大权值。状态转移方程：$f[i][j]=max{f[k][j-1]+w[k+1][i] }$ $ (j-1\le k &lt; i)$</p>
+<p>有了大致的方程，针对每道题目可能会有小调整，随机应变即可。</p>
+<h4 id="例如：有m个位置，n种花盆，编号从小到大，每种花盆有a-i-个，每种花盆摆在一起，问一共有多少种花方案？"><a href="#例如：有m个位置，n种花盆，编号从小到大，每种花盆有a-i-个，每种花盆摆在一起，问一共有多少种花方案？" class="headerlink" title="例如：有m个位置，n种花盆，编号从小到大，每种花盆有a[i]个，每种花盆摆在一起，问一共有多少种花方案？"></a>例如：有m个位置，n种花盆，编号从小到大，每种花盆有a[i]个，每种花盆摆在一起，问一共有多少种花方案？</h4><p>$f[i][j]$表示前i种花，摆在前j个位置的方案数。</p>
+<p>$f[i][j] += f[i-1][j-k]$，其中$k \in [0,a[i]]$，即枚举第i种花盆的个数k。</p>
+<p>也可以$f[i][j]$表示前i个位置，摆前j种花盆的方案数。</p>
+<p>$f[i][j] += f[i-k][j-1]$，只要赋值符号右边是事先计算过的，值是确定的，就可以，所以DP数组的定义不是唯一的。</p>
+<p>在这个例子里：一旦某个值$f[i-k][j-1]$计算出来，后边就不会再回来改变，我们称之为无后效性，这个值是f$[i][j]$的最优子结构，可以在后边阶段其他状态的计算过程中多次被引用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> si=<span class="number">10000</span>;</span><br><span class="line"><span class="keyword">int</span> f[si][si];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clac</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="comment">/*return value of range [l,r]*/</span></span><br><span class="line">&#125;<span class="comment">//注意这里会有很多判断，甚至会有模拟在里面</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<span class="comment">//length -&gt;n break into m range.</span></span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=j<span class="number">-1</span>;k&lt;i;++k)&#123;</span><br><span class="line">            <span class="comment">//*last* break point.</span></span><br><span class="line">				f[i][j]=max(f[i][j],f[k][j<span class="number">-1</span>]+calc(k+<span class="number">1</span>,i));</span><br><span class="line">           <span class="comment">//前一段的 *状态* +后一段的 *贡献*</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意这个$k$一定是小于$i$的，不然$k+1$会出事。</p>
+<p>然后你枚举$k$的时候要看情况，有的时候是这样的。有的时候是 $[0 , i)$ （邮局那题） 所以要视情况而定。（普通DP也一样）</p>
+<p>然后有一个点，你会发现，我们枚举的这个 $k$ 是一个 “不确定” 的元素。</p>
+<p>它的决策会影响我们的状态和转移。（比如下面两道题里的 邮局 和 花朵 ）。</p>
+<p>那么、我们就要去枚举这个东西的决策点。</p>
+<p>一般来说，它的转移是这样子的：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png"></p>
+<p>然后中间的就是我们的决策点 $k$ 了。</p>
+<p>然后有些人是直接用后一段的 $f$ ，因为他们给对应的值初始化了。有的时候这种方法没问题，不过上面的那种更通用。</p>
+<p>当然有些题目的 clac()的值可以通过DP或者递推预先处理出来。（邮局一题便是）</p>
+<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems:"></a>Problems:</h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4767">[IOI2020]邮局（需要四边形不等式）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1854">[IOI1999]花店橱窗布置</a></p>
+</li>
+</ul>
+<hr>
+<h3 id="合并类型。"><a href="#合并类型。" class="headerlink" title="合并类型。"></a>合并类型。</h3><p>这种就比较简单了</p>
+<p>你可以直接用分割点之前的状态加上之后的状态再加上转移代价。</p>
+<p>这种的注意点和上面的基本一样。</p>
+<p>然后有的时候合并或删除区间是要特判区间首尾或者条件的（下面的三道例题都是）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> si=<span class="number">10000</span>;</span><br><span class="line"><span class="keyword">int</span> f[si][si];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="built_in">memset</span>(f,<span class="number">0x7f7f7f</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		f[i][i]=value<span class="comment">/*By f to get this value,which is mean inivalue of f*/</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> len=<span class="number">2</span>;len&lt;=n;++len)&#123;<span class="comment">//ranges&#x27; length ,we strat it from 2,so we must init len=1 &#x27;s situations.</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i+len<span class="number">-1</span>&lt;=n;++i)&#123;<span class="comment">//range&#x27;s left end point</span></span><br><span class="line">			<span class="keyword">register</span> <span class="keyword">int</span> j=i+len<span class="number">-1</span>;<span class="comment">//range &#x27;s right end point</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=i;k&lt;j;++k)&#123; <span class="comment">// enumerate break point in range[i,j) </span></span><br><span class="line">				<span class="comment">//if () -&gt; you can check your problem which is you solving to get &quot;&quot;should you plus something there? -&gt;CQOI 07 -&gt;color // CF1132F </span></span><br><span class="line">				f[i][j]=max/min(f[i][j],f[i][k]+f[k+<span class="number">1</span>][j]+value<span class="comment">/*if k is breakpoint ,value of this selection*/</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;f[<span class="number">1</span>][n];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Problems-1"><a href="#Problems-1" class="headerlink" title="Problems:"></a>Problems:</h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1132F">CF1132F</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF607B">CF607B</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4170"> [CQOI2007]涂色</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unknown/" rel="tag"># unknown</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="prev" title="算法笔记-并查集">
+                  <i class="fa fa-chevron-left"></i> 算法笔记-并查集
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/14/%E6%9D%82-%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="next" title="杂-基础算法">
+                  杂-基础算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">black_trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

@@ -23,20 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="题解 CF414B 【Mashmokh and ACM】比较简单的一道DP。  状态比较好想。直接从题目里找一下要求然后直接设就行了。 即是： 设 $f[i][j]$ 表示最大元素为 $i$ ,长度为 $j$ 的方案数。 但是在转移的时候会稍微麻烦一点。一般的和这种数列有关系的DP。最外层一般都是枚举长度。 所以改变一下状态。 设 $f[i][j]$ 表示最大元素为 $j$ ,长度为 $i$ 的方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/hello-world/index.html">
+<meta property="og:title" content="CF414B">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/CF414B/index.html">
 <meta property="og:site_name" content="black_trees">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="题解 CF414B 【Mashmokh and ACM】比较简单的一道DP。  状态比较好想。直接从题目里找一下要求然后直接设就行了。 即是： 设 $f[i][j]$ 表示最大元素为 $i$ ,长度为 $j$ 的方案数。 但是在转移的时候会稍微麻烦一点。一般的和这种数列有关系的DP。最外层一般都是枚举长度。 所以改变一下状态。 设 $f[i][j]$ 表示最大元素为 $j$ ,长度为 $i$ 的方">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-14T00:48:16.645Z">
-<meta property="article:modified_time" content="2021-03-14T00:48:16.645Z">
+<meta property="article:published_time" content="2021-03-14T02:01:54.000Z">
+<meta property="article:modified_time" content="2021-03-14T02:02:31.343Z">
 <meta property="article:author" content="black_trees">
+<meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/hello-world/">
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/CF414B/">
 
 
 <script class="page-configurations">
@@ -48,7 +49,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>Hello World | black_trees</title>
+<title>CF414B | black_trees</title>
   
 
 
@@ -160,7 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3-CF414B-%E3%80%90Mashmokh-and-ACM%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">题解 CF414B 【Mashmokh and ACM】</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,7 +229,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/CF414B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
@@ -241,7 +242,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          CF414B
         </h1>
 
         <div class="post-meta-container">
@@ -251,8 +252,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-03-14 08:48:16" itemprop="dateCreated datePublished" datetime="2021-03-14T08:48:16+08:00">2021-03-14</time>
+      <time title="创建时间：2021-03-14 10:01:54 / 修改时间：10:02:31" itemprop="dateCreated datePublished" datetime="2021-03-14T10:01:54+08:00">2021-03-14</time>
     </span>
 
   
@@ -265,19 +267,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="题解-CF414B-【Mashmokh-and-ACM】"><a href="#题解-CF414B-【Mashmokh-and-ACM】" class="headerlink" title="题解 CF414B 【Mashmokh and ACM】"></a>题解 CF414B 【Mashmokh and ACM】</h1><p>比较简单的一道DP。</p>
+<hr>
+<p>状态比较好想。直接从题目里找一下要求然后直接设就行了。</p>
+<p>即是： 设 $f[i][j]$ 表示最大元素为 $i$ ,长度为 $j$ 的方案数。</p>
+<p>但是在转移的时候会稍微麻烦一点。一般的和这种数列有关系的DP。最外层一般都是枚举长度。</p>
+<p>所以改变一下状态。 设 $f[i][j]$ 表示最大元素为 $j$ ,长度为 $i$ 的方案数。 </p>
+<p>现在还是不好转移。</p>
+<p>看题目里的一个词：<code>整除</code></p>
+<p>这是这道题目最关键的地方。我们后一个数要从前一个数走过来，肯定是要乘上一个常数的，而方案数的多与少就取决于这个常数可以怎么拿。</p>
+<p>所以在循环里加一层，枚举这一个常数。</p>
+<p>那我们可以结合状态本身的定义想到：</p>
+<p>$$f[i][j]=(f[i][j]+f[i-1][j\times \alpha]) \operatorname{mod} (10^9+7)$$</p>
+<p>（ $\alpha$ 为我们枚举的常数。）</p>
+<p>然后根据“好数列”的定义，可以发现， $\alpha$ 往后枚举的条件是 $\alpha \times j \le n$ （最大元素不大于 $n$ （因为你的数列中的数是上升的，$\alpha \times j$ 相当于去求这个当前序列里的最大值））</p>
+<p>初始化就从长度为 $1$ 的状态初始化就可以了（$f[1][j]$）</p>
+<p>最后，我们可以得出这样的代码（转移的时候记得取模）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> si=<span class="number">2010</span>;</span><br><span class="line"><span class="keyword">int</span> n,K;<span class="comment">//这里的K是大写的，表示题目所给的K</span></span><br><span class="line"><span class="keyword">int</span> f[si][si];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;K);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		f[<span class="number">1</span>][i]=<span class="number">1</span>;</span><br><span class="line">	&#125;	<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=K;++i)&#123;<span class="comment">//枚举长度</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j)&#123;<span class="comment">//枚举元素最大值</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">1</span>;k*j&lt;=n;++k)&#123; <span class="comment">//这里的k是小写，是枚举的常数</span></span><br><span class="line">				f[i][j]=(f[i][j]+f[i<span class="number">-1</span>][k*j])%mod;</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		res=(res+f[K][i])%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<hr>
 
     </div>
 
@@ -286,15 +294,21 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solution/" rel="tag"># solution</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/03/14/ARC073B/" rel="prev" title="ARC073B">
+                  <i class="fa fa-chevron-left"></i> ARC073B
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="next" title="算法笔记-线段树">
-                  算法笔记-线段树 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/03/14/luogu1052/" rel="next" title="luogu1052">
+                  luogu1052 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

@@ -23,20 +23,25 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="题解 P1616 【疯狂的采药】UPD:原来有张图放错了，已修改 （20&#x2F;12&#x2F;17）[谢谢 @Rbu_nas 和 @ech_ooo]  毒瘤的 yummy hack了30多篇题解……cz巨佬又加强了数据，所以在这里发一篇题解。  这一题和 P1048的不同很明显：  每种物品是无限制的  所以他属于完全背包。 因为这算是完全背包的入门题，所以就从头到尾好好的推一遍。 我们设 $f[i][j]$">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/hello-world/index.html">
+<meta property="og:title" content="luogu1616">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/luogu1616/index.html">
 <meta property="og:site_name" content="black_trees">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="题解 P1616 【疯狂的采药】UPD:原来有张图放错了，已修改 （20&#x2F;12&#x2F;17）[谢谢 @Rbu_nas 和 @ech_ooo]  毒瘤的 yummy hack了30多篇题解……cz巨佬又加强了数据，所以在这里发一篇题解。  这一题和 P1048的不同很明显：  每种物品是无限制的  所以他属于完全背包。 因为这算是完全背包的入门题，所以就从头到尾好好的推一遍。 我们设 $f[i][j]$">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-14T00:48:16.645Z">
-<meta property="article:modified_time" content="2021-03-14T00:48:16.645Z">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/d7nl3cwa.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/v4mhfra1.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/k2szjt3c.png">
+<meta property="article:published_time" content="2021-03-14T02:05:10.000Z">
+<meta property="article:modified_time" content="2021-03-14T02:05:25.056Z">
 <meta property="article:author" content="black_trees">
+<meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/d7nl3cwa.png">
 
 
-<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/hello-world/">
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/luogu1616/">
 
 
 <script class="page-configurations">
@@ -48,7 +53,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>Hello World | black_trees</title>
+<title>luogu1616 | black_trees</title>
   
 
 
@@ -160,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3-P1616-%E3%80%90%E7%96%AF%E7%8B%82%E7%9A%84%E9%87%87%E8%8D%AF%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">题解 P1616 【疯狂的采药】</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,7 +233,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/luogu1616/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
@@ -241,7 +246,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          luogu1616
         </h1>
 
         <div class="post-meta-container">
@@ -251,8 +256,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-03-14 08:48:16" itemprop="dateCreated datePublished" datetime="2021-03-14T08:48:16+08:00">2021-03-14</time>
+      <time title="创建时间：2021-03-14 10:05:10 / 修改时间：10:05:25" itemprop="dateCreated datePublished" datetime="2021-03-14T10:05:10+08:00">2021-03-14</time>
     </span>
 
   
@@ -265,19 +271,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="题解-P1616-【疯狂的采药】"><a href="#题解-P1616-【疯狂的采药】" class="headerlink" title="题解 P1616 【疯狂的采药】"></a>题解 P1616 【疯狂的采药】</h1><p>UPD:原来有张图放错了，已修改 （20/12/17）[谢谢 @Rbu_nas 和 @ech_ooo<br>]</p>
+<hr>
+<p>毒瘤的 yummy hack了30多篇题解……cz巨佬又加强了数据，所以在这里发一篇题解。</p>
+<hr>
+<p>这一题和 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1048">P1048</a><br>的不同很明显：</p>
+<ul>
+<li>每种物品是无限制的</li>
+</ul>
+<p>所以他属于完全背包。</p>
+<p>因为这算是完全背包的入门题，所以就从头到尾好好的推一遍。</p>
+<p>我们设 $f[i][j]$ 表示使用 $j$ 的空间，考虑前 $i$ 种物品的最大价值。</p>
+<p>且 $v[i]$ 表示第 $i$ 种物品的体积（重量）， $c[i]$ 表示第<br> $i$ 种物品的价值</p>
+<p>想一想，我们如果需要得到 $f[i][j]$ ，那么需要知道什么状态才可以推导出它？</p>
+<p>很明显，因为每次决策都是选或者不选。所以我们需要得到：$f[i-1][j]$ 和 $f[i-1][j-v[i]]+c[i]$</p>
+<p>前者表示不选，后者表示选（去掉所选物品的体积，然后加上价值）。</p>
+<p>但是，我们这里的每种物品有无限多个。</p>
+<p>所以在循环的时候，空间的枚举范围是 $v[i] \le j \le m$。<br>（$m$ 表示背包总体积）。</p>
+<p>但是现在数据被加强了，所以 <code>int</code> 会爆，要用 <code>long long</code></p>
+<p>而且要用滚动数组来优化 （数据范围是 $10^7$ 你不滚动数组那就挂了）。</p>
+<p>那么代码如下：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/d7nl3cwa.png" alt="DP-滚动"></p>
+<p>然后记得看一下数组空间，记得开 $10^7$ 和 <code>long long</code></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/v4mhfra1.png"></p>
+<hr>
+<p>加强过后的AC记录（同一份代码，有波动正常）：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/k2szjt3c.png"></p>
+<p>两个号都是我的，实测可以过现在的数据（应该是加强过后除了cz最早交的）。</p>
 
     </div>
 
@@ -286,15 +306,21 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solution/" rel="tag"># solution</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/03/14/luogu1052/" rel="prev" title="luogu1052">
+                  <i class="fa fa-chevron-left"></i> luogu1052
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="next" title="算法笔记-线段树">
-                  算法笔记-线段树 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/03/14/UVA515/" rel="next" title="UVA515">
+                  UVA515 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
