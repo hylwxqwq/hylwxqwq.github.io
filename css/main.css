@@ -391,170 +391,184 @@ td {
   top: -5px;
   transform: rotate(-45deg);
 }
-/**
- * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
- * Based on https://github.com/chriskempson/tomorrow-theme
- * @author Rose Pritchard
- */
+/*
 
-code[class*="language-"],
-pre[class*="language-"] {
-	color: #ccc;
-	background: none;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1em;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
-	line-height: 1.5;
+Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
 
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
+*/
 
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #F0F0F0;
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-	padding: 1em;
-	margin: .5em 0;
-	overflow: auto;
+
+/* Base color: saturation 0; */
+
+.hljs,
+.hljs-subst {
+  color: #444;
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #2d2d2d;
+.hljs-comment {
+  color: #888888;
 }
 
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-	padding: .1em;
-	border-radius: .3em;
-	white-space: normal;
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name {
+  font-weight: bold;
 }
 
-.token.comment,
-.token.block-comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-	color: #999;
+
+/* User color: hue: 0 */
+
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #880000;
 }
 
-.token.punctuation {
-	color: #ccc;
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
 }
 
-.token.tag,
-.token.attr-name,
-.token.namespace,
-.token.deleted {
-	color: #e2777a;
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #BC6060;
 }
 
-.token.function-name {
-	color: #6196cc;
+
+/* Language color: hue: 90; */
+
+.hljs-literal {
+  color: #78A960;
 }
 
-.token.boolean,
-.token.number,
-.token.function {
-	color: #f08d49;
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #397300;
 }
 
-.token.property,
-.token.class-name,
-.token.constant,
-.token.symbol {
-	color: #f8c555;
+
+/* Meta color: hue: 200 */
+
+.hljs-meta {
+  color: #1f7199;
 }
 
-.token.selector,
-.token.important,
-.token.atrule,
-.token.keyword,
-.token.builtin {
-	color: #cc99cd;
+.hljs-meta-string {
+  color: #4d99bf;
 }
 
-.token.string,
-.token.char,
-.token.attr-value,
-.token.regex,
-.token.variable {
-	color: #7ec699;
+
+/* Misc effects */
+
+.hljs-emphasis {
+  font-style: italic;
 }
 
-.token.operator,
-.token.entity,
-.token.url {
-	color: #67cdcc;
+.hljs-strong {
+  font-weight: bold;
 }
 
-.token.important,
-.token.bold {
-	font-weight: bold;
-}
-.token.italic {
-	font-style: italic;
-}
+@media (prefers-color-scheme: dark) {
+/* Tomorrow Night Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
-.token.entity {
-	cursor: help;
-}
-
-.token.inserted {
-	color: green;
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #969896;
 }
 
-pre[class*="language-"].line-numbers {
-	position: relative;
-	padding-left: 3.8em;
-	counter-reset: linenumber;
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #cc6666;
 }
 
-pre[class*="language-"].line-numbers > code {
-	position: relative;
-	white-space: inherit;
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #de935f;
 }
 
-.line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
+/* Tomorrow Yellow */
+.hljs-attribute {
+  color: #f0c674;
 }
 
-	.line-numbers-rows > span {
-		display: block;
-		counter-increment: linenumber;
-	}
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #b5bd68;
+}
 
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #999;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+  color: #81a2be;
+}
 
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #b294bb;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #1d1f21;
+  color: #c5c8c6;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+}
 .highlight:hover .copy-btn,
 pre:hover .copy-btn {
   opacity: 1;
@@ -567,13 +581,11 @@ pre:hover .copy-btn {
   padding: 2px 6px;
   position: absolute;
   transition: opacity 0.2s ease-in-out;
-  background-color: #eee;
-  background-image: linear-gradient(#fcfcfc, #eee);
-  border: 1px solid #d5d5d5;
-  border-radius: 3px;
+  background: #fff;
+  border: 0;
   font-size: 0.8125em;
-  right: 4px;
-  top: 8px;
+  right: 0;
+  top: 0;
 }
 code,
 kbd,
@@ -1413,6 +1425,73 @@ pre code {
 }
 .use-motion .menu-item {
   visibility: hidden;
+}
+.github-corner :hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+.github-corner svg {
+  color: #fff;
+  fill: #222;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+@media (max-width: 991px) {
+  .github-corner svg {
+    color: #222;
+    fill: #fff;
+  }
+  .github-corner .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+@-moz-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-webkit-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@-o-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
 }
 .sidebar-inner {
   color: #999;
