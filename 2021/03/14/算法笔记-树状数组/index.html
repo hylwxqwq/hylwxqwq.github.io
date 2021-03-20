@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="black_trees">
 <meta property="og:description" content="前言：记得去年五一的时候我买了lxl的那个数据结构的五一专题。 结果当时死活听不懂…… 现在回头来看看，真的学着挺轻松的。 所以写个简单的总结吧。  树状数组（Binary Index Tree）现在真的觉得这个东西神奇的一批。 也不知道是哪个天才想到这种数据结构。 居然可以用 $\log n$ 个元素来查询前缀和。 真的很牛逼啊。  树状数组真的玄乎，所以直接上原理图吧。  这就是一个树状数组。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png">
-<meta property="og:image" content="https://i.loli.net/2021/02/10/BtcDWsvNFPqSC2w.png">
-<meta property="og:image" content="https://i.loli.net/2021/02/10/NDP5QGLXfZy8itY.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/iev6q4tu.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/qbap2fpo.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/yo1u4l25.png">
 <meta property="article:published_time" content="2021-03-14T01:42:57.000Z">
-<meta property="article:modified_time" content="2021-03-14T01:46:34.444Z">
+<meta property="article:modified_time" content="2021-03-20T12:31:45.984Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="algorithm note">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/iev6q4tu.png">
 
 
 <link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
@@ -118,7 +118,7 @@
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">An Oier's blog</p>
-      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/uploads/custom-logo.jpg" alt="black_trees">
+      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png#/uploads/custom-logo.jpg" alt="black_trees">
   </div>
 
   <div class="site-nav-right">
@@ -174,7 +174,7 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="black_trees"
-      src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      src="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png">
   <p class="site-author-name" itemprop="name">black_trees</p>
   <div class="site-description" itemprop="description">hylwxqwq</div>
 </div>
@@ -183,7 +183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -238,7 +238,7 @@
     <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png">
       <meta itemprop="name" content="black_trees">
       <meta itemprop="description" content="hylwxqwq">
     </span>
@@ -258,10 +258,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-03-14 09:42:57 / 修改时间：09:46:34" itemprop="dateCreated datePublished" datetime="2021-03-14T09:42:57+08:00">2021-03-14</time>
+      <time title="创建时间：2021-03-14 09:42:57" itemprop="dateCreated datePublished" datetime="2021-03-14T09:42:57+08:00">2021-03-14</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-20 20:31:45" itemprop="dateModified" datetime="2021-03-20T20:31:45+08:00">2021-03-20</time>
+      </span>
 
   
 </div>
@@ -284,7 +290,7 @@
 <p>真的很牛逼啊。</p>
 <hr>
 <p>树状数组真的玄乎，所以直接上原理图吧。</p>
-<p><img src="https://i.loli.net/2021/02/10/KTtPrwl7vAjkyIc.png" alt="bit1.PNG"></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/iev6q4tu.png" alt="bit1.PNG"></p>
 <p>这就是一个树状数组。</p>
 <p>我们设 $a[]$ 为原序列，$t[]$ 为树状数组。</p>
 <p>那么这样的构造有什么用呢？</p>
@@ -311,7 +317,7 @@
 </code></pre>
 <p>看不懂？没事，我们先看看它能干些什么。</p>
 <hr>
-<h3 id="单点修改操作"><a href="#单点修改操作" class="headerlink" title="单点修改操作"></a>单点修改操作</h3><p><img src="https://i.loli.net/2021/02/10/BtcDWsvNFPqSC2w.png" alt="bit2.PNG"></p>
+<h3 id="单点修改操作"><a href="#单点修改操作" class="headerlink" title="单点修改操作"></a>单点修改操作</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/qbap2fpo.png" alt="bit2.PNG"></p>
 <p>如果我们修改 $a[3]$ 的值。</p>
 <p>考虑会影响到哪些 $t[i]$</p>
 <p>看一下我最开始列的那一个表。</p>
@@ -320,7 +326,7 @@
 <p>你会发现，这里我们所用的数的个数是小于等于 $\log(n)$的</p>
 <p>也就是说它可以在 $\log (n)$ 的时间内完成单点修改。</p>
 <hr>
-<h3 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3><p><img src="https://i.loli.net/2021/02/10/NDP5QGLXfZy8itY.png" alt="bit3.PNG"></p>
+<h3 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/yo1u4l25.png" alt="bit3.PNG"></p>
 <p>前面你也可以看到。</p>
 <p>$$t_8=a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8$$</p>
 <p>所以树状数组能否维护前缀和？</p>
@@ -378,7 +384,7 @@
 <p>我们可以直接给异或维护前缀和。</p>
 <p>所以这道题直接维护异或的区间加和单点查就好。</p>
 <p>code：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=n;i+=lowbit(i))&#123;</span><br><span class="line">        t[i]^=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=lowbit(i))&#123;</span><br><span class="line">        res^=t[i];</span><br><span class="line">    &#125;<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//in function main():</span></span><br><span class="line"></span><br><span class="line">    read(n),read(q);</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="keyword">int</span> op,l,r;read(op);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;read(l),read(r),modify(l),modify(r+<span class="number">1</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;read(l),write(sum(l))ent;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=n;i+=lowbit(i))&#123;</span><br><span class="line">        t[i]^=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=lowbit(i))&#123;</span><br><span class="line">        res^=t[i];</span><br><span class="line">    &#125;<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//in function main():</span></span><br><span class="line"></span><br><span class="line">    read(n),read(q);</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="keyword">int</span> op,l,r;read(op);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;read(l),read(r),modify(l),modify(r+<span class="number">1</span>);&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;read(l),write(sum(l))ent;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h3 id="统计数在区间中的出现次数的树状数组"><a href="#统计数在区间中的出现次数的树状数组" class="headerlink" title="统计数在区间中的出现次数的树状数组"></a>统计数在区间中的出现次数的树状数组</h3><p>设 $t[i] $表示 $i$ 在集合 $A$ 中出现的次数。</p>

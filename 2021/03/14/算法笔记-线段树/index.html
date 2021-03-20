@@ -23,12 +23,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="前言：以前有一段时间喜欢疯狂往后学东西。 但是学了只会贺一贺模板的题解代码。 变个花样就不会做了。 现在有时间，那么就下点功夫搞懂这些东西吧。  线段树 （Segment Tree）这是个很liupi的数据结构。 我把它叫做DS完全制霸的第一步完全不为过。 这个东西真的既重要又有用。 那么看看线段树是啥吧。  它是一种基于分治思想的结构。 简单来说。 它将一个序列从中间切开。 然后再把切开之后的一">
+<meta name="description" content="前言：以前有一段时间喜欢疯狂往后学东西。 但是学了只会贺一贺模板的题解代码。 变个花样就不会做了。 现在有时间，那么就下点功夫搞懂这些东西吧。  线段树 （Segment Tree）这是个很liupi的数据结构。 我把它叫做DS完全制霸的第一步完全不为过。 这个东西真的既重要又有用。 那么看看线段树是啥吧。  基本结构它是一种基于分治思想的结构。 简单来说。 它将一个序列从中间切开。 然后再把切开">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法笔记-线段树">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
 <meta property="og:site_name" content="black_trees">
-<meta property="og:description" content="前言：以前有一段时间喜欢疯狂往后学东西。 但是学了只会贺一贺模板的题解代码。 变个花样就不会做了。 现在有时间，那么就下点功夫搞懂这些东西吧。  线段树 （Segment Tree）这是个很liupi的数据结构。 我把它叫做DS完全制霸的第一步完全不为过。 这个东西真的既重要又有用。 那么看看线段树是啥吧。  它是一种基于分治思想的结构。 简单来说。 它将一个序列从中间切开。 然后再把切开之后的一">
+<meta property="og:description" content="前言：以前有一段时间喜欢疯狂往后学东西。 但是学了只会贺一贺模板的题解代码。 变个花样就不会做了。 现在有时间，那么就下点功夫搞懂这些东西吧。  线段树 （Segment Tree）这是个很liupi的数据结构。 我把它叫做DS完全制霸的第一步完全不为过。 这个东西真的既重要又有用。 那么看看线段树是啥吧。  基本结构它是一种基于分治思想的结构。 简单来说。 它将一个序列从中间切开。 然后再把切开">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/z5nvu0wg.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/xfnpcr9n.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/66s0bbyb.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/1v4hgalv.png">
 <meta property="article:published_time" content="2021-03-14T01:41:29.000Z">
-<meta property="article:modified_time" content="2021-03-14T01:46:35.885Z">
+<meta property="article:modified_time" content="2021-03-20T12:29:06.952Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="algorithm note">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">An Oier's blog</p>
-      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/uploads/custom-logo.jpg" alt="black_trees">
+      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png#/uploads/custom-logo.jpg" alt="black_trees">
   </div>
 
   <div class="site-nav-right">
@@ -170,14 +170,14 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91-%EF%BC%88Segment-Tree%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">线段树 （Segment Tree）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E6%A0%91"><span class="nav-number">2.1.</span> <span class="nav-text">建树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9"><span class="nav-number">2.2.</span> <span class="nav-text">单点修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.3.</span> <span class="nav-text">区间查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E7%9A%84-l-r-%E7%9B%B4%E6%8E%A5%E8%A6%86%E7%9B%96%E4%BA%86%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%8C%BA%E9%97%B4"><span class="nav-number">2.3.1.</span> <span class="nav-text">当前的[l,r]直接覆盖了查询的区间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%83%E9%9C%80%E8%A6%81%E5%88%86%E5%89%B2%E6%9F%A5%E8%AF%A2%EF%BC%88%E5%A6%82%E5%9B%BE%EF%BC%89%EF%BC%9A"><span class="nav-number">2.3.2.</span> <span class="nav-text">它需要分割查询（如图）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9-amp-lazytag"><span class="nav-number">2.4.</span> <span class="nav-text">区间修改 &amp; lazytag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">2.5.</span> <span class="nav-text">关于复杂度</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91-%EF%BC%88Segment-Tree%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">线段树 （Segment Tree）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">建树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9"><span class="nav-number">3.</span> <span class="nav-text">单点修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E6%9F%A5%E8%AF%A2"><span class="nav-number">4.</span> <span class="nav-text">区间查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E7%9A%84-l-r-%E7%9B%B4%E6%8E%A5%E8%A6%86%E7%9B%96%E4%BA%86%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%8C%BA%E9%97%B4"><span class="nav-number">4.1.</span> <span class="nav-text">当前的[l,r]直接覆盖了查询的区间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%83%E9%9C%80%E8%A6%81%E5%88%86%E5%89%B2%E6%9F%A5%E8%AF%A2%EF%BC%88%E5%A6%82%E5%9B%BE%EF%BC%89%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">它需要分割查询（如图）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9-amp-lazytag"><span class="nav-number">5.</span> <span class="nav-text">区间修改 &amp; lazytag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">6.</span> <span class="nav-text">关于复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">例题：</span></a></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="black_trees"
-      src="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      src="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png">
   <p class="site-author-name" itemprop="name">black_trees</p>
   <div class="site-description" itemprop="description">hylwxqwq</div>
 </div>
@@ -186,7 +186,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -241,7 +241,7 @@
     <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%AE%B5%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/304550.png#/images/avatar.gif">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png">
       <meta itemprop="name" content="black_trees">
       <meta itemprop="description" content="hylwxqwq">
     </span>
@@ -261,10 +261,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-03-14 09:41:29 / 修改时间：09:46:35" itemprop="dateCreated datePublished" datetime="2021-03-14T09:41:29+08:00">2021-03-14</time>
+      <time title="创建时间：2021-03-14 09:41:29" itemprop="dateCreated datePublished" datetime="2021-03-14T09:41:29+08:00">2021-03-14</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-20 20:29:06" itemprop="dateModified" datetime="2021-03-20T20:29:06+08:00">2021-03-20</time>
+      </span>
 
   
 </div>
@@ -276,7 +282,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>以前有一段时间喜欢疯狂往后学东西。</p>
+        <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>以前有一段时间喜欢疯狂往后学东西。</p>
 <p>但是学了只会贺一贺模板的题解代码。</p>
 <p>变个花样就不会做了。</p>
 <p>现在有时间，那么就下点功夫搞懂这些东西吧。</p>
@@ -286,7 +292,7 @@
 <p>这个东西真的既重要又有用。</p>
 <p>那么看看线段树是啥吧。</p>
 <hr>
-<p>它是一种基于分治思想的结构。</p>
+<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><p>它是一种基于分治思想的结构。</p>
 <p>简单来说。</p>
 <p>它将一个序列从中间切开。</p>
 <p>然后再把切开之后的一半的序列再折半。</p>
@@ -374,8 +380,7 @@
 <h3 id="关于复杂度"><a href="#关于复杂度" class="headerlink" title="关于复杂度"></a>关于复杂度</h3><p>所有的查询和修改操作正常来说都是</p>
 <p>$\text{O} (\log \texttt{n})$ 的 ，因为线段树的深度就是$\log (\texttt{n})$</p>
 <hr>
-<p>例题：</p>
-<ul>
+<h2 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3373">P3373 【模板】线段树 2</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6242">P6242 【模板】线段树 3（吉老师线段树建议熟练之后再看论文或者lg日报自学（</a></li>
