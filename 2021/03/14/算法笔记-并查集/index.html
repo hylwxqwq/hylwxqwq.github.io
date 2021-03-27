@@ -32,8 +32,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pzjnd88q.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pm34we6l.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/b8rlakha.png">
 <meta property="article:published_time" content="2021-03-14T01:55:07.000Z">
-<meta property="article:modified_time" content="2021-03-20T12:27:59.372Z">
+<meta property="article:modified_time" content="2021-03-27T09:54:09.149Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="algorithm note">
 <meta name="twitter:card" content="summary">
@@ -166,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">并查集及其应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">普通并查集：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">例题:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.3.</span> <span class="nav-text">带权并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%B6%E6%B2%B3%E8%8B%B1%E9%9B%84%E4%BC%A0%E8%AF%B4-NOI2002"><span class="nav-number">1.3.1.</span> <span class="nav-text">银河英雄传说[NOI2002]</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">代码：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E5%9F%9F%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.4.</span> <span class="nav-text">扩展域并查集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E9%9B%86"><span class="nav-number">1.5.</span> <span class="nav-text">反集</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">并查集及其应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">普通并查集：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">例题:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.3.</span> <span class="nav-text">带权并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%B6%E6%B2%B3%E8%8B%B1%E9%9B%84%E4%BC%A0%E8%AF%B4-NOI2002"><span class="nav-number">1.3.1.</span> <span class="nav-text">银河英雄传说[NOI2002]</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">代码：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E5%9F%9F%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.4.</span> <span class="nav-text">扩展域并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P2024-NOI2001-%E9%A3%9F%E7%89%A9%E9%93%BE"><span class="nav-number">1.4.1.</span> <span class="nav-text">P2024 [NOI2001] 食物链</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E9%9B%86"><span class="nav-number">1.5.</span> <span class="nav-text">反集</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -267,7 +268,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-20 20:27:59" itemprop="dateModified" datetime="2021-03-20T20:27:59+08:00">2021-03-20</time>
+        <time title="修改时间：2021-03-27 17:54:09" itemprop="dateModified" datetime="2021-03-27T17:54:09+08:00">2021-03-27</time>
       </span>
 
   
@@ -307,11 +308,19 @@
 <p>不难发现，我们维护的这个结构实际上是由很多个储存集合的树构成的森林。</p>
 <p>那么对于查询操作，我们只需要递归查询它的树根就可以了。</p>
 <p>也就是这样的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(pa[x]!=x)&#123;</span><br><span class="line">		<span class="keyword">return</span> root(pa[x]);<span class="comment">//不是树根，递归。</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> pa[x];<span class="comment">//已经是树根了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token function">root</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不是树根，递归。</span>
+	<span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//已经是树根了</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>那么在最开始的时候，每一个元素都是独立的。</p>
 <p>我们考虑这样初始化（也就是让每一个元素都是一个集合）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">    pa[i]=i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
 <hr>
@@ -332,7 +341,13 @@
 <p><strong>like is</strong>: （这里的蓝色箭头表示我们把它们的 $\text{pa}[]$ 全部 指向了 $\text{root}$）</p>
 <p><img src="https://cdn.luogu.com.cn/upload/image_hosting/pm34we6l.png"></p>
 <p>所以在递归查询的时候顺便赋一个值就可以达到这种效果。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pa[x]!=x)&#123;</span><br><span class="line">        pa[x]=root(pa[x]);<span class="comment">//优化</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pa[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//优化</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们将这种优化称之为 “路径压缩” 。</p>
 <hr>
@@ -343,7 +358,10 @@
 <p>如果这个节点是树根，那么,它的 $\text{pa}[]$ 就是自己本身。</p>
 </blockquote>
 <p>我们不难想到，只要任意的让 $set_x$ 或者 $set_y$ 的 $\text{root}$ 的 $pa[]$ 指向另外一个集合的 $\text{root}$ 就好了.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">void</span>)(pa[root(x)]=root(y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>不过这个仍然不是最优的……</p>
 <p>考虑这一句话：</p>
@@ -357,12 +375,31 @@
 <p>这样子我们只会增加小的集合的查询代价（就是说你要多找一个点（那个大集合的根节点））</p>
 <p>那么合并之后的查询代价增加就会小。效率就会更高。</p>
 <p>当然我们维护的是一个森林。所以也可以维护他们的深度（优化的东西同理）。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rx=root(x);</span><br><span class="line">    <span class="keyword">int</span> ry=root(y);</span><br><span class="line">    <span class="keyword">if</span>(rx==ry)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(size_[rx]&gt;size_[ry])&#123;<span class="comment">//size_维护每一个集合的元素个数/深度。</span></span><br><span class="line">        pa[ry]=rx;</span><br><span class="line">        size_[rx]+=size_[ry];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        pa[rx]=ry;</span><br><span class="line">        size_[ry]+=size_[rx];</span><br><span class="line">    &#125;优化</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> rx<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ry<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rx<span class="token operator">==</span>ry<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>size_<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">></span>size_<span class="token punctuation">[</span>ry<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token comment">//size_维护每一个集合的元素个数/深度。</span>
+        pa<span class="token punctuation">[</span>ry<span class="token punctuation">]</span><span class="token operator">=</span>rx<span class="token punctuation">;</span>
+        size_<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">+=</span>size_<span class="token punctuation">[</span>ry<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+        pa<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">=</span>ry<span class="token punctuation">;</span>
+        size_<span class="token punctuation">[</span>ry<span class="token punctuation">]</span><span class="token operator">+=</span>size_<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>优化
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <p>这个优化就是“按秩合并”。</p>
 <p>不过如果这样子做，开始的时候就要加上</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">    pa[i]=i;</span><br><span class="line">    size_[i]=i;<span class="comment">//维护深度</span></span><br><span class="line">    <span class="comment">//size_[i]=1; //维护个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+    size_<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span><span class="token comment">//维护深度</span>
+    <span class="token comment">//size_[i]=1; //维护个数</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h3 id="例题"><a href="#例题" class="headerlink" title="例题:"></a>例题:</h3><ul>
@@ -388,17 +425,132 @@
 <p>在路径压缩的时候，我们同时更新$d$ ，并且利用路径压缩来统计信息。</p>
 <p>这里用一道例题讲解</p>
 <h4 id="银河英雄传说-NOI2002"><a href="#银河英雄传说-NOI2002" class="headerlink" title="银河英雄传说[NOI2002]"></a>银河英雄传说[NOI2002]</h4><p><strong>des</strong>:</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">有一个划分为N列的星际战场，各列依次编号为1,2,…,N。</span><br><span class="line"></span><br><span class="line">有N艘战舰，也依次编号为1,2,…,N,其中第i号战舰处于第i列。</span><br><span class="line"></span><br><span class="line">有T条指令，每条指令格式为以下两种之一：</span><br><span class="line"></span><br><span class="line">1、M i j，表示让第i号战舰所在列的全部战舰保持原有顺序，接在第j号战舰所在列的尾部。</span><br><span class="line"></span><br><span class="line">2、C i j，表示询问第i号战舰与第j号战舰当前是否处于同一列中，如果在同一列中，它们之间间隔了多少艘战舰。</span><br><span class="line"></span><br><span class="line">现在需要你编写一个程序，处理一系列的指令。</span><br><span class="line"></span><br><span class="line">输入格式</span><br><span class="line">第一行包含整数T，表示共有T条指令。</span><br><span class="line"></span><br><span class="line">接下来T行，每行一个指令，指令有两种形式：M i j或C i j。</span><br><span class="line"></span><br><span class="line">其中M和C为大写字母表示指令类型，i和j为整数，表示指令涉及的战舰编号。</span><br><span class="line"></span><br><span class="line">输出格式</span><br><span class="line">你的程序应当依次对输入的每一条指令进行分析和处理：</span><br><span class="line"></span><br><span class="line">如果是M i j形式，则表示舰队排列发生了变化，你的程序要注意到这一点，但是不要输出任何信息；</span><br><span class="line"></span><br><span class="line">如果是C i j形式，你的程序要输出一行，仅包含一个整数，表示在同一列上，第i号战舰与第j号战舰之间布置的战舰数目，如果第i号战舰与第j号战舰当前不在同一列上，则输出-1。</span><br><span class="line"></span><br><span class="line">数据范围</span><br><span class="line">N≤30000,T≤500000</span><br><span class="line">输入样例：</span><br><span class="line">4</span><br><span class="line">M 2 3</span><br><span class="line">C 1 2</span><br><span class="line">M 2 4</span><br><span class="line">C 4 2</span><br><span class="line">输出样例：</span><br><span class="line">-1</span><br><span class="line">1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">
+有一个划分为N列的星际战场，各列依次编号为1,2,…,N。
+
+有N艘战舰，也依次编号为1,2,…,N,其中第i号战舰处于第i列。
+
+有T条指令，每条指令格式为以下两种之一：
+
+1、M i j，表示让第i号战舰所在列的全部战舰保持原有顺序，接在第j号战舰所在列的尾部。
+
+2、C i j，表示询问第i号战舰与第j号战舰当前是否处于同一列中，如果在同一列中，它们之间间隔了多少艘战舰。
+
+现在需要你编写一个程序，处理一系列的指令。
+
+输入格式
+第一行包含整数T，表示共有T条指令。
+
+接下来T行，每行一个指令，指令有两种形式：M i j或C i j。
+
+其中M和C为大写字母表示指令类型，i和j为整数，表示指令涉及的战舰编号。
+
+输出格式
+你的程序应当依次对输入的每一条指令进行分析和处理：
+
+如果是M i j形式，则表示舰队排列发生了变化，你的程序要注意到这一点，但是不要输出任何信息；
+
+如果是C i j形式，你的程序要输出一行，仅包含一个整数，表示在同一列上，第i号战舰与第j号战舰之间布置的战舰数目，如果第i号战舰与第j号战舰当前不在同一列上，则输出-1。
+
+数据范围
+N≤30000,T≤500000
+输入样例：
+4
+M 2 3
+C 1 2
+M 2 4
+C 4 2
+输出样例：
+-1
+1
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>sol</strong>:</p>
 <p>可以看得出来，这里我们很明显是需要维护“边权”的。</p>
 <p>这里的 $d[u]$ 就是战舰 $u$ 到 $pa[u]$ 中间所隔的战舰数量。</p>
 <p>那么让每条边边权为$1$，那么我们 $root$ 操作的时候维护一下边权和就好了。</p>
 <p>然后路径压缩的时候$d$就直接更新为 $u$ 到根的边权和就好了。</p>
-<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x!=fa[x])&#123;</span><br><span class="line">        <span class="keyword">int</span> k=fa[x];</span><br><span class="line">        fa[x]=root(fa[x]);</span><br><span class="line">        dis[x]+=dis[k];</span><br><span class="line">        num[x]=num[fa[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> r1=root(x),r2=root(y);</span><br><span class="line">    <span class="keyword">if</span>(r1!=r2)&#123;</span><br><span class="line">        fa[r1]=r2;dis[r1]=dis[r2]+num[r2];</span><br><span class="line">        num[r2]+=num[r1];</span><br><span class="line">        num[r1]=num[r2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">!=</span>fa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> k<span class="token operator">=</span>fa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        fa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>fa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dis<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+=</span>dis<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        num<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>num<span class="token punctuation">[</span>fa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> fa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> r1<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>r2<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>r1<span class="token operator">!=</span>r2<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        fa<span class="token punctuation">[</span>r1<span class="token punctuation">]</span><span class="token operator">=</span>r2<span class="token punctuation">;</span>dis<span class="token punctuation">[</span>r1<span class="token punctuation">]</span><span class="token operator">=</span>dis<span class="token punctuation">[</span>r2<span class="token punctuation">]</span><span class="token operator">+</span>num<span class="token punctuation">[</span>r2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        num<span class="token punctuation">[</span>r2<span class="token punctuation">]</span><span class="token operator">+=</span>num<span class="token punctuation">[</span>r1<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        num<span class="token punctuation">[</span>r1<span class="token punctuation">]</span><span class="token operator">=</span>num<span class="token punctuation">[</span>r2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
-<h3 id="扩展域并查集"><a href="#扩展域并查集" class="headerlink" title="扩展域并查集"></a>扩展域并查集</h3><p>等待填坑。</p>
+<h3 id="扩展域并查集"><a href="#扩展域并查集" class="headerlink" title="扩展域并查集"></a>扩展域并查集</h3><p>扩展域并查集的思想很简单。</p>
+<p>在一个题有多种关系需要维护（而且有不同的可能来传递关系）的时候。</p>
+<p>我们将一个节点拆成几个“域”</p>
+<p>比如这一道题：</p>
+<h4 id="P2024-NOI2001-食物链"><a href="#P2024-NOI2001-食物链" class="headerlink" title="P2024 [NOI2001] 食物链"></a>P2024 [NOI2001] 食物链</h4><pre class="line-numbers language-none"><code class="language-none">动物王国中有三类动物 A,B,C，这三类动物的食物链构成了有趣的环形。A 吃 B，B 吃 C，C 吃 A。
+
+现有 N 个动物，以 1 － N 编号。每个动物都是 A,B,C 中的一种，但是我们并不知道它到底是哪一种。
+
+有人用两种说法对这 N 个动物所构成的食物链关系进行描述：
+
+第一种说法是 1 X Y，表示 X 和 Y 是同类。
+第二种说法是2 X Y，表示 X 吃 Y 。
+此人对 N 个动物，用上述两种说法，一句接一句地说出 K 句话，这 K 句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。
+
+当前的话与前面的某些真的话冲突，就是假话
+当前的话中 X 或 Y 比 N 大，就是假话
+当前的话表示 X 吃 X，就是假话
+你的任务是根据给定的 N 和 K 句话，输出假话的总数。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>明显的，这一道题需要传递的东西太多了。</p>
+<p>那么考虑对于一个元素，它可能需要维护的有什么信息？</p>
+<p>天敌，同类，食物。</p>
+<p>扩展域的做法就是对于每一个点拆成三个“域”来维护</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/b8rlakha.png"></p>
+<p>比如天敌我们用 $x_{ene}$ ,同类是 $x_{sam}$ ， 食物是 $x_{eat}$</p>
+<p>然后有种做法就是用三倍的并查集维护。</p>
+<p>$sam=x$, $ene=x+n$, $eat=x+2n$</p>
+<p>当然是在输入的时候维护。</p>
+<p>只需要三个变量即可。</p>
+<p>（因为并查集维护的时候你拿这个集合的任意元素出来合并都可以达到维护的效果）</p>
+<p>然后考虑统计假话个数。</p>
+<p>也就是在出现假话的时候<code>++ans</code></p>
+<p>真话那么就合并。</p>
+<p>这里拿一个神的代码（其实就是不想写了</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	n <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> m <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> fa<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> m<span class="token punctuation">;</span> m<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> opt <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> u <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">></span> n <span class="token operator">||</span> v <span class="token operator">></span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ans<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token keyword">continue</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>opt <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">find</span><span class="token punctuation">(</span>u <span class="token operator">+</span> n<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">find</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">find</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">find</span><span class="token punctuation">(</span>v <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ans<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+			<span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+				fa<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				fa<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>u <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>v <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				fa<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>u <span class="token operator">+</span> n <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>v <span class="token operator">+</span> n <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">find</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">find</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">find</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">find</span><span class="token punctuation">(</span>v <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ans<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+			<span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+				fa<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>u <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				fa<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>u <span class="token operator">+</span> n <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>v <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				fa<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>v <span class="token operator">+</span> n <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>所以它的本质就是拆成多个值域然后看情况维护。</p>
 <hr>
 <h3 id="反集"><a href="#反集" class="headerlink" title="反集"></a>反集</h3><p>（待填坑）</p>
 
