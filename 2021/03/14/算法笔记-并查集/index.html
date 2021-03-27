@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="black_trees">
 <meta property="og:description" content="并查集及其应用普通并查集： 并查集是个很简单的基础数据结构，但是真的很有用。                          --南外的lqs神仙于国庆节的成外   （现在还依稀记得lqs神仙讲图论和基础数据结构时候的那种……） （晕圈的感觉） 发现自己已经不会写并查集了…… 重新学习吧……  并查集是一个能够维护很多个不重叠集合的数据结构 支持两种操作 :  Root 查询元素所处的集合。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pzjnd88q.png">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pm34we6l.png">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/b8rlakha.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSnuPH.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSnKGd.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSnmIe.png">
 <meta property="article:published_time" content="2021-03-14T01:55:07.000Z">
-<meta property="article:modified_time" content="2021-03-27T09:54:09.149Z">
+<meta property="article:modified_time" content="2021-03-27T14:20:17.706Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="algorithm note">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pzjnd88q.png">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/03/27/cSnuPH.png">
 
 
 <link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E5%B9%B6%E6%9F%A5%E9%9B%86/">
@@ -118,7 +118,7 @@
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">厄符「厄神様の转转转」</p>
-      <img class="custom-logo-image" src="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png#/uploads/custom-logo.jpg" alt="black_trees">
+      <img class="custom-logo-image" src="https://z3.ax1x.com/2021/03/27/cSn7dO.jpg" alt="black_trees">
   </div>
 
   <div class="site-nav-right">
@@ -174,7 +174,7 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="black_trees"
-      src="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png">
+      src="https://z3.ax1x.com/2021/03/27/cSn7dO.jpg">
   <p class="site-author-name" itemprop="name">black_trees</p>
   <div class="site-description" itemprop="description">Hina Miller Han</div>
 </div>
@@ -240,7 +240,7 @@
     <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/pphb49i6.png">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/03/27/cSn7dO.jpg">
       <meta itemprop="name" content="black_trees">
       <meta itemprop="description" content="Hina Miller Han">
     </span>
@@ -268,7 +268,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-27 17:54:09" itemprop="dateModified" datetime="2021-03-27T17:54:09+08:00">2021-03-27</time>
+        <time title="修改时间：2021-03-27 22:20:17" itemprop="dateModified" datetime="2021-03-27T22:20:17+08:00">2021-03-27</time>
       </span>
 
   
@@ -334,12 +334,12 @@
 <hr>
 <p>那么就有一种优化。</p>
 <p>比如我们查询节点 $x$ （蓝色箭头表示我们查询之后递归的那个去向）</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/pzjnd88q.png"></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnuPH"><img src="https://z3.ax1x.com/2021/03/27/cSnuPH.png" alt="cSnuPH.png"></a></p>
 <p>可以看到，我们在这中间经过了两个另外的节点。</p>
 <p>它们和 $x$ 都在同一条到 $\text{root}$ 的链上。</p>
 <p>所以我们直接把它们的 $\text{pa}[]$ 全部指向 $\text{root}$ 。</p>
 <p><strong>like is</strong>: （这里的蓝色箭头表示我们把它们的 $\text{pa}[]$ 全部 指向了 $\text{root}$）</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/pm34we6l.png"></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnKGd"><img src="https://z3.ax1x.com/2021/03/27/cSnKGd.png" alt="cSnKGd.png"></a></p>
 <p>所以在递归查询的时候顺便赋一个值就可以达到这种效果。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -513,7 +513,7 @@ C 4 2
 <p>那么考虑对于一个元素，它可能需要维护的有什么信息？</p>
 <p>天敌，同类，食物。</p>
 <p>扩展域的做法就是对于每一个点拆成三个“域”来维护</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/b8rlakha.png"></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnmIe"><img src="https://z3.ax1x.com/2021/03/27/cSnmIe.png" alt="cSnmIe.png"></a></p>
 <p>比如天敌我们用 $x_{ene}$ ,同类是 $x_{sam}$ ， 食物是 $x_{eat}$</p>
 <p>然后有种做法就是用三倍的并查集维护。</p>
 <p>$sam=x$, $ene=x+n$, $eat=x+2n$</p>
