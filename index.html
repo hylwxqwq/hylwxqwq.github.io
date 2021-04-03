@@ -325,7 +325,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-27 17:54:59" itemprop="dateModified" datetime="2021-03-27T17:54:59+08:00">2021-03-27</time>
+        <time title="修改时间：2021-04-03 18:44:45" itemprop="dateModified" datetime="2021-04-03T18:44:45+08:00">2021-04-03</time>
       </span>
 
   
@@ -398,6 +398,194 @@ Tyvj是一个公益性的网站，没有过多的利润，所以你要尽可能�
 <p>然后再剩下的里面跑一个（不完整的）最小生成树。</p>
 <p>只需要排序的时候把必须的仍在最前面然后再按边权排序。</p>
 <p>否则就会出现必须连的边连成了另外一条，就会挂。</p>
+<h3 id="Auoj-1573-构造完全图（走廊泼水节）"><a href="#Auoj-1573-构造完全图（走廊泼水节）" class="headerlink" title="Auoj 1573 构造完全图（走廊泼水节）"></a>Auoj 1573 构造完全图（走廊泼水节）</h3><h4 id="description-1"><a href="#description-1" class="headerlink" title="description:"></a>description:</h4><pre class="line-numbers language-none"><code class="language-none">对于完全图G，若有且仅有一棵最小生成树为T，则称完全图G是树T扩展出的。
+
+给你一棵树T，找出T能扩展出的边权和最小的完全图G。
+
+输入
+
+第一行N表示树T的点数；
+
+接下来N−1行三个整数Si,Ti,Di；描述一条边（Si,Ti）权值为Di；
+
+保证输入数据构成一棵树。
+
+输出
+
+输出仅一个数，表示最小的完全图G的边权和。
+
+N≤10^5,1≤Di≤10^5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="solution-1"><a href="#solution-1" class="headerlink" title="solution:"></a>solution:</h4><p>因为给出的树是唯一最小生成树。</p>
+<p>我们干脆在加边加边（<del>然后……</del>）的时候直接跑一个$\text{kruskal}$ 的“近似”算法。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cCIg0O"><img src="https://z3.ax1x.com/2021/03/29/cCIg0O.png" alt="cCIg0O.png"></a></p>
+<p>考虑先把原有边排序，然后跑一个类似于mst的东西。</p>
+<p>然后根据mst的推论。我们对于一条边 $(x,y)=val$ 考虑它们两个所在的不同集合。</p>
+<p>然后对于另外的异于$(x,y)$ 的两个分别在$(x,y) $的集合之中的 $(u,v)$</p>
+<p>我们考虑连另外的一条边，为了之后总值最小，我们连 $val+1$</p>
+<p>然后这两个集合<strong>合并之前</strong>就要连 $|X|\times|Y|-1$条边，权值是 $val+1$。（X，Y是x,y所在的集合）</p>
+<p>所以判完不连通之后才能合并。</p>
+<p>然后这里是用生成树的性质做的。</p>
+<p>所以我们只用考虑两个集合之间的边就好（可以想一下为什么）。</p>
+<p>然后在过程里加一下就好。</p>
+<p>那么代码：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//sum=原来的权值和</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> rx<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>ry<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>rx<span class="token operator">!=</span>ry<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		sum<span class="token operator">+=</span><span class="token punctuation">(</span>siz<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">*</span>siz<span class="token punctuation">[</span>ry<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+		pa<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">=</span>ry<span class="token punctuation">,</span>siz<span class="token punctuation">[</span>ry<span class="token punctuation">]</span><span class="token operator">+=</span>siz<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Auoj-1572-New-Start-star"><a href="#Auoj-1572-New-Start-star" class="headerlink" title="Auoj 1572 New_Start (star)"></a>Auoj 1572 New_Start (<strong>star</strong>)</h3><h4 id="description-2"><a href="#description-2" class="headerlink" title="description:"></a>description:</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">发展采矿业当然首先得有矿井，小C 花了上次探险获得的千分之一的财富请人在岛上挖了n口矿井，但他似乎忘记考虑的矿井供电问题……
+
+为了保证电力的供应，小C 想到了两种办法：
+
+在这一口矿井上建立一个发电站，费用为v（发电站的输出功率可以供给任意多个矿井）。
+
+将这口矿井与另外的已经有电力供应的矿井之间建立电网，费用为p。
+
+小C 希望身为「NewBe_One」计划首席工程师的你帮他想出一个保证所有矿井电力供应的最小花费。
+
+输入
+
+第一行一个整数n，表示矿井总数。
+
+第<span class="token number">2</span>∼n<span class="token operator">+</span><span class="token number">1</span>行，每行一个整数，第i个数vi表示在第i口矿井上建立发电站的费用。
+
+接下来为一个n×n的矩阵p，其中pij表示在第i口矿井和第j口矿井之间建立电网的费用（数据保证有pij<span class="token operator">=</span>pji，且pii<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>。
+
+输出
+
+输出仅一个整数，表示让所有矿井获得充足电能的最小花费。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="solution-2"><a href="#solution-2" class="headerlink" title="solution:"></a>solution:</h4><p>开始想到的是这样的一个贪心：</p>
+<pre class="line-numbers language-none"><code class="language-none">考虑用Kruskal先求出最小生成树。
+然后对于生成树的每一个节点。
+考虑和它相邻的边。
+如果所有和它相连的边都比它的值大。
+那么建立电站。
+否则连边。
+但是png里构造的数据可以卡掉这个不成熟的贪心<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如你所见，这个贪心被卡爆了</p>
+<p>如果最小生成树是这样子的：</p>
+<p>(5)–6–(7)–10–(1)</p>
+<p>那么就死透了（可以自己模拟一下，按照那个贪心出来是13，但是有一个12的答案）。</p>
+<p>那么这里有一个神奇的做法。</p>
+<p>因为我们的贪心被卡掉就是因为在点上的元素不好搞。</p>
+<p>都说这是图论图论，mst，重点就是在边的处理上。</p>
+<p>干脆我们就把这个点值化成边值。</p>
+<p>也就是在原图上新加一个点（超级源点）</p>
+<p>它和 $1-n$ 的节点全部相连。</p>
+<p>边权是在 $i$ 建立电站的cost $v_i$</p>
+<p>也就相当于我们把每一个<strong>点化成边</strong>来处理.</p>
+<p>然后在原图上跑一遍最小生成树就好了。</p>
+<p>这个思想挺妙的，开始一直没想出来（还是看了题解才知道的）。</p>
+<h3 id="【国家集训队2012】-Tree-I"><a href="#【国家集训队2012】-Tree-I" class="headerlink" title="【国家集训队2012】[Tree I]"></a>【国家集训队2012】[Tree I]</h3><h4 id="description-3"><a href="#description-3" class="headerlink" title="description:"></a>description:</h4><pre class="line-numbers language-none"><code class="language-none">描述
+
+原题来自：2012 年国家集训队互测
+给你一个无向带权连通图，每条边是黑色或白色。让你求一棵最小权的恰好有 need 条白色边的生成树。题目保证有解。
+
+输入
+第一行 V,E,need 分别表示点数，边数和需要的白色边数。
+接下来 E 行，每行 s,t,c,col 表示这边的端点（点从 0 开始标号），边权，颜色（0 白色，1 黑色）。
+
+输出
+一行表示所求生成树的边权和。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="solution-3"><a href="#solution-3" class="headerlink" title="solution:"></a>solution:</h4><p>考虑我们直接给原图跑一遍最小生成树。</p>
+<p>无非就是三种情况：</p>
+<ol>
+<li>刚好有$need$条白边</li>
+<li>比$need$少了一些</li>
+<li>比$need$多了一些</li>
+</ol>
+<p>对于1我们不用干啥。</p>
+<p>然后考虑，怎么样在求最小生成树的同时增减白边的条数呢？</p>
+<p>这里有一种神奇的想法。</p>
+<p>我们给所有白边都加上一个值$val$</p>
+<p>那么有可能加到某个值，一条白边就被加入（踢出）mst了。</p>
+<p>怎么确定这个值？</p>
+<p>简单思考一下发现 $val$ 是满足单调性的。</p>
+<p>所以考虑二分答案。</p>
+<p>如果求出来的真实白边数 $real$ 大于$need$ ，考虑就要增加 $val$ 来减少白边。</p>
+<p>反之亦然。</p>
+<p>然后在$need \leq real$ 的时候更新答案就行了（因为这个时候才是可行的，可以自己证明一下。</p>
+<p>这里给出代码：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> si<span class="token operator">=</span><span class="token number">2e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>need<span class="token punctuation">;</span>
+<span class="token keyword">int</span> pa<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">node</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>val<span class="token punctuation">,</span>ty<span class="token punctuation">;</span>
+	<span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">const</span> node <span class="token operator">&amp;</span>u<span class="token punctuation">)</span><span class="token keyword">const</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>val<span class="token operator">==</span>u<span class="token punctuation">.</span>val<span class="token punctuation">)</span> <span class="token keyword">return</span> ty<span class="token operator">&lt;</span>u<span class="token punctuation">.</span>ty<span class="token punctuation">;</span>
+		<span class="token keyword">return</span> val<span class="token operator">&lt;</span>u<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>e<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">bool</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> rx<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>ry<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>rx<span class="token operator">==</span>ry<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	pa<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">=</span>ry<span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">kruskal</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>sum<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>real<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token function">sort</span><span class="token punctuation">(</span>e<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>e<span class="token operator">+</span><span class="token number">1</span><span class="token operator">+</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		pa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Union</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">,</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			sum<span class="token operator">+=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+			real<span class="token operator">+=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ty<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token operator">>></span>need<span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		cin<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ty<span class="token punctuation">;</span>
+		<span class="token operator">++</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">,</span><span class="token operator">++</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">int</span> l<span class="token operator">=</span><span class="token operator">-</span><span class="token number">114</span><span class="token punctuation">,</span>r<span class="token operator">=</span><span class="token number">114</span><span class="token punctuation">;</span>
+	<span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> mid<span class="token operator">=</span><span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ty<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token operator">+=</span>mid<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>real<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token function">kruskal</span><span class="token punctuation">(</span>sum<span class="token punctuation">,</span>real<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>real<span class="token operator">>=</span>need<span class="token punctuation">)</span> res<span class="token operator">=</span>sum<span class="token operator">-</span><span class="token punctuation">(</span>need<span class="token operator">*</span>mid<span class="token punctuation">)</span><span class="token punctuation">,</span>l<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+			r<span class="token operator">=</span>mid<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ty<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token operator">-=</span>mid<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h2><blockquote>
 <p>nothing</p>
 </blockquote>
