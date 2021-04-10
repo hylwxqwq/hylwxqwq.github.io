@@ -23,20 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="NMD初始化害死人錒。记得区分清楚初始化的顺序。还有赋的初值的意义。 初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题 特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序 断环成链记得在最后取一下最值。  才发现自己区间DP有好多bug没补上。 借DC的讲义改了一些部分。  划分型：所谓区间分割问题，是指在长度为n的线性序列上，分割为m部分，每个部分对应的权值不同，">
+<meta name="description" content="NMD初始化害死人錒。记得区分清楚初始化的顺序。还有赋的初值的意义。 初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题 特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序 断环成链记得在最后取一下最值。  才发现自己区间DP有好多bug没补上。 借DC的讲义改了一些部分。  划分型：所谓区间分割问题，是指在长度为$n$的线性序列上，分割为$m$部分，每个部分对应的权">
 <meta property="og:type" content="article">
 <meta property="og:title" content="杂-区间DP">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/%E6%9D%82-%E5%8C%BA%E9%97%B4DP/index.html">
 <meta property="og:site_name" content="black_trees">
-<meta property="og:description" content="NMD初始化害死人錒。记得区分清楚初始化的顺序。还有赋的初值的意义。 初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题 特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序 断环成链记得在最后取一下最值。  才发现自己区间DP有好多bug没补上。 借DC的讲义改了一些部分。  划分型：所谓区间分割问题，是指在长度为n的线性序列上，分割为m部分，每个部分对应的权值不同，">
+<meta property="og:description" content="NMD初始化害死人錒。记得区分清楚初始化的顺序。还有赋的初值的意义。 初始化有时候没必要纠结范围，因为有些状态根本就用不到（状态定义问题 特殊的情形一定不要多也不要少的找全然后赋值。记得不要忽略赋值顺序 断环成链记得在最后取一下最值。  才发现自己区间DP有好多bug没补上。 借DC的讲义改了一些部分。  划分型：所谓区间分割问题，是指在长度为$n$的线性序列上，分割为$m$部分，每个部分对应的权">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSn1Mt.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdCBR0.png">
 <meta property="article:published_time" content="2021-03-14T01:56:21.000Z">
-<meta property="article:modified_time" content="2021-03-27T14:26:56.012Z">
+<meta property="article:modified_time" content="2021-04-10T10:44:10.003Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://z3.ax1x.com/2021/03/27/cSn1Mt.png">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png">
 
 
 <link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/%E6%9D%82-%E5%8C%BA%E9%97%B4DP/">
@@ -165,7 +166,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%92%E5%88%86%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">划分型：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%A6%82%EF%BC%9A%E6%9C%89m%E4%B8%AA%E4%BD%8D%E7%BD%AE%EF%BC%8Cn%E7%A7%8D%E8%8A%B1%E7%9B%86%EF%BC%8C%E7%BC%96%E5%8F%B7%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%EF%BC%8C%E6%AF%8F%E7%A7%8D%E8%8A%B1%E7%9B%86%E6%9C%89a-i-%E4%B8%AA%EF%BC%8C%E6%AF%8F%E7%A7%8D%E8%8A%B1%E7%9B%86%E6%91%86%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%8C%E9%97%AE%E4%B8%80%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%8A%B1%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">例如：有m个位置，n种花盆，编号从小到大，每种花盆有a[i]个，每种花盆摆在一起，问一共有多少种花方案？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems"><span class="nav-number">1.2.</span> <span class="nav-text">Problems:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E7%B1%BB%E5%9E%8B%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">合并类型。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems-1"><span class="nav-number">2.1.</span> <span class="nav-text">Problems:</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%92%E5%88%86%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">划分型：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems"><span class="nav-number">1.1.</span> <span class="nav-text">Problems:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E7%B1%BB%E5%9E%8B%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">合并类型。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems-1"><span class="nav-number">2.1.</span> <span class="nav-text">Problems:</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -266,7 +267,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-27 22:26:56" itemprop="dateModified" datetime="2021-03-27T22:26:56+08:00">2021-03-27</time>
+        <time title="修改时间：2021-04-10 18:44:10" itemprop="dateModified" datetime="2021-04-10T18:44:10+08:00">2021-04-10</time>
       </span>
 
   
@@ -287,14 +288,19 @@
 <p>才发现自己区间DP有好多bug没补上。</p>
 <p>借DC的讲义改了一些部分。</p>
 <hr>
-<h3 id="划分型："><a href="#划分型：" class="headerlink" title="划分型："></a>划分型：</h3><p>所谓区间分割问题，是指在长度为n的线性序列上，分割为m部分，每个部分对应的权值不同，问如何分割才能使总权值最大。</p>
-<p>我们定义$f[i][j]$表示长度为i的序列，分割为j部分所能获得的最大权值，这是个前i前j问题，那么我们先考虑最后一个分割，即第j个分割，肯定存在一个分割点k，使得k+1到i构成前j部分，获得权值和为$w[k+1][i]$，那么问题转化为前面长度为k的序列分割成j-1个部分获得的最大权值。状态转移方程：$f[i][j]=max{f[k][j-1]+w[k+1][i] }$ $ (j-1\le k &lt; i)$</p>
+<h3 id="划分型："><a href="#划分型：" class="headerlink" title="划分型："></a>划分型：</h3><p>所谓区间分割问题，是指在长度为$n$的线性序列上，分割为$m$部分，每个部分对应的权值不同，问如何分割才能使总权值最大。</p>
+<p>我们定义 $f[i][j]$ 表示长度为$i$的序列，分割为$j$部分所能获得的最大权值，这是个前$i$前$j$问题，</p>
+<p>那么我们先考虑最后一个分割，即第j个分割，肯定存在一个分割点k，使得k+1到i构成前j部分，获得权值和为 $w[k+1][i]$，</p>
+<p>那么问题转化为前面长度为k的序列分割成j-1个部分获得的最大权值。</p>
+<p>状态转移方程：$f[i][j]=max{f[k][j-1]+w[k+1][i] }$ $ (j-1\le k &lt; i)$</p>
 <p>有了大致的方程，针对每道题目可能会有小调整，随机应变即可。</p>
-<h4 id="例如：有m个位置，n种花盆，编号从小到大，每种花盆有a-i-个，每种花盆摆在一起，问一共有多少种花方案？"><a href="#例如：有m个位置，n种花盆，编号从小到大，每种花盆有a-i-个，每种花盆摆在一起，问一共有多少种花方案？" class="headerlink" title="例如：有m个位置，n种花盆，编号从小到大，每种花盆有a[i]个，每种花盆摆在一起，问一共有多少种花方案？"></a>例如：有m个位置，n种花盆，编号从小到大，每种花盆有a[i]个，每种花盆摆在一起，问一共有多少种花方案？</h4><p>$f[i][j]$表示前i种花，摆在前j个位置的方案数。</p>
-<p>$f[i][j] += f[i-1][j-k]$，其中$k \in [0,a[i]]$，即枚举第i种花盆的个数k。</p>
-<p>也可以$f[i][j]$表示前i个位置，摆前j种花盆的方案数。</p>
+<p>例如：有$m$个位置，$n$种花盆，编号从小到大，每种花盆有$a[i]$个，每种花盆摆在一起，问一共有多少种花方案？</p>
+<p>$f[i][j]$表示前$i$种花，摆在前$j$个位置的方案数。</p>
+<p>$f[i][j] += f[i-1][j-k]$，其中 $k \in [0,a[i]]$，即枚举第i种花盆的个数k。</p>
+<p>也可以$f[i][j]$表示前$i$个位置，摆前$j$种花盆的方案数。</p>
 <p>$f[i][j] += f[i-k][j-1]$，只要赋值符号右边是事先计算过的，值是确定的，就可以，所以DP数组的定义不是唯一的。</p>
-<p>在这个例子里：一旦某个值$f[i-k][j-1]$计算出来，后边就不会再回来改变，我们称之为无后效性，这个值是f$[i][j]$的最优子结构，可以在后边阶段其他状态的计算过程中多次被引用。</p>
+<p>在这个例子里：一旦某个值$f[i-k][j-1]$计算出来，后边就不会再回来改变，我们称之为无后效性（也就是转移顺序是一张DAG的拓扑序），</p>
+<p>这个值是$f[i][j]$的最优子结构，可以在后边阶段其他状态的计算过程中多次被引用。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -319,14 +325,13 @@
 		<span class="token punctuation">&#125;</span>
 	<span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>注意这个$k$一定是小于$i$的，不然$k+1$会出事。</p>
 <p>然后你枚举$k$的时候要看情况，有的时候是这样的。有的时候是 $[0 , i)$ （邮局那题） 所以要视情况而定。（普通DP也一样）</p>
 <p>然后有一个点，你会发现，我们枚举的这个 $k$ 是一个 “不确定” 的元素。</p>
 <p>它的决策会影响我们的状态和转移。（比如下面两道题里的 邮局 和 花朵 ）。</p>
 <p>那么、我们就要去枚举这个东西的决策点。</p>
 <p>一般来说，它的转移是这样子的：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSn1Mt"><img src="https://z3.ax1x.com/2021/03/27/cSn1Mt.png" alt="cSn1Mt.png"></a></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png"></p>
 <p>然后中间的就是我们的决策点 $k$ 了。</p>
 <p>然后有些人是直接用后一段的 $f$ ，因为他们给对应的值初始化了。有的时候这种方法没问题，不过上面的那种更通用。</p>
 <p>当然有些题目的 clac()的值可以通过DP或者递推预先处理出来。（邮局一题便是）</p>
@@ -340,7 +345,14 @@
 <h3 id="合并类型。"><a href="#合并类型。" class="headerlink" title="合并类型。"></a>合并类型。</h3><p>这种就比较简单了</p>
 <p>你可以直接用分割点之前的状态加上之后的状态再加上转移代价。</p>
 <p>这种的注意点和上面的基本一样。</p>
-<p>然后有的时候合并或删除区间是要特判区间首尾或者条件的（下面的三道例题都是）</p>
+<p>然后有的时候合并或删除区间是要特判区间首尾或者条件的（甚至是<strong>分条件</strong>讨论合并）（下面的三道例题都是）</p>
+<p>至于为什么要枚举长度呢？</p>
+<p>因为正常的线性DP都是这样子转移的（或者类似）：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cdCBR0"><img src="https://z3.ax1x.com/2021/04/10/cdCBR0.png" alt="cdCBR0.png"></a></p>
+<p>（也就是填一个表，然后等号赋值的时候被赋值的是未知的，用来赋值的则是已知的。）</p>
+<p>区间DP不太一样，它并不是说下标小的就会先填出来（意思是这张图中的“行”下标 $i$ ，因为第二维第三维不一定）</p>
+<p>它是 <code>f[i][j]=max/min(f[i][j],f[i][k]+f[k+1][j]+value);</code></p>
+<p>这样子的，是用子区间凑大区间，所以转移状态就不一样了，它的<strong>阶段</strong>就不是“行号” $i$ ，而是区间长 $len$ ，（$\text{Floyd}$外层为什么是 $k$ 这里也能用相同的思想解释了）</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
