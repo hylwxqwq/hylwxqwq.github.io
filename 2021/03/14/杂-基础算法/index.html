@@ -31,8 +31,10 @@
 <meta property="og:description" content="二分二分答案是重点。 而二分答案的重点是Check的构建。 你会发现二分答案的题的决策都有这种“单调性”（最小值最大，最大值最小）  当然也可是左边不可行，右边可行。 一般Check都是 $\text{O}(n)$ 去暴力判断 $mid$ 的可行性。然后会根据题目的不同，在Check 里面加上一些 模拟&#x2F;基础算法。 然后你在写的时候一定要注意写全不可行&#x2F;可行的情况。也要注意题目本身的坑点（比如负">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSn3sP.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/17/c4rLCV.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/17/c4cvJ1.png">
 <meta property="article:published_time" content="2021-03-14T01:57:14.000Z">
-<meta property="article:modified_time" content="2021-03-27T14:26:25.248Z">
+<meta property="article:modified_time" content="2021-04-17T12:36:17.356Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
@@ -165,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">二分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%AE%E5%88%86%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">差分前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92"><span class="nav-number">5.</span> <span class="nav-text">01分数规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%BA%E5%8F%96%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">尺取法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-log-n-LIS"><span class="nav-number">7.</span> <span class="nav-text">n log n LIS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#01-%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85"><span class="nav-number">8.</span> <span class="nav-text">01&#x2F;完全背包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83"><span class="nav-number">9.</span> <span class="nav-text">树的重心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85%E3%80%82"><span class="nav-number">10.</span> <span class="nav-text">传递闭包。</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">二分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%AE%E5%88%86%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">差分前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92"><span class="nav-number">5.</span> <span class="nav-text">01分数规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%BA%E5%8F%96%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">尺取法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-log-n-LIS"><span class="nav-number">7.</span> <span class="nav-text">n log n LIS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#01-%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85"><span class="nav-number">8.</span> <span class="nav-text">01&#x2F;完全背包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83"><span class="nav-number">9.</span> <span class="nav-text">树的重心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85%E3%80%82"><span class="nav-number">10.</span> <span class="nav-text">传递闭包。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97"><span class="nav-number">11.</span> <span class="nav-text">单调队列</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -181,7 +183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -266,7 +268,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-27 22:26:25" itemprop="dateModified" datetime="2021-03-27T22:26:25+08:00">2021-03-27</time>
+        <time title="修改时间：2021-04-17 20:36:17" itemprop="dateModified" datetime="2021-04-17T20:36:17+08:00">2021-04-17</time>
       </span>
 
   
@@ -406,6 +408,101 @@
 <p>所以设 $f[i][j]$ 表示 $[i,j]$ 的关系。</p>
 <p><code>true</code>表示一个关系<code>false</code>表示另外一种关系。</p>
 <p>然后跑一遍floyd，转移的时候根据题目特点转移即可。</p>
+<hr>
+<h3 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h3><p>单调队列是一种神奇的数据结构。</p>
+<p>一般我们用来优化这一类决策有单调性的问题：</p>
+<p>比如：一个元素很明显不可能进入决策的时候，我们可以用单调队列来做到 $\text{O}(1)$ 的决策。</p>
+<p>这里来一道题（来自WC2016 by 宋新波）</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/c4rLCV"><img src="https://z3.ax1x.com/2021/04/17/c4rLCV.png" alt="c4rLCV.png"></a></p>
+<p>这里相当于是在保质期之内，求每一天最大能吃到的值。</p>
+<p>这里考虑维护一个队列，队列当中单调不上升。</p>
+<p>那么队头就是我们所想要的结果（最优）。</p>
+<ul>
+<li>Day1：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">--------------
+ 80
+--------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这里队头是80.</p>
+<ul>
+<li>Day2:</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">-------------
+ 80 75
+-------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这里队头仍然是80.</p>
+<ul>
+<li>Day3</li>
+</ul>
+<p>这里开始就要注意了，我们放入78，但是放进去之后就不满足条件了。</p>
+<p>为什么？</p>
+<p>不是因为后面小了就是前面大了（这里是单调不上升所以是这样，其他同理）。</p>
+<p>不过我们一般考虑后面小了（从后面进队出队）。</p>
+<p>那么在插入78 之前，我们就要弹出75 （从后方）</p>
+<pre class="line-numbers language-none"><code class="language-none">-------------
+ 80 75(pop) ---&gt;
+-------------
+
+-------------
+ 80   &lt;------ 78(push)
+-------------
+
+-------------
+ 80 78
+-------------
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此时队头仍然是 80。</p>
+<p>这里我们不难看出，如果存在 $a_i &lt;a_j$</p>
+<p>那么 $a_i$ 一定会被 $a_j$ 替换掉。</p>
+<p>因为 $a_i$ 不仅时间靠前（更快过期），价值也不大。</p>
+<p>所以 $a_i$ 就是 冗杂的多余决策。</p>
+<p>那么单调队列在维护的时候的意义就是去除这些冗杂的元素。</p>
+<p>因为每个元素只会入队一次，所以 复杂度是 $\text{O}(1)$ 的。 </p>
+<ul>
+<li>Day 4</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">-------------
+ 80 78 73
+-------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>Day 5</li>
+</ul>
+<p>这里根据 Day3，我们需要把78,73弹出来让更好的 79 入队。</p>
+<p>所以队列就变成了这样：</p>
+<pre class="line-numbers language-none"><code class="language-none">-------------
+ 80 79
+-------------
+poped:78 73<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是注意！这里80过期了，所以要把80也弹出（从队头弹出）</p>
+<p>那么就是这样的：</p>
+<pre class="line-numbers language-none"><code class="language-none">-------------
+ 79
+-------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>所以第五天就是 79 为最值。</p>
+<p>那么我们就可以知道，在这道题使用单调队列时，要注意一下几点：</p>
+<ol>
+<li><p>队列中始终单调</p>
+</li>
+<li><p>队首为最优情况</p>
+</li>
+<li><p>及时去除冗杂情况</p>
+</li>
+</ol>
+<p>那么我们每一次循环的时候，都检查一下队首是否过期还有新入队元素会不会造成更新就好了。</p>
+<p>代码如下：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>r<span class="token operator">&amp;&amp;</span><span class="token punctuation">(</span>i<span class="token operator">-</span>q<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">></span>m<span class="token punctuation">)</span> l<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//别写++l</span>
+    ans<span class="token operator">=</span>q<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>r<span class="token operator">&amp;&amp;</span>a<span class="token punctuation">[</span>q<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&lt;</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> r<span class="token operator">--</span><span class="token punctuation">;</span>
+    q<span class="token punctuation">[</span><span class="token operator">++</span>r<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span>ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>总结一下：也就是这样的</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/c4cvJ1"><img src="https://z3.ax1x.com/2021/04/17/c4cvJ1.png" alt="c4cvJ1.png"></a></p>
 
     </div>
 

@@ -23,18 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Hina Miller Han">
-<meta property="og:type" content="website">
-<meta property="og:title" content="black_trees">
-<meta property="og:url" content="http://hylwxqwq.github.io/tags/unknown/index.html">
+<meta name="description" content="关于DP四要素状态（重中之重） 都说推方程式 $\text{dp}$ 里最简单的，设计出好的状态才是难的。  一般我们都是设 $f_{i,j}$ 表示什么什么东西。 然后个人觉得状态就分了两个部分：阶段和条件。  阶段  这种东西都是在循环最外层枚举的（比如 $\text{Floyd}$ 的 $k$），在状态里面体现出来也就是： 前i个,第i个,对于前i段…… 当然你也可以有多个“阶段”，不过要分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂-对于DP的一点理解">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/04/17/%E6%9D%82-%E5%AF%B9%E4%BA%8EDP%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="black_trees">
-<meta property="og:description" content="Hina Miller Han">
+<meta property="og:description" content="关于DP四要素状态（重中之重） 都说推方程式 $\text{dp}$ 里最简单的，设计出好的状态才是难的。  一般我们都是设 $f_{i,j}$ 表示什么什么东西。 然后个人觉得状态就分了两个部分：阶段和条件。  阶段  这种东西都是在循环最外层枚举的（比如 $\text{Floyd}$ 的 $k$），在状态里面体现出来也就是： 前i个,第i个,对于前i段…… 当然你也可以有多个“阶段”，不过要分">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-17T12:35:24.000Z">
+<meta property="article:modified_time" content="2021-04-17T12:36:13.612Z">
 <meta property="article:author" content="black_trees">
+<meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://hylwxqwq.github.io/tags/unknown/">
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/04/17/%E6%9D%82-%E5%AF%B9%E4%BA%8EDP%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/">
 
 
 <script class="page-configurations">
@@ -42,11 +45,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>标签: unknown | black_trees</title>
+<title>杂-对于DP的一点理解 | black_trees</title>
   
 
 
@@ -147,7 +150,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -160,6 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EDP"><span class="nav-number">1.</span> <span class="nav-text">关于DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">四要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%EF%BC%88%E9%87%8D%E4%B8%AD%E4%B9%8B%E9%87%8D%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">状态（重中之重）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C"><span class="nav-number">1.1.3.</span> <span class="nav-text">边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.4.</span> <span class="nav-text">目标</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -218,170 +222,122 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">unknown
-          <small>标签</small>
-        </h2>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/04/17/%E6%9D%82-%E5%AF%B9%E4%BA%8EDP%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/03/27/cSn7dO.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Hina Miller Han">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          杂-对于DP的一点理解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="创建时间：2021-04-17 20:35:24 / 修改时间：20:36:13" itemprop="dateCreated datePublished" datetime="2021-04-17T20:35:24+08:00">2021-04-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="关于DP"><a href="#关于DP" class="headerlink" title="关于DP"></a>关于DP</h1><h2 id="四要素"><a href="#四要素" class="headerlink" title="四要素"></a>四要素</h2><h3 id="状态（重中之重）"><a href="#状态（重中之重）" class="headerlink" title="状态（重中之重）"></a>状态（重中之重）</h3><blockquote>
+<p>都说推方程式 $\text{dp}$ 里最简单的，设计出好的状态才是难的。</p>
+</blockquote>
+<p>一般我们都是设 $f_{i,j}$ 表示什么什么东西。</p>
+<p>然后个人觉得状态就分了两个部分：阶段和条件。</p>
+<ul>
+<li>阶段</li>
+</ul>
+<p>这种东西都是在循环最外层枚举的（比如 $\text{Floyd}$ 的 $k$），在状态里面体现出来也就是：</p>
+<p><code>前i个</code>,<code>第i个</code>,<code>对于前i段</code>……</p>
+<p>当然你也可以有多个“阶段”，不过要分清楚顺序。</p>
+<ul>
+<li>条件/决策/……</li>
+</ul>
+<p>这个其实就是状态的核心了。条件类型的话一般都是看题目条件而定。</p>
+<p>比如： <code>用了j的空间</code>（背包）,<code>疲劳度为k</code>（某道题）,<code>走到第j个格子</code>……</p>
+<p>不过还有一种我将其称为“决策型”，为什么呢？</p>
+<p>因为这种东西就是决定“状态”里的“决策”的，</p>
+<p>比如 <code>0表示休息，1表示跑</code>,<code>0表示max，1表示min</code> 等等。</p>
+<p>这些一般在决策需要分情况而且需要在状态里面体现的时候有用这种状态</p>
+<h3 id="方程"><a href="#方程" class="headerlink" title="方程"></a>方程</h3><p>推得时候要结合着状态来，想清楚状态从哪里来，怎么转移。</p>
+<p>然后有些题式需要分类讨论的，所以分情况就好。</p>
+<p>不过注意，在找情况的时候要做到不重不漏，也就是不能少情况或者多情况。</p>
+<p>有限制的转移可以压进状态，也可以判断解决转移。</p>
+<p>转移的时候方程一般都是：$f_{i,j}=\operatorname{fuction}(f_{i,j},f_{……})$</p>
+<p>为了保证“无后效性”，就要做到等式左边未知而右边全部已知。</p>
+<p>如果你觉得方程是对的，但是右边有未知，就尝试用条件把它变成已知（或者再看看你的方程是不是推错了）。</p>
+<h3 id="边界"><a href="#边界" class="headerlink" title="边界"></a>边界</h3><p>初始值，根据状态来就好。</p>
+<p>如果在外面初始化了就不用再循环里初始化，</p>
+<p>当然如果你在循环里初始化那就没必要在外面写了（只要不漏就行）。</p>
+<p>还有，<code>memset</code>的时候不要初始化<code>double</code>类型的东西。（其实个人觉得最好不用<code>memset</code>），也要注意它放在哪个位置（顺序）。</p>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>也就是答案，根据你设的状态就行。</p>
+<p>不过有的时候要在全部 $f$ 里面累加或者取最值。</p>
+<p>也有可能循环出来了还要和原来的某种情况取最值（牛的旅行那道$\text{Floyd}$就是）。</p>
+<hr>
+<p>unfinished.</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-04-17T20:35:24+08:00"
-              content="2021-04-17">
-          04-17
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/17/%E6%9D%82-%E5%AF%B9%E4%BA%8EDP%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">杂-对于DP的一点理解</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unknown/" rel="tag"># unknown</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/04/CF1504A/" rel="prev" title="CF1504A">
+                  <i class="fa fa-chevron-left"></i> CF1504A
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-20T20:38:53+08:00"
-              content="2021-03-20">
-          03-20
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/20/%E7%AC%94%E8%AE%B0%E4%BE%8B%E9%A2%98%E9%80%89%E8%AE%B2/" itemprop="url">
-            <span itemprop="name">笔记例题选讲</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-20T20:37:54+08:00"
-              content="2021-03-20">
-          03-20
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/20/%E7%9B%B4%E5%8D%87%E6%97%A5%E5%BF%97/" itemprop="url">
-            <span itemprop="name">直升日志</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-20T20:36:30+08:00"
-              content="2021-03-20">
-          03-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/20/%E6%B8%B8%E8%AE%B0-ZROI2020/" itemprop="url">
-            <span itemprop="name">游记-ZROI2020</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-20T20:33:15+08:00"
-              content="2021-03-20">
-          03-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/20/Code-Style/" itemprop="url">
-            <span itemprop="name">Code Style</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-14T09:57:14+08:00"
-              content="2021-03-14">
-          03-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/14/%E6%9D%82-%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" itemprop="url">
-            <span itemprop="name">杂-基础算法</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-14T09:56:21+08:00"
-              content="2021-03-14">
-          03-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/14/%E6%9D%82-%E5%8C%BA%E9%97%B4DP/" itemprop="url">
-            <span itemprop="name">杂-区间DP</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
 
 
 <script>

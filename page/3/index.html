@@ -175,7 +175,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -219,6 +219,257 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Trie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/03/27/cSn7dO.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Hina Miller Han">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Trie/" class="post-title-link" itemprop="url">算法笔记-Trie</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-14 09:53:02" itemprop="dateCreated datePublished" datetime="2021-03-14T09:53:02+08:00">2021-03-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-27 22:25:58" itemprop="dateModified" datetime="2021-03-27T22:25:58+08:00">2021-03-27</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我的数学老师说过：你学精通一个东西比学很多东西有用的多。</p>
+<p>于是就有了这个。</p>
+<h2 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h2><p>Trie（字典树），又被叫做 <del>踹树</del></p>
+<p>它珂以实现快速的字符串搜索。</p>
+<p>我们在搜索引擎里面输入词汇的时候，搜索引擎可能会给你跳出它猜测你可能要搜索的内容，这里就是运用了Trie树的。</p>
+<p>（所以它还是挺实用的）</p>
+<p>它的结构原理其实有一点点像单词接龙。</p>
+<p>比如：</p>
+<p><code>luogu</code> 和 <code>luogugubird</code> </p>
+<p>字典树就会将其储存成 <code>luogugubird</code> （在我们开的线性表角度看）</p>
+<p>也就是说，它会把单词的重叠前缀叠加储存。</p>
+<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><p>我们首先要知道的是，<code>Trie</code> 的每一个节点都有很多个字符指针，它们分别对应着一些字符。</p>
+<p>这是字典树的一张图：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnaGj"><img src="https://z3.ax1x.com/2021/03/27/cSnaGj.png" alt="cSnaGj.png"></a></p>
+<p>（当然单词应该是<strong>小写</strong>的，我的画板出了一些问题，见谅）</p>
+<p> <code>Trie</code> 树开始时只有一个根节点（蓝色节点）。</p>
+<p> 而每一个节点都有几个字符指针，它们储存（对应）着一些字符<br> (<code>c,a,t,e,p</code>)</p>
+<p>而我为什么把最后的节点都标红了呢？</p>
+<p>这就涉及到了 <code>Trie</code> 的思想了。</p>
+<p>简单来说，Trie的结构是这样的：</p>
+<blockquote>
+<p>对于英文字符串，其每个节点包括26个字符指针.</p>
+</blockquote>
+<blockquote>
+<p>每个指针对应一个字母，即每一条边为一个字母.</p>
+</blockquote>
+<blockquote>
+<p>同时每个节点包括一个标识，表示从根节点到该节点的边是否组成了一个单词。</p>
+</blockquote>
+<p>而我们查找一个单词的关键，就是这个红色的标记（代表着一个单词的结尾）。</p>
+<p>它可以帮助我们判断我们检索到的字符串是不是一个单词。</p>
+<p>同时也是插入和检索的终止的一个标志。</p>
+<h3 id="两个操作：插入与查找"><a href="#两个操作：插入与查找" class="headerlink" title="两个操作：插入与查找"></a>两个操作：插入与查找</h3><h4 id="插入（Insert）"><a href="#插入（Insert）" class="headerlink" title="插入（Insert）"></a>插入（Insert）</h4><p>假设现在我们有一个字符串 $s$</p>
+<p>那么先让一个指针（指向节点） $P$ 指向 $root$ 。</p>
+<p>然后再依次扫描 $s$ 的每一个字符 $c$ , 过程如下：</p>
+<ol>
+<li>如果 $P$ 的 $c$ 字符指针指向了一个已经存在的节点 $q$ ，让 $P =q$ （有存储过这个字符，让它与相同的字符的重合）</li>
+<li>如果 $P$ 的 $c$ 字符指针没有指向任何一个节点，新建一个节点，让 $P$ 的 $c$ 字符指针指向这个节点，然后让 $P =$ 这个节点。（没有就新加入一个）</li>
+</ol>
+<p> （说再多还不如一个动画）：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnwzn"><img src="https://z3.ax1x.com/2021/03/27/cSnwzn.gif" alt="cSnwzn.gif"></a></p>
+<p> <code>Code</code>：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"> 
+ <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> len<span class="token operator">=</span><span class="token function">strlen</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>len<span class="token punctuation">;</span><span class="token operator">++</span>k<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span>str<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token comment">//没有指向任何一个节点</span>
+            trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">++</span>tot<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">&#125;</span>
+    end<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">//打标记</span>
+<span class="token punctuation">&#125;</span>
+ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="检索-search"><a href="#检索-search" class="headerlink" title="检索(search)"></a>检索(search)</h4><p>如果我们需要检索一个单词是否存在于<code>Trie    </code> 之中，很明显需要那个<code>end[]</code>标记的帮助，他可以帮助我们快速判定当前字符串的情况。</p>
+<p>那么，和<code>Insert</code>一样 ，我们令一个指针（指向节点） $P$ 指向 $root$ ,然后向下检索 $s$ 的每一个字符 $c$。</p>
+<p>会出现以下的两种情况：</p>
+<ol>
+<li><p>当前的 $P$ 的 $c$ 字符指针  指向了一个空的节点（没有指向节点）。证明这个字符串 $s$ 的剩下的字符都没有按顺序插入过 $Trie$ ，结束。</p>
+</li>
+<li><p>当前的 $P$ 的 $c$ 字符指针  指向了一个节点 $q$  ，则令 $P=q$ ，继续搜索。</p>
+</li>
+</ol>
+<p>如果我们搜索完 $s$ 的时候，刚好节点 $P$ 是被打过标记的(<code>color=red</code>) ，证明 $s$ 存在于这个<code>Trie</code> 之中，返回真。</p>
+<p>图的话可以看一看上面那一个（做这个gif很麻烦的啊），唯二的区别就是在没找到的时候 $Insert$ 是加入 而 $Search$ 是返回。在搜完的时候 $Insert$ 是打上标记， $Search$ 是确认标记.</p>
+<p>Code:</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> len<span class="token operator">=</span><span class="token function">strlen</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>len<span class="token punctuation">;</span><span class="token operator">++</span>k<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>str<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> end<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>还有一点一定要记住， <code>Trie</code> 在开始的时候一定要记得<strong>初始化！</strong></p>
+<p>Code：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>trie<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>trie<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>end<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>end<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tot<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<p>另外，说一下，<code>Trie</code>不是只能维护26个英文字符。你可以自己改进（比如后三道题就是维护异或和的（_01Trie_））</p>
+<hr>
+<h2 id="Trie例题："><a href="#Trie例题：" class="headerlink" title="Trie例题："></a>Trie例题：</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1481">P1481 魔族密码</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">P2580 于是他错误的点名开始了</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA11362">UVA11362 Phone List （下面那一道的重题）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP4033">SP4033 PHONELST - Phone List</a></p>
+</li>
+</ul>
+<h2 id="01Trie"><a href="#01Trie" class="headerlink" title="01Trie"></a>01Trie</h2><h3 id="基本结构-1"><a href="#基本结构-1" class="headerlink" title="基本结构"></a>基本结构</h3><p><code>01Trie</code>是一种主要用于维护<strong>异或</strong>问题的数据结构。</p>
+<p>你也可以把它看做是只有 <code>0 1</code> 的<code>Trie</code></p>
+<p>（也就是把数字转成2进制存进 <code>Trie</code> 里面）。</p>
+<p>它在插入的时候和正常 <code>Trie</code> 不太一样。</p>
+<p>他是把数字 <strong>按位</strong> 插入进 <code>Trie</code> 里面的。</p>
+<p>也就是把数字从最高位依次插入进 <code>Trie</code> 里面。</p>
+<p>所以我们需要用到一点点位运算技巧：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token keyword">int</span> <span class="token function">cacid</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">,</span><span class="token keyword">int</span> pos<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token punctuation">(</span>num<span class="token operator">>></span>pos<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>也就是,对于一个数 $num$ ， $\operatorname{cacid}(num,pos)$ 返回 $num$ 第 $pos$ 位的<code>bit</code>值。 </p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>一般情况下，我们处理的都是 <code>32位整数</code>(int) ,所以01Trie一般最多有 <code>32</code> 层。</p>
+<p>那么，我们用 $\operatorname{cacid}()$ 函数，还有一点点二进制思想。</p>
+<p>可以改出来一个这样子的代码：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">cacid</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">,</span><span class="token keyword">int</span> pos<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>num<span class="token operator">>></span>pos<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">;</span>i<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token operator">--</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span><span class="token function">cacid</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token comment">//如果节点未被访问过</span>
+            trie<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>trie<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//将当前节点的指针初始化 </span>
+            value<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//节点值为0，表示到此不是一个数 </span>
+            trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">++</span>tot<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    value<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">=</span>num<span class="token punctuation">;</span><span class="token comment">//节点值为 num，即到此是一个数 </span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h3><p>我们每次在查询的时候，最基础的操作都是查询和 $num$ $\operatorname{xor}$ 之后的结果最大的数是多少。</p>
+<p>怎么做呢？</p>
+<p>和检索<code>search()</code>肯定是类似的。</p>
+<p>不过我们要根据 $\operatorname{xor}$ 的性质来检索。</p>
+<p>还是去取一个指针 $P$ ，扫描$num$ 的每一位 $bit$ 值:</p>
+<ol>
+<li><p>每一次都去访问和当前位 $ch$ 相反的那一个指针. </p>
+</li>
+<li><p>如果没有（相反位指针指向空），那就只能访问 $P$ 对应的的 $ch$ 指针。</p>
+</li>
+</ol>
+<p>根据异或的性质，我们就可以找到和 $num  $ 异或之后是最大值的那个数。</p>
+<p>举个例子(这里为了方便，简化成了$3$位)：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnBMq"><img src="https://z3.ax1x.com/2021/03/27/cSnBMq.png" alt="cSnBMq.png"></a></p>
+<p>那么询问 $011$ 时，就是这样的：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSnDs0"><img src="https://z3.ax1x.com/2021/03/27/cSnDs0.png" alt="cSnDs0.png"></a></p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span> num<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">;</span>i<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token operator">--</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span><span class="token function">cacid</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+            p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> value<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>你会发现，我只是把 <code>end[]</code> 搞成了 <code>value[]</code>。<br>策略改了一改。</p>
+<p>因为<code>01Trie</code> 和 <code>Trie</code> 并没有太大的不同。</p>
+<p>那么，来几道题练一下手：</p>
+<hr>
+<h2 id="01Trie例题："><a href="#01Trie例题：" class="headerlink" title="01Trie例题："></a>01Trie例题：</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://loj.ac/p/10050">Loj10050  （可能是P6018的基础）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://loj.ac/p/10056">Loj10056 (可能是P6018的基础)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6018">（选做）P6018 [Ynoi2010]Fusion tree</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="可持久化Trie"><a href="#可持久化Trie" class="headerlink" title="可持久化Trie"></a>可持久化Trie</h2><p>没开工（没学完）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
