@@ -23,18 +23,18 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="题解 CF713C 【Sonya and Problem Wihtout a Legend】$O(n^2)$ DP方法 $update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。 这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。  思路：既然这是线性 $DP$ 。 从以下两个角度出发：  我从哪里来？（当前">
+<meta name="description" content="题解 CF713C 【Sonya and Problem Wihtout a Legend】前言$\text{O}(n^2)$ DP方法。 这一道题的重点在于离散化，网上有七八成的题解都讲的不是很清晰，所以我在这里讲一下。 upd - 2020.7.31 ：原来的证明有一点问题，合并后的函数应该是满足严格递增的，已修改。 upd - 2021.5.21 ：修改了图床并更正原来的一处笔误，所以重新提">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF713C">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/CF713C/index.html">
 <meta property="og:site_name" content="black_trees">
-<meta property="og:description" content="题解 CF713C 【Sonya and Problem Wihtout a Legend】$O(n^2)$ DP方法 $update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。 这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。  思路：既然这是线性 $DP$ 。 从以下两个角度出发：  我从哪里来？（当前">
+<meta property="og:description" content="题解 CF713C 【Sonya and Problem Wihtout a Legend】前言$\text{O}(n^2)$ DP方法。 这一道题的重点在于离散化，网上有七八成的题解都讲的不是很清晰，所以我在这里讲一下。 upd - 2020.7.31 ：原来的证明有一点问题，合并后的函数应该是满足严格递增的，已修改。 upd - 2021.5.21 ：修改了图床并更正原来的一处笔误，所以重新提">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSK6C4.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSKc8J.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/27/cSKc8J.png">
 <meta property="article:published_time" content="2021-03-14T02:08:08.000Z">
-<meta property="article:modified_time" content="2021-03-27T14:41:06.397Z">
+<meta property="article:modified_time" content="2021-05-22T14:59:07.395Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
@@ -167,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3-CF713C-%E3%80%90Sonya-and-Problem-Wihtout-a-Legend%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">题解 CF713C 【Sonya and Problem Wihtout a Legend】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-n-2-DP%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">$O(n^2)$ DP方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.0.2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-re-i-a-i-i"><span class="nav-number">1.0.3.</span> <span class="nav-text">为什么是 $re[i]&#x3D;a[i]-i$</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3-CF713C-%E3%80%90Sonya-and-Problem-Wihtout-a-Legend%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">题解 CF713C 【Sonya and Problem Wihtout a Legend】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%B1%BB%E4%BC%BC%E7%9A%84%E5%8F%98%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">一些类似的变式：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -183,7 +183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -199,6 +199,12 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
       </span>
   </div>
 
@@ -268,7 +274,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-27 22:41:06" itemprop="dateModified" datetime="2021-03-27T22:41:06+08:00">2021-03-27</time>
+        <time title="修改时间：2021-05-22 22:59:07" itemprop="dateModified" datetime="2021-05-22T22:59:07+08:00">2021-05-22</time>
       </span>
 
   
@@ -281,23 +287,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】"><a href="#题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】" class="headerlink" title="题解 CF713C 【Sonya and Problem Wihtout a Legend】"></a>题解 CF713C 【Sonya and Problem Wihtout a Legend】</h1><h3 id="O-n-2-DP方法"><a href="#O-n-2-DP方法" class="headerlink" title="$O(n^2)$ DP方法"></a>$O(n^2)$ DP方法</h3><hr>
-<p>$update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。</p>
-<p>这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。</p>
-<hr>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>既然这是线性 $DP$ 。</p>
+        <h1 id="题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】"><a href="#题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】" class="headerlink" title="题解 CF713C 【Sonya and Problem Wihtout a Legend】"></a>题解 CF713C 【Sonya and Problem Wihtout a Legend】</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>$\text{O}(n^2)$ DP方法。</p>
+<p>这一道题的重点在于<strong>离散化</strong>，网上有七八成的题解都讲的不是很清晰，所以我在这里讲一下。</p>
+<p>upd - 2020.7.31 ：原来的证明有一点问题，合并后的函数应该是满足严格递增的，已修改。</p>
+<p>upd - 2021.5.21 ：修改了图床并更正原来的一处笔误，所以重新提交一次。</p>
+<p>upd - 2021.5.22 ： 修正以前错误的排版，添加了更多的说明。</p>
+<h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>既然这是线性 DP。</p>
 <p>从以下两个角度出发：</p>
-<ul>
-<li><p>我从哪里来？（当前状态可以由哪些状态得到？）</p>
+<ol>
+<li><p>我从哪里来（当前状态可以由哪些状态得到）?</p>
 </li>
-<li><p>我到哪里去？（当前状态可以去到哪几个状态？）</p>
+<li><p>我到哪里去（当前状态可以推出哪几个状态）?</p>
 </li>
-</ul>
+</ol>
 <p>我们不难想到：</p>
 <p>设 $f[i][j]$ 表示 $a[i]$ 变成 $re[j]$ 所需的最小操作次数。</p>
-<p>路人：诶诶诶，你 $a[i]$ 和 $re[j]$ 哪里来的啊？</p>
-<p>这台子拆的好！</p>
-<p>我们设原序列为 $a[]$ ，我们想要达到的“理想”序列为 $re[]$。</p>
+<p>可 $a[i]$ 和 $re[j]$ 是哪里来的啊？</p>
+<p>我们设原序列为 $a[]$，我们想要达到的“理想”序列为 $re[]$。</p>
 <p>那么，代码如下：</p>
 <pre class="line-numbers language-none"><code class="language-none">   for(register long long i&#x3D;1;i&lt;&#x3D;n;++i)&#123;
 	cin&gt;&gt;a[i];
@@ -306,22 +312,22 @@
 &#125;
 sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
 <p>接下来我就讲讲为什么要这样做：</p>
-<hr>
-<h3 id="为什么是-re-i-a-i-i"><a href="#为什么是-re-i-a-i-i" class="headerlink" title="为什么是 $re[i]=a[i]-i$"></a>为什么是 $re[i]=a[i]-i$</h3><p>很好理解，我在这里举个例子。</p>
-<p>（这里举的例子是<a target="_blank" rel="noopener" href="http://poj.org/problem?id=3666">POJ3666</a>，因为离散的方法和此题一样，所以我就以POJ3666作为例子讲解这题的离散化）</p>
+<p>为什么是 <code>re[i]=a[i]-i</code> 呢？</p>
+<p>很好理解，我在这里举个例子。</p>
+<p>（这里举的例子是 <a target="_blank" rel="noopener" href="http://poj.org/problem?id=3666">POJ3666</a>，因为离散的方法和此题一样，所以我就以 POJ3666 作为例子讲解这题的离散化）。</p>
 <p>先不管这道题的要求。我们先假设加一减一的操作变为了修改操作（POJ3666）。</p>
-<p>那么：</p>
-<p>$n=5$</p>
-<p>$a[]:{1,3,2,3,5}$</p>
-<p>如果我们想要修改它，使得它是单调不减（这里也是POJ3666）的。要怎么修改？</p>
-<p>很明显，我们的第一思路是这么修改：</p>
+<p>那么先来一组数据：</p>
+<p>$a[]:{1,3,2,3,5} , (n=5)$</p>
+<p>如果我们想要修改它，使得它是<strong>单调不减</strong>（这里也是 POJ3666 ）的。</p>
+<p>要怎么修改？</p>
+<p>显然，我们的第一思路是这么修改：</p>
 <p>$a[]:{1,2,3,4,5}$</p>
-<p>很明显，因为这里有重复的 $3$ 。所以，我们需要更多的次数去修改它。</p>
+<p>因为这里有重复的3。</p>
+<p>所以，我们需要更多的次数去修改它。</p>
 <p>为了避免这种情况，我们给每个 $a[i]$ 减去 $i$。</p>
 <p>为什么呢？</p>
-<p>因为 $i$ 在这里一定是严格递增的（你从头往后扫，下标难道不递增？），现在看一下减去 $i$ 之后是怎么样的：</p>
+<p>因为 $i$ 在这里一定是<strong>严格递增</strong>的（你从头往后扫，下标难道不递增？），现在看一下减去 $i$ 之后是怎么样的：</p>
 <p>$re[]:{ 0,1,-1,-1,0}$</p>
 <p>现在还是有重复的，不过先不要着急。</p>
 <p>我画一个图。</p>
@@ -336,22 +342,25 @@ sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <p>$re[]={ 1,2,3,3,3}$</p>
 <p>$i[]={1,2,3,4,5}$</p>
 <p>合并之后：</p>
-<p>$2,4,6,7,8$,是不是满足严格递增？</p>
-<p>好的，这里可能会有一点绕（看完就能理解的）。</p>
+<p>$2,4,6,7,8$，是不是满足严格递增？</p>
+<p>好的，这里可能会有一点绕。</p>
 <p>我们再重新看一看:</p>
 <p>$re[]:{ 0,1,-1,-1,0}$</p>
-<p>现在我们只需要使这一个 $re$ 中不下降的元素尽量多，那么我们需要修改的次数就会尽量的少（最优）（也就是要求一个最长不下降子序列再减去元素个数）。</p>
+<p>现在我们只需要使这一个 $re$ 中不下降的元素<strong>尽量多</strong>，那么我们需要修改的次数就会尽量的少（最优）。</p>
+<p>（也就是要求一个<strong>最长不下降子序列</strong>再减去元素个数）。</p>
 <p>好了，把这一个离散的思路放到我们这一题，只需要改一下条件就可以啦。</p>
-<p>（没听懂自行返回再来几遍，我讲的已经比网上绝大部分的题解要清晰了。）</p>
-<hr>
+<p>（没听懂自行返回再来几遍，我讲的已经比较清晰了）。</p>
 <p>现在离散化已经搞定了。那么是时候看方程了。</p>
-<p>方程（这里推得过程省去，都做到这种题了，这种普通的线性 $DP$ 方程不可能推不出来）：</p>
-<p>$$ \begin{cases}minn=\min(minn,f[i-1][j])\f[i][j]=minn+|a[i]-re[j]|\end{cases}$$</p>
-<p>（最开始的时候 $minn$ 要赋值为一个超级大的值）</p>
-<hr>
-<p>很好，到这里这道题就基本完成了，如果没有听懂的同学请自觉从头再多看几遍。</p>
+<p>根据状态的定义，$f[i][j]$ 只可能从 $f[i-1][j]$ 转移过来。</p>
+<p>那么我们转移过后（也就是修改一次）的代价就是 $|a[i]-re[j]|$。</p>
+<p>（这里是加一减一，所以代价是它们的差的绝对值）。</p>
+<p>然后为了最优，我们记录一下<strong>这一层</strong>之前的“最优”，拿来和现在的“决策”比较一下就行（代码里的 <code>minv</code>）。</p>
+<p>方程：</p>
+<p>$$ \begin{cases}minv=\min(minv,f[i-1][j])\f[i][j]=minv+|a[i]-re[j]|\end{cases}$$</p>
+<p>（最开始的时候 $minv$ 要赋值为一个超级大的值）。</p>
+<p>很好，到这里这道题就基本完成了，如果没有听懂的同学请从头再多看几遍。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/36064380">AC记录</a></p>
-<p>下面给出代码实现（数据太恶心所以用long long）：</p>
+<p>下面给出代码实现（数据大所以用<code>long long</code>）：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span> </span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -384,10 +393,10 @@ sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></spa
 		f<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">abs_ll</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>re<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//给f一个初值，这里是预处理</span>
 	<span class="token punctuation">&#125;</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		minn<span class="token operator">=</span><span class="token number">2e18</span><span class="token punctuation">;</span><span class="token comment">//这里每一次都要赋值，否则会错（因为每次操作都要用 ） </span>
+		minn<span class="token operator">=</span><span class="token number">2e18</span><span class="token punctuation">;</span><span class="token comment">//这里每一次都要赋值，否则会错（因为每次操作都要用，也就是每一层都有不同的情况） </span>
 		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">long</span> <span class="token keyword">long</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
 			minn<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>minn<span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>minn<span class="token operator">+</span><span class="token function">abs_ll</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>re<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//转移方程 </span>
+			f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>minn<span class="token operator">+</span><span class="token function">abs_ll</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>re<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//转移</span>
 		<span class="token punctuation">&#125;</span>
 	<span class="token punctuation">&#125;</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -396,9 +405,13 @@ sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></spa
 	<span class="token class-name">Accepted</span><span class="token operator">::</span><span class="token function">zjk_ak_ioi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//喊出zjkAKIOI，借用神的力量，让我AC！ </span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>代码里那个奇怪的函数不用管啦（个人习惯），你只需要直接输出 $res$ 就好了。</p>
-<hr>
-<p>管理员求过，看在我已经讲得比较清晰了的份上了吧QAQ。</p>
+<p>代码里那个奇怪的函数不用管啦（个人习惯），你只需要直接输出 <code>res</code> 就好了。</p>
+<h2 id="一些类似的变式："><a href="#一些类似的变式：" class="headerlink" title="一些类似的变式："></a>一些类似的变式：</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="http://poj.org/problem?id=3666">Poj3666 - Making the Grade</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2501">LuoguP2501 - [HAOI2006]数字序列</a></p>
+</li>
+</ul>
 
     </div>
 
@@ -469,7 +482,7 @@ sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></spa
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">black_trees</span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

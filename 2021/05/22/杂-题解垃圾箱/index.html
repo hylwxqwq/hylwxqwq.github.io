@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="这里是用来放一些懒得写长篇题解的题的。 P1734:des：  选取和不超过S的若干个不同的正整数，使得所有数的约数（不含它本身）之和最大。   sol：01背包裸题。  因为每个数是有cost的。那么把数的值看做c，约数和看做 v 求解就行了。  auoj#158 （rmj随堂1） https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;ingmiller&#x2F;solution-for-auoj">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂-题解垃圾箱">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/05/22/%E6%9D%82-%E9%A2%98%E8%A7%A3%E5%9E%83%E5%9C%BE%E7%AE%B1/index.html">
+<meta property="og:site_name" content="black_trees">
+<meta property="og:description" content="这里是用来放一些懒得写长篇题解的题的。 P1734:des：  选取和不超过S的若干个不同的正整数，使得所有数的约数（不含它本身）之和最大。   sol：01背包裸题。  因为每个数是有cost的。那么把数的值看做c，约数和看做 v 求解就行了。  auoj#158 （rmj随堂1） https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;ingmiller&#x2F;solution-for-auoj">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/dvha5myc.png">
+<meta property="article:published_time" content="2021-05-22T15:02:33.000Z">
+<meta property="article:modified_time" content="2021-05-22T15:03:20.633Z">
+<meta property="article:author" content="black_trees">
+<meta property="article:tag" content="unknown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/dvha5myc.png">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/05/22/%E6%9D%82-%E9%A2%98%E8%A7%A3%E5%9E%83%E5%9C%BE%E7%AE%B1/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>杂-题解垃圾箱 | black_trees</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">black_trees</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">厄符「厄神様の转转转」</p>
+      <img class="custom-logo-image" src="https://z3.ax1x.com/2021/04/24/cjBERg.jpg" alt="black_trees">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-th fa-fw"></i>友链</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-lau"><a href="/lau/" rel="section"><i class="fa fa-sitemap fa-fw"></i>一言</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E6%98%AF%E7%94%A8%E6%9D%A5%E6%94%BE%E4%B8%80%E4%BA%9B%E6%87%92%E5%BE%97%E5%86%99%E9%95%BF%E7%AF%87%E9%A2%98%E8%A7%A3%E7%9A%84%E9%A2%98%E7%9A%84%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">这里是用来放一些懒得写长篇题解的题的。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P1734"><span class="nav-number">1.1.</span> <span class="nav-text">P1734:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#auoj-158-%EF%BC%88rmj%E9%9A%8F%E5%A0%821%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">auoj#158 （rmj随堂1）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P6018-Ynoi2010-Fusion-tree"><span class="nav-number">1.3.</span> <span class="nav-text">P6018 [Ynoi2010]Fusion tree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2580-%E4%BA%8E%E6%98%AF%E4%BB%96%E9%94%99%E8%AF%AF%E7%9A%84%E7%82%B9%E5%90%8D%E5%BC%80%E5%A7%8B%E4%BA%86"><span class="nav-number">1.4.</span> <span class="nav-text">P2580 于是他错误的点名开始了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CF414B"><span class="nav-number">1.5.</span> <span class="nav-text">CF414B</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P4551"><span class="nav-number">1.6.</span> <span class="nav-text">P4551</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1060"><span class="nav-number">1.7.</span> <span class="nav-text">P1060</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ-1345"><span class="nav-number">1.8.</span> <span class="nav-text">AUOJ 1345</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P3879-TJOI2010-%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3"><span class="nav-number">1.9.</span> <span class="nav-text">P3879 [TJOI2010]阅读理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJK-AK-AUOJ1346"><span class="nav-number">1.10.</span> <span class="nav-text">ZJK-AK AUOJ1346</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ticket-AUOJ1361"><span class="nav-number">1.11.</span> <span class="nav-text">ticket AUOJ1361</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P5149"><span class="nav-number">1.12.</span> <span class="nav-text">P5149</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1102"><span class="nav-number">1.13.</span> <span class="nav-text">P1102</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ1365-C%E8%80%81%E5%B8%88%E7%9A%84%E6%AF%8D%E9%B8%A1"><span class="nav-number">1.14.</span> <span class="nav-text">AUOJ1365 C老师的母鸡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1824-cow%E2%80%99s-new-house"><span class="nav-number">1.15.</span> <span class="nav-text">P1824 cow’s new house</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ1367"><span class="nav-number">1.16.</span> <span class="nav-text">AUOJ1367</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2678-%E8%B7%B3%E7%9F%B3%E5%A4%B4"><span class="nav-number">1.17.</span> <span class="nav-text">P2678 跳石头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ-1368-save"><span class="nav-number">1.18.</span> <span class="nav-text">AUOJ 1368 save</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1542-Postman"><span class="nav-number">1.19.</span> <span class="nav-text">P1542 Postman</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ-1366-wings"><span class="nav-number">1.20.</span> <span class="nav-text">AUOJ 1366 wings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ-1375-Graph"><span class="nav-number">1.21.</span> <span class="nav-text">AUOJ 1375 Graph</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ1414-pots"><span class="nav-number">1.22.</span> <span class="nav-text">AUOJ1414 pots</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ1384-flowey"><span class="nav-number">1.23.</span> <span class="nav-text">AUOJ1384 flowey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2563"><span class="nav-number">1.24.</span> <span class="nav-text">P2563</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUOJ-1423"><span class="nav-number">1.25.</span> <span class="nav-text">AUOJ 1423</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2078-friends"><span class="nav-number">1.26.</span> <span class="nav-text">P2078 friends</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUOJ-201%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">AUOJ #201：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">Hina Miller Han</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/hylwxqwq" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/05/22/%E6%9D%82-%E9%A2%98%E8%A7%A3%E5%9E%83%E5%9C%BE%E7%AE%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Hina Miller Han">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          杂-题解垃圾箱
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-22 23:02:33 / 修改时间：23:03:20" itemprop="dateCreated datePublished" datetime="2021-05-22T23:02:33+08:00">2021-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="这里是用来放一些懒得写长篇题解的题的。"><a href="#这里是用来放一些懒得写长篇题解的题的。" class="headerlink" title="这里是用来放一些懒得写长篇题解的题的。"></a>这里是用来放一些懒得写长篇题解的题的。</h3><hr>
+<h4 id="P1734"><a href="#P1734" class="headerlink" title="P1734:"></a>P1734:</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>选取和不超过S的若干个不同的正整数，使得所有数的约数（不含它本身）之和最大。</p>
+</blockquote>
+<p> <strong>sol</strong>：01背包裸题。</p>
+<p> 因为每个数是有cost的。那么把数的值看做c，约数和看做 v 求解就行了。</p>
+<hr>
+<h4 id="auoj-158-（rmj随堂1）"><a href="#auoj-158-（rmj随堂1）" class="headerlink" title="auoj#158 （rmj随堂1）"></a>auoj#158 （rmj随堂1）</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/ingmiller/solution-for-auoj158-post">https://www.luogu.com.cn/blog/ingmiller/solution-for-auoj158-post</a></li>
+</ul>
+<hr>
+<h4 id="P6018-Ynoi2010-Fusion-tree"><a href="#P6018-Ynoi2010-Fusion-tree" class="headerlink" title="P6018 [Ynoi2010]Fusion tree"></a>P6018 [Ynoi2010]Fusion tree</h4><p><strong>sol</strong>： <strong>BY：FZzzz</strong></p>
+<p>首先这种题其实是个很经典的 trick 就是对于每个点只维护它的所有儿子。然后对于父亲单独处理。对于父亲的处理是平凡的，不再赘述。</p>
+<p>然后考虑一个节点，我们要处理的就是单点修改和全局加，然后要查询全局异或和。</p>
+<p>不对啊你发现每次全局加的都是一啊，这个肯定得有用啊。</p>
+<p>考虑加上一到底会对一个数造成什么样的影响。</p>
+<p>不就是把最低位的零变成一然后把它下面的所有一都变成零吗，这个怎么处理啊。</p>
+<p>我们从低位到高位建一个 trie，然后按位考虑每一位，对于零就直接把它变成一，然后对于一就变成零，但是还要递归下去。</p>
+<p>所以直接就交换一下儿子然后递归下去修改，维护一下子树异或和就行了。</p>
+<hr>
+<h4 id="P2580-于是他错误的点名开始了"><a href="#P2580-于是他错误的点名开始了" class="headerlink" title="P2580 于是他错误的点名开始了"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">P2580 于是他错误的点名开始了</a></h4><p><strong>sol</strong>：Trie树水题。</p>
+<p>直接套板子就可以了。</p>
+<p><code>RE</code> 的重复情况直接建一个map判断就可以了。</p>
+<hr>
+<h4 id="CF414B"><a href="#CF414B" class="headerlink" title="CF414B"></a>CF414B</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>如果一个数列中，后一个数都能被前面一个数整除，那么就叫这个数列为好数列。输入n，k，求数列中最大元素为n，数列长度为k的好数列的种数。</p>
+</blockquote>
+<p><strong>sol</strong>：比较简单。我们根据题目的要求搞就可以了。</p>
+<p>不过在设计状态的时候就要把枚举长度的放在外面了。</p>
+<p>然后再开一维枚举k，就是乘上去的那个数。</p>
+<p>然后根据状态定义有这么一个方程：$f[i][j]=(f[i][j]+f[i-1][k*j])$;</p>
+<p>记得取模。</p>
+<hr>
+<h4 id="P4551"><a href="#P4551" class="headerlink" title="P4551"></a>P4551</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>给定一棵n个点的带权树，结点下标从1开始到N。寻找树中找两个结点，求最长的异或路径。</p>
+</blockquote>
+<blockquote>
+<p>异或路径指的是指两个结点之间唯一路径上的所有边权的异或。</p>
+</blockquote>
+<p><strong>sol</strong>：根据我们异或的性质（异或两次就是它本身），有一个想法:</p>
+<p>先DFS求出root到每一个点的dist。</p>
+<p>然后$dist[x]\ xor\ dist[y]$ 就是 $x -&gt; y$ 的异或路径长。</p>
+<p>用一颗01Trie来维护就行了。</p>
+<hr>
+<h4 id="P1060"><a href="#P1060" class="headerlink" title="P1060"></a>P1060</h4><p><strong>sol</strong> ：01背包稍微变化了一下。</p>
+<p>只是我们的 $c[i]$ 现在在转移的时候变成了 $v[i]*c[i]$ 。</p>
+<hr>
+<h4 id="AUOJ-1345"><a href="#AUOJ-1345" class="headerlink" title="AUOJ 1345"></a>AUOJ 1345</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>已知神犇ZJK有p元钱，商店里有q个本子，第i个本子可以记录ci个知识点，需要花费ci元购买。</p>
+</blockquote>
+<blockquote>
+<p>现在，神犇ZJK想知道，他用手里的钱，最多能记多少知识点。</p>
+</blockquote>
+<p><strong>sol</strong>：还是比较简单的01背包。只是$c[i]$ 和 $v[i]$变成了一个数组。</p>
+<hr>
+<h4 id="P3879-TJOI2010-阅读理解"><a href="#P3879-TJOI2010-阅读理解" class="headerlink" title="P3879 [TJOI2010]阅读理解"></a>P3879 [TJOI2010]阅读理解</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>有 $n$ 篇文章，每个文章有一个 $L_i$ ，表示单词数，给定 $m$ 次询问。</p>
+</blockquote>
+<blockquote>
+<p>对于每个生词输出一行，统计其在哪几篇短文中出现过，并按从小到大输出短文的序号，序号不应有重复，序号之间用一个空格隔开（注意第一个序号的前面和最后一个序号的后面不应有空格）。如果该单词一直没出现过，则输出一个空行。</p>
+</blockquote>
+<p><strong>乱搞</strong> ：</p>
+<p>目前自己觉得这是一道 $Trie$ 。</p>
+<p>对于全部短文，我们建一颗 Trie。</p>
+<p>不过为了区分每一篇文章，$end$ 要改成 二维的。</p>
+<p>而且和 Phonelist 那一题差不多，我们把$end$ 改成 <code>int </code>，表示一共出现了多少次。</p>
+<p>然后在查询的时候改一点点操作就可以了。</p>
+<hr>
+<h4 id="ZJK-AK-AUOJ1346"><a href="#ZJK-AK-AUOJ1346" class="headerlink" title="ZJK-AK AUOJ1346"></a>ZJK-AK AUOJ1346</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>现在神犇ZJK==有n场比赛可以AK，对于第i场比赛，神犇ZJK需要花费ti的时间和ei的精力去AK，同时AK了该场比赛就会为他增加vi的影响力。</p>
+</blockquote>
+<blockquote>
+<p>他最多只能用p的时间和q的精力去AK比赛。</p>
+</blockquote>
+<blockquote>
+<p>求神犇ZJK最多能获得的影响力。</p>
+</blockquote>
+<p><strong>sol</strong>:一道比较简单的背包。只是我们的$c[]$ 变成了两维，开两层循环就可以了。不过记得滚动数组优化一下。</p>
+<hr>
+<h4 id="ticket-AUOJ1361"><a href="#ticket-AUOJ1361" class="headerlink" title="ticket AUOJ1361"></a>ticket AUOJ1361</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>一条高铁线路G39依次经过n个火车站，编号1~n,现在有未来K天的m条的订票信息，请问每次安排至少多少座位可满足订票信息。</p>
+</blockquote>
+<blockquote>
+<p>信息形式为“i j k”,表示第i天出行，从j上车，从k下车。座位可同时使用，但两人不可同时占用同一座位。（比如第一位乘客在3号站下车，同时第二位乘客在3号火车站上车，这样只需要一个座位即可） 。</p>
+</blockquote>
+<blockquote>
+<p>求最少的座位量，对于每一天有一个输出。</p>
+</blockquote>
+<p><strong>sol</strong>:二维差分，根据差分的性质，和这个题的特殊性，我们只需要维护 $[l,r]$区间，不用维护 $r+1$ 了。</p>
+<p>然后对于每一天，我们找出一个max值就是答案。（根据最坏原则可以知道）。</p>
+<hr>
+<h4 id="P5149"><a href="#P5149" class="headerlink" title="P5149"></a>P5149</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>现在校长在校园网上公布了一份座位表，n 位老师从左到右依次排成一行。老师们都对这个座位很满意。</p>
+</blockquote>
+<blockquote>
+<p>然而到了开会时，校长不小心把座位表打乱了，老师们很不满。老师们并不在意自己的位置变了多少，但如果有一对老师 a 和 b，他们原来的座位是 a 在 b 左边，现在变成了 a在 b 右边，那么这一对老师便会贡献一单位不满值。</p>
+</blockquote>
+<blockquote>
+<p>校长想知道这些老师的总不满值是多少。</p>
+</blockquote>
+<p><strong>sol</strong> :对于每一个字符串，第一遍用map编一个号。第二遍直接用树状数组求一次逆序对个数就好了,复杂度 $ \text{O} (n \log n)$。</p>
+<hr>
+<h4 id="P1102"><a href="#P1102" class="headerlink" title="P1102"></a>P1102</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>好吧，题目是这样的：给出一串数以及一个数字 C，要求计算出所有 A−B=C 的数对的个数（不同位置的数字一样的数对算不同的数对）。</p>
+</blockquote>
+<p><strong>sol</strong>:</p>
+<p>如果这个数组是有序的，那么对于每一个A的值，在它的后方就只有一个数值B满足A,B的差值为C。</p>
+<p>这时我们只需要二分求出数组中对于每个A,A+C的这两个位置，它们的差即为数组中数值为A+C的元素个数。将这个数加到ans中。</p>
+<p>（lowerbound和upperbound）。：</p>
+<p><code>((upper_bound(a+1,a+n+1,a[i]+c)-a)-(lower_bound(a+1,a+n+1,a[i]+c)-a))</code></p>
+<hr>
+<h4 id="AUOJ1365-C老师的母鸡"><a href="#AUOJ1365-C老师的母鸡" class="headerlink" title="AUOJ1365 C老师的母鸡"></a>AUOJ1365 C老师的母鸡</h4><p><strong>des</strong>: </p>
+<blockquote>
+<p>给定 $n,t$ ，在长度为 $n$ 的序列中找到长度最小的一个子段，使得字段和大于等于 $t$。 （均为正整数）。</p>
+</blockquote>
+<p><strong>sol</strong>:: 尺取法模板。我们让 $l$ 从 $[1,n]$ 之间循环。从 $l$ 开始往后枚举 $r$ （每次往后加一） 如果当前长度的满足要求（往后就不会更优了），记录当前的长度，和原来的最优解比较。最后输出最优解就可以了。</p>
+<hr>
+<h4 id="P1824-cow’s-new-house"><a href="#P1824-cow’s-new-house" class="headerlink" title="P1824 cow’s new house"></a>P1824 cow’s new house</h4><p><strong>des:</strong>:</p>
+<blockquote>
+<p>Farmer John建造了一个有N(2&lt;=N&lt;=100,000)个隔间的牛棚，这些隔间分布在一条直线上，坐标是x1,…,xN (0&lt;=xi&lt;=1,000,000,000)。</p>
+</blockquote>
+<blockquote>
+<p>他的C(2&lt;=C&lt;=N)头牛不满于隔间的位置分布，它们为牛棚里其他的牛的存在而愤怒。为了防止牛之间的互相打斗，Farmer John想把这些牛安置在指定的隔间，所有牛中相邻两头的最近距离越大越好。那么，这个最大的最近距离是多少呢？</p>
+</blockquote>
+<p><strong>sol</strong>:看到 <code>这个最大的最近距离</code> 这种东西，应该能直接先想到二分答案。</p>
+<p>定义变量ans，储存当前优解。定义闭区间[left, right]，代表程序当前正在此闭区间内寻找答案（寻找潜在的比ans更优的解）（与前两种方法不同的是，最优解不一定要属于该闭区间）。</p>
+<p>令 $mid = (left + right)/2$</p>
+<p>若$mid$为解，则$ans = max(ans, mid), left = mid + 1.$此时我们更新了最优解，同时在最优解的右侧寻找潜在的更有解。</p>
+<p>若$mid$不为解，则$right = mid - 1$.$mid$不是解，因此我们在$mid$左边寻找更优解。</p>
+<p>重复上述过程，直到$left &gt; right$时跳出循环，$ans$即为最优解.</p>
+<p>注意，当$left == right$时，也必须要在此区间内进行判断，因为当前还不能确定该区间内是否存在更优解。</p>
+<hr>
+<h4 id="AUOJ1367"><a href="#AUOJ1367" class="headerlink" title="AUOJ1367"></a>AUOJ1367</h4><p><strong>des</strong> ：</p>
+<blockquote>
+<p>给定长度为 $n$ 的序列。将其分为 $k$ 段，使得每一段的最大值-最小值 最小。</p>
+</blockquote>
+<p><strong>sol</strong> ：二分答案，主要是这个题面是我简化了的。</p>
+<p>所以很明显可以想到二分答案。</p>
+<p>其实二分答案的核心就是那个 $check()$ 。</p>
+<p>我们每一次二分<strong>答案</strong>的<strong>值</strong>是 $mid$ .</p>
+<p>那么对于 $check$ 函数所传的参数，我们只需要结合题目条件判断它是否可行就好（这里一般是 $\text{O}(n)$ 的。</p>
+<p>那么这一道题就有几种情况。</p>
+<ol>
+<li><p>当前枚举到的 $maxvalue-minvalue$ 大于 $mid$ 那么要重新分一次段。</p>
+</li>
+<li><p>当前所枚举出的总段数太大了。不可行。</p>
+</li>
+<li><p>枚举完之后 满足要求，当前解可行。</p>
+</li>
+</ol>
+<p>不过要稍微注意一下细节。</p>
+<p>这里给出check的实现： </p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">valid</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> tot<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//当前分了多少段 </span>
+	<span class="token keyword">int</span> maxv<span class="token operator">=</span><span class="token operator">-</span>inf<span class="token punctuation">,</span>minv<span class="token operator">=</span>inf<span class="token punctuation">;</span> 
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		maxv<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>maxv<span class="token punctuation">,</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>minv<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>minv<span class="token punctuation">,</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>maxv<span class="token operator">-</span>minv<span class="token operator">></span>value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token operator">++</span>tot<span class="token punctuation">,</span>maxv<span class="token operator">=</span>minv<span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span><span class="token comment">//update</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>tot<span class="token operator">></span>k<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token operator">++</span>tot<span class="token punctuation">;</span><span class="token comment">//这里一定要记得加上！</span>
+	<span class="token keyword">return</span> tot<span class="token operator">&lt;=</span>k<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h4 id="P2678-跳石头"><a href="#P2678-跳石头" class="headerlink" title="P2678 跳石头"></a>P2678 跳石头</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>一年一度的“跳键盘”比赛又要开始了!</p>
+</blockquote>
+<blockquote>
+<p>这项比赛将在一条笔直的大道中进行，大道中分布着一些巨大键盘。组委会已经选择好了两块键盘作为比赛起点和终点。在起点和终点之间，有N 块键盘（不含起点和终点的键盘）。在比赛过程中，选手们将从起点出发，每一步跳向相邻的键盘，直至到达终点。</p>
+</blockquote>
+<blockquote>
+<p>，组委会计划移走一些键盘，使得选手们在比赛过程中的最短跳跃距离尽可能长。由于预算限制，组委会至多从起点和终点之间移走M 块键盘（不能移走起点和终点的键盘）。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行包含三个整数L,N,M，分别表示起点到终点的距离，起点和终点之间的键盘数，以及组委会至多移走的键盘数。</p>
+</blockquote>
+<blockquote>
+<p>接下来N 行，每行一个整数，第 i 行的整数 Di( 0 &lt; Di &lt; L)， 表示第 i 块键盘与起点的距离。这些键盘按与起点距离从小到大的顺序给出，且不会有两个键盘出现在同一个位置。</p>
+</blockquote>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<blockquote>
+<p>一个整数，即最短跳跃距离的最大值。</p>
+</blockquote>
+<p><strong>sol</strong>: </p>
+<p>还是简单的二分答案。</p>
+<p>对于每一个mid我们枚举一下它可不可行就好了。</p>
+<hr>
+<h4 id="AUOJ-1368-save"><a href="#AUOJ-1368-save" class="headerlink" title="AUOJ 1368 save"></a>AUOJ 1368 save</h4><p><strong>des</strong> :</p>
+<blockquote>
+<p>这天摩天大楼起火了,n个人都被困在了顶层狭长的走廊上,大家排着长长的队伍等着逃离险境,但是火势很猛,消防员升起的救生舱只有m次运人下来的机会,并且每次运的人还不能太重.此时如何将这一排人分割成m个连续的小组,并且让这m个组中总重量最重的那个组的重量尽量小.这样大家才能快速逃脱.</p>
+</blockquote>
+<blockquote>
+<p>现在告诉你n个人的体重,请你找出一种分组方案,让这m个组中总重量最重的那个组的重量尽量小.并且输出这个组的总重量</p>
+</blockquote>
+<p><strong>sol</strong> :和1367比较像，只是我们现在是在枚举总和。不过记得在check里加上 : <code>if(a[i]&gt;value)&#123;return false;&#125;</code></p>
+<hr>
+<h4 id="P1542-Postman"><a href="#P1542-Postman" class="headerlink" title="P1542 Postman"></a>P1542 Postman</h4><p><strong>des</strong>:</p>
+<p><strong>sol</strong>:</p>
+<hr>
+<h4 id="AUOJ-1366-wings"><a href="#AUOJ-1366-wings" class="headerlink" title="AUOJ 1366 wings"></a>AUOJ 1366 wings</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>描述</p>
+</blockquote>
+<blockquote>
+<p>LTY在梦境里进入了天堂。他看到每个人都带着一双隐形翅膀，他也想要。</p>
+</blockquote>
+<blockquote>
+<p>C老师告诉LTY，每只翅膀都有长度，两只翅膀的长度之比越接近黄金分割比例，就越完美。</p>
+</blockquote>
+<blockquote>
+<p>现在C老师给了LTY N只翅膀，LTY想挑出一对最完美的。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行有一个数N(2&lt;=N&lt;=30000)</p>
+</blockquote>
+<blockquote>
+<p>第二行有N个不超过1e5的正整数，表示N只翅膀的长度。</p>
+</blockquote>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<blockquote>
+<p>对每组测试数据输出两个整数，表示LTY挑选出来的一对翅膀，一行一个整数</p>
+</blockquote>
+<p><strong>sol</strong>:无脑二分。每次算一下当前数和找到的数和0.681……的误差.</p>
+<p>找到最优的输出就行。</p>
+<hr>
+<h4 id="AUOJ-1375-Graph"><a href="#AUOJ-1375-Graph" class="headerlink" title="AUOJ 1375 Graph"></a>AUOJ 1375 Graph</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>在2117年c国为了缓减交通压力开发了空中汽车，为了保证夜间行驶的安全在各个路段安装了一系列路<br>灯进行照明。</p>
+</blockquote>
+<blockquote>
+<p>已知路灯的照明范围是一个以路灯所在的点为顶点的道路最低的直线为底边的等腰直角三<br>角形。</p>
+</blockquote>
+<blockquote>
+<p>汽车的行驶区域必须有路灯的照明。我们为了简化问题将道路简化为一条直线。建立平面直角坐<br>标系，并定义道路的最低点所在的直线为X轴。</p>
+</blockquote>
+<blockquote>
+<p>给定所有路灯在直角坐标系的位置以及一个车辆需要从点<br>a行驶到点b</p>
+</blockquote>
+<blockquote>
+<p>问这辆汽车所能行驶的最高高度。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行一个整数n表示路灯的数量</p>
+</blockquote>
+<blockquote>
+<p>接下来n行每行两个整数(x,y)表示第i个路灯所在的位置</p>
+</blockquote>
+<blockquote>
+<p>第n+2行每行两个整数x1,x2，表示a,b两点的x坐标位置</p>
+</blockquote>
+<blockquote>
+<p>输入数据保证n&lt;=1e5所有的坐标均为正整数且小于等于1e4<br>输出<br>一个数表示能够行驶的最高高度<br>精确到小数点后3位</p>
+</blockquote>
+<p><strong>sol</strong> ：</p>
+<p>题面有一点长，大意是给定一堆直角三角形的坐标。求一条函数<br> $y=mid$ 使得它在 $[a,b]$ 之间的每一个点都有三角形覆盖。</p>
+<p>求 $mid_{\text{max}}$ 。</p>
+<p>考虑二分答案。因为题目要求的是那一条常数函数的解析式，直接二分它的那个$y$ 值。</p>
+<p>为了避免实数二分。我们直接将<strong>所有读入</strong>的坐标倍增一下。</p>
+<p>一倍就够了。（等腰RT三角形）</p>
+<p>然后在check里面，我们维护一个差分数组。</p>
+<p>看图：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/dvha5myc.png"></p>
+<p>比如说我们要维护 $B$ ，那么很明显在我们二分的值为 <code>2</code> 的时候，我们要维护一下差分数组的 $[2,6]$ 。</p>
+<p>现在推广到一般情况。</p>
+<p>若 $B(x,y)$ ，当前二分的值为 $value$ 。</p>
+<p>那么我们做一条垂线 $BF$ （很明显$\tan \angle ABF =1$）</p>
+<p>因为 $BF=y_B-value$</p>
+<p>所以我们要维护的区间左端点 : $x-y+value$</p>
+<p>右端点 : $x+y-value$</p>
+<p>还有，因为二分答案的check总是有很多细节。所以每一次写的时候都要考虑全。</p>
+<p>这里我们维护一次差分数组的大前提一定是 $y_B &gt;= value$</p>
+<p>（要不然您怎么算）</p>
+<p>然后在看它的 $[a,b]$ （给出来的）的时候。我们还要看它和我们所有的 右端点 $x+y-value$ 的大小。如果不满足，那根本就没法覆盖。</p>
+<p>然后我们 $\text{O}(n)$ 还原一下数组。</p>
+<p>从 $[a,b]$ 扫一下看一下有没有 $0$ 即可（其实这个差分数组的本质就是 $i,value$ 这个点被几个三角形覆盖了，0就是没有）（另外这是要多次二分的，记得<code>memset 0</code>）。</p>
+<p>记得二分开始的时候 $r$ 是所有三角形顶点的最大值，这样二分次数会少一些。</p>
+<p>还有，输出的时候强制转类型，一定要先除2再变！！（gua了好几次）。</p>
+<hr>
+<h4 id="AUOJ1414-pots"><a href="#AUOJ1414-pots" class="headerlink" title="AUOJ1414 pots"></a>AUOJ1414 pots</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>C老师亲自上阵AK IOI后，为了开庆功宴派你负责采购自嗨锅;</p>
+</blockquote>
+<blockquote>
+<p>你一共有资金$n$元，而市场有$m$种自嗨锅，每种自嗨锅都是口装产品，其价格不等，并且只能整口购买。每种自嗨锅有$c_i$个。</p>
+</blockquote>
+<blockquote>
+<p>请问：你用有限的资金最多能采购多少自嗨锅呢？</p>
+</blockquote>
+<p><strong>sol</strong> : </p>
+<p>多重背包，其中 n 元代表背包容量，m 代表物品种类数，价格 p[i] 代表第 i 种物品重量，重量 h[i] 代表物品价值，袋数 c[i] 代表物品数量</p>
+<p>那么问题就转为：在背包容量为 n 的情况下，有 m 种物品，每种物品的重量是 p[i]，价值是 h[i]，个数是 c[i]，求最大价值。</p>
+<p>不过有一种奇怪的做法（二进制优化然后转成01背包）：</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/4rr2gi9v">https://www.luogu.com.cn/paste/4rr2gi9v</a></p>
+<hr>
+<h4 id="AUOJ1384-flowey"><a href="#AUOJ1384-flowey" class="headerlink" title="AUOJ1384 flowey"></a>AUOJ1384 flowey</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>在机房的生活是如此的寂寞，以至于以C老师为首的同志们只能够天天上农场种菜来打发时间。</p>
+</blockquote>
+<blockquote>
+<p>W老师日复一日地种着她的玫瑰，Z老师则毫不疲倦地偷着他的花……尽管天天花被偷掉一半，W老师始终没有动摇她种花的决心。原来，一个宏伟计划的蓝图早已埋藏在她的心中。</p>
+</blockquote>
+<blockquote>
+<p>众所周知，农场的花一共有4种颜色，W老师喜欢不喜欢老旧的东西，所以，她希望每天种花的方案都不一样。特别地，她也觉得两种一样颜色的花种在相邻的位置会很无聊。现在，她想知道，一共有多少种花的方案。</p>
+</blockquote>
+<blockquote>
+<p>这里要注意的是，农场的种花的位置是不规则的。因此我们给出一对一对的相邻的位置的关系。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行两个数N和M，表示种花的位置的个数和相邻的位置的对数</p>
+</blockquote>
+<blockquote>
+<p>接下来M行，每行一组数A，B表示A，B相邻</p>
+</blockquote>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<blockquote>
+<p>一个数表示染色方法数</p>
+</blockquote>
+<p><strong>sol</strong>:</p>
+<p>图上爆搜。</p>
+<p>对于每一个点 搞一个$color[]$表示他的颜色。</p>
+<p>然后check一下这个点。看他是不是可行的。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">valid</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>g<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">==</span>a<span class="token punctuation">[</span>g<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> step<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>step<span class="token operator">></span>n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token operator">++</span>tot<span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">4</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		a<span class="token punctuation">[</span>step<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">valid</span><span class="token punctuation">(</span>step<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token function">dfs</span><span class="token punctuation">(</span>step<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		a<span class="token punctuation">[</span>step<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<hr>
+<h4 id="P2563"><a href="#P2563" class="headerlink" title="P2563"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2563">P2563</a></h4><p><strong>des</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2563">https://www.luogu.com.cn/problem/P2563</a></p>
+<dl><dt><strong>sol</strong></dt><dd>背包计数。</dd></dl><p>懒得说了，直接看代码……</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">long</span> <span class="token keyword">long</span> pri<span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">36</span><span class="token punctuation">,</span><span class="token number">49</span><span class="token punctuation">,</span><span class="token number">64</span><span class="token punctuation">,</span><span class="token number">81</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">121</span><span class="token punctuation">,</span><span class="token number">144</span><span class="token punctuation">,</span><span class="token number">169</span><span class="token punctuation">,</span><span class="token number">196</span><span class="token punctuation">,</span><span class="token number">225</span><span class="token punctuation">,</span><span class="token number">256</span><span class="token punctuation">,</span><span class="token number">289</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+f<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">17</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> j<span class="token operator">=</span>pri<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span><span class="token number">300</span><span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token operator">-</span>pri<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+=</span>f<span class="token punctuation">[</span>j<span class="token operator">-</span>pri<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>表打完直接 $\text{O}(1)$ 查询一下……</p>
+<p>啊，对了，记得背包的时候 花费是 $v[]$ ，回报是 $c[]$</p>
+<p>（按照我现在的写法。）</p>
+<p>以后看到不是的记得改。</p>
+<hr>
+<h4 id="AUOJ-1423"><a href="#AUOJ-1423" class="headerlink" title="AUOJ 1423"></a>AUOJ 1423</h4><pre class="line-numbers language-none"><code class="language-none">C老师在玩植物大战僵尸时，可以控制僵尸进攻植物；
+
+僵尸有m种，每种僵尸无限多，c老师可任意选择，使用第i种僵尸需要花费wi的资源，可以得到pi的攻击效果，多个僵尸的总攻击效果为各攻击效果的代数和；地图有n行，第i行最左端有若干植物，这些植物至少受到qi的攻击才能被全部消灭，然后这一行被视为攻破；c老师希望你给出花费最小的方案
+
+输入
+
+第一行两个非负整数，m,n;
+
+第二行m个正整数，wi；
+
+第三行m个正整数，pi；
+
+第四行n个非负整数 qi；
+
+输出
+
+输出攻破所有行的最小值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>sol</strong> ：</p>
+<p>设 $f[i]$ 表示凑出 i 的效果的最小花费。</p>
+<p>那么对于n个询问，我们把 $\Sigma^{i=1}_{f[q[i]]}$ 加起来就好了。</p>
+<p>然后就是个普通背包了……</p>
+<hr>
+<h4 id="P2078-friends"><a href="#P2078-friends" class="headerlink" title="P2078 friends"></a>P2078 friends</h4><pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2078<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>sol</strong></p>
+<p>两个并查集维护。</p>
+<p>坑点：负数，一夫一妻制。</p>
+<hr>
+<h3 id="AUOJ-201："><a href="#AUOJ-201：" class="headerlink" title="AUOJ #201："></a>AUOJ #201：</h3><p>A: 欧拉路。</p>
+<p>B: 拓扑一下完事儿。（记得写一下长一点的）</p>
+<p>C: 拓扑模板</p>
+<p>D：tarjan求一下强连通分量即可。</p>
+<p>E：因为街道一定是一个能一笔画的图。所以统计每条边的长度除以速度即可。</p>
+<p>F：欧拉回路。</p>
+<p>G：考虑对于每个比较之后更小的点连一条从另外一个点和他连一条有向边。</p>
+<p>如果一个点，可以到达它的点不小于 （n+1）/2，cnt++；<br>cnt就是答案。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unknown/" rel="tag"># unknown</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/22/DZD%E5%85%88%E7%94%9F%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%AF%AD%E5%BD%95/" rel="prev" title="DZD先生的一部分语录">
+                  <i class="fa fa-chevron-left"></i> DZD先生的一部分语录
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

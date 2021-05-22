@@ -30,11 +30,20 @@
 <meta property="og:site_name" content="black_trees">
 <meta property="og:description" content="前言这个东西是老早就该补的坑了…… 所以现在有时间了。 回来写一写。  最小生成树定义：简单来说，最小生成树是一张带权无向图里面由全部 $n$ 个顶点，和边集中的 $n-1$ 条边构成的原图的一颗生成树，且所有边权之和是所有生成树中最小的（可能有多个情况）。 而且它一定包含原图中最小的边。 推论：设一张无向图 $G&#x3D;(V,E)$ ，从 $E$ 中选出 $k&lt;|V|-1$条边构成 $G$ 的一">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfqd4H.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfqaUe.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfqUED.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfLBoF.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfL0dU.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfOVTU.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfOEwT.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/gfOekF.png">
 <meta property="article:published_time" content="2021-03-20T12:25:45.000Z">
-<meta property="article:modified_time" content="2021-03-20T12:26:45.781Z">
+<meta property="article:modified_time" content="2021-05-22T14:59:21.824Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="algorithm note">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/05/18/gfqd4H.png">
 
 
 <link rel="canonical" href="http://hylwxqwq.github.io/2021/03/20/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-MST/">
@@ -163,7 +172,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">推论：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal"><span class="nav-number">2.3.</span> <span class="nav-text">Kruskal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim"><span class="nav-number">2.4.</span> <span class="nav-text">Prim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boruvka"><span class="nav-number">2.5.</span> <span class="nav-text">Boruvka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">习题：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">推论：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal"><span class="nav-number">2.3.</span> <span class="nav-text">Kruskal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim"><span class="nav-number">2.4.</span> <span class="nav-text">Prim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boruvka"><span class="nav-number">2.5.</span> <span class="nav-text">Boruvka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">习题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EKruskal-%E7%AE%97%E6%B3%95%E8%BF%87%E7%A8%8B%E7%9A%84%E4%B8%80%E4%B8%AAshabi%E7%90%86%E8%A7%A3"><span class="nav-number">2.7.</span> <span class="nav-text">关于Kruskal 算法过程的一个shabi理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E6%80%A7%E8%B4%A8%E7%9A%84%E8%AF%81%E6%98%8E%EF%BC%9A"><span class="nav-number">2.8.</span> <span class="nav-text">对于最小生成树性质的证明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">2.9.</span> <span class="nav-text">Prim 的证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kruskal-%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">2.10.</span> <span class="nav-text">kruskal 的证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%9C%E8%A5%BF%EF%BC%9A"><span class="nav-number">2.11.</span> <span class="nav-text">其他的一些东西：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,7 +188,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +204,12 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
       </span>
   </div>
 
@@ -256,10 +271,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-03-20 20:25:45 / 修改时间：20:26:45" itemprop="dateCreated datePublished" datetime="2021-03-20T20:25:45+08:00">2021-03-20</time>
+      <time title="创建时间：2021-03-20 20:25:45" itemprop="dateCreated datePublished" datetime="2021-03-20T20:25:45+08:00">2021-03-20</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-22 22:59:21" itemprop="dateModified" datetime="2021-05-22T22:59:21+08:00">2021-05-22</time>
+      </span>
 
   
 </div>
@@ -417,6 +438,32 @@
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2330">P2330 [SCOI2005]繁忙的都市</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3366">P3366 【模板】最小生成树</a></li>
 </ul>
+<hr>
+<h3 id="关于Kruskal-算法过程的一个shabi理解"><a href="#关于Kruskal-算法过程的一个shabi理解" class="headerlink" title="关于Kruskal 算法过程的一个shabi理解"></a>关于Kruskal 算法过程的一个shabi理解</h3><p>昨天（21/5/17） 晚上yl一直在纠结一道题（CF891C）。</p>
+<p>然后在一番讨论之后，我有了一个对于 $\text{Kruskal} $ 的新理解</p>
+<p>就是对于原图，我们将它划分为 $n$ 个相互连通的子集（有多种方式）。</p>
+<p>且每一个子集原图的一个生成森林。</p>
+<p>然后对于任意两个生成森林之间，我们找出所有连通他们的边。</p>
+<p>取出有最小权值的边。</p>
+<p>然后对于取出这 $C^n_2$ 条边，我们从小到大取就行（当然这里是动态过程所以不一定一直是原来最初的划分情况）（直到构成生成树也就是选完所有情况）（算法里的那个<code>for</code>）。</p>
+<p>（这里利用并查集判断这个边是不是可以选出来的边（也就是连通两个生成森林的边），从小到大的话就根据最开始的排序来就行）（算法里的<code>for</code>当中的<code>if</code>和最开始的<code>sort</code>）</p>
+<p>至于为什么用并查集判是否连通两个森林选出来的那个边一定是连接那两个生成森林的最小边呢？</p>
+<p>因为排了序啊，所以我们取到的第一个连通这两个森林的边一定是连通他们的边当中最小的。</p>
+<p>（有点混乱但是解释了一点神奇的东西）</p>
+<h3 id="对于最小生成树性质的证明："><a href="#对于最小生成树性质的证明：" class="headerlink" title="对于最小生成树性质的证明："></a>对于最小生成树性质的证明：</h3><p>By ： <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ciwei-78-83">ciwei</a></p>
+<p>（这位dalao的证明真的很有用！）</p>
+<p>原文：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340438116">https://zhuanlan.zhihu.com/p/340438116</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340411111">https://zhuanlan.zhihu.com/p/340411111</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfqd4H"><img src="https://z3.ax1x.com/2021/05/18/gfqd4H.png" alt="gfqd4H.png"></a></p>
+<p>引理部分：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfqaUe"><img src="https://z3.ax1x.com/2021/05/18/gfqaUe.png" alt="gfqaUe.png"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfqUED"><img src="https://z3.ax1x.com/2021/05/18/gfqUED.png" alt="gfqUED.png"></a></p>
+<h3 id="Prim-的证明"><a href="#Prim-的证明" class="headerlink" title="Prim 的证明"></a>Prim 的证明</h3><p>By ： <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ciwei-78-83">ciwei</a></p>
+<p>原文：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340464163">https://zhuanlan.zhihu.com/p/340464163</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfLBoF"><img src="https://z3.ax1x.com/2021/05/18/gfLBoF.png" alt="gfLBoF.png"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfL0dU"><img src="https://z3.ax1x.com/2021/05/18/gfL0dU.png" alt="gfL0dU.png"></a></p>
+<h3 id="kruskal-的证明"><a href="#kruskal-的证明" class="headerlink" title="kruskal 的证明"></a>kruskal 的证明</h3><p>By：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ciwei-78-83">ciwei</a></p>
+<p>原文：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340628568">https://zhuanlan.zhihu.com/p/340628568</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfOVTU"><img src="https://z3.ax1x.com/2021/05/18/gfOVTU.png" alt="gfOVTU.png"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfOEwT"><img src="https://z3.ax1x.com/2021/05/18/gfOEwT.png" alt="gfOEwT.png"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gfOekF"><img src="https://z3.ax1x.com/2021/05/18/gfOekF.png" alt="gfOekF.png"></a></p>
+<h3 id="其他的一些东西："><a href="#其他的一些东西：" class="headerlink" title="其他的一些东西："></a>其他的一些东西：</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340672684">ciwei:最小生成树相关定理和算法正确性证明</a></p>
 
     </div>
 
@@ -487,7 +534,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">black_trees</span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

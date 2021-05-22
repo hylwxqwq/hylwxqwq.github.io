@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ow5l5uov.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/04/10/cdCBR0.png">
 <meta property="article:published_time" content="2021-03-14T01:56:21.000Z">
-<meta property="article:modified_time" content="2021-04-11T00:46:28.353Z">
+<meta property="article:modified_time" content="2021-05-22T14:59:55.659Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -198,6 +198,12 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
       </span>
   </div>
 
@@ -267,7 +273,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-11 08:46:28" itemprop="dateModified" datetime="2021-04-11T08:46:28+08:00">2021-04-11</time>
+        <time title="修改时间：2021-05-22 22:59:55" itemprop="dateModified" datetime="2021-05-22T22:59:55+08:00">2021-05-22</time>
       </span>
 
   
@@ -289,6 +295,7 @@
 <p>借DC的讲义改了一些部分。</p>
 <hr>
 <h3 id="划分型："><a href="#划分型：" class="headerlink" title="划分型："></a>划分型：</h3><p>所谓区间分割问题，是指在长度为$n$的线性序列上，分割为$m$部分，每个部分对应的权值不同，问如何分割才能使总权值最大。</p>
+<p>（当然你遇见“分割，划分，分成”这些词的时候就可以想一想这个类型）</p>
 <p>我们定义 $f[i][j]$ 表示长度为$i$的序列，分割为$j$部分所能获得的最大权值，这是个前$i$前$j$问题，</p>
 <p>那么我们先考虑最后一个分割，即第j个分割，肯定存在一个分割点k，使得k+1到i构成前j部分，获得权值和为 $w[k+1][i]$，</p>
 <p>那么问题转化为前面长度为k的序列分割成j-1个部分获得的最大权值。</p>
@@ -326,7 +333,7 @@
 	<span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意这个$k$一定是小于$i$的，不然$k+1$会出事。</p>
-<p>然后你枚举$k$的时候要看情况，有的时候是这样的。有的时候是 $[0 , i)$ （邮局那题） 所以要视情况而定。（普通DP也一样）</p>
+<p>然后你枚举 $k$ 的时候要看情况，有的时候是这样的。有的时候是 $[0 , i)$ （邮局那题） 所以要视情况而定。（普通DP也一样）</p>
 <p>然后有一个点，你会发现，我们枚举的这个 $k$ 是一个 “不确定” 的元素。</p>
 <p>它的决策会影响我们的状态和转移。（比如下面两道题里的 邮局 和 花朵 ）。</p>
 <p>那么、我们就要去枚举这个东西的决策点。</p>
@@ -341,8 +348,9 @@
 <li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1854">[IOI1999]花店橱窗布置</a></p>
 </li>
 </ul>
+<p>（这里第二题是要输出方案的，我们一般的方式是拿一个和dp同步更新的数组，记录当前最优操作从哪一步推来，然后递归输出）</p>
 <hr>
-<h3 id="合并类型。"><a href="#合并类型。" class="headerlink" title="合并类型。"></a>合并类型。</h3><p>这种就比较简单了</p>
+<h3 id="合并类型。"><a href="#合并类型。" class="headerlink" title="合并类型。"></a>合并类型。</h3><p>这种就比较简单了（一般题目里会是“合并，删除”一类的词）</p>
 <p>你可以直接用分割点之前的状态加上之后的状态再加上转移代价。</p>
 <p>这种的注意点和上面的基本一样。</p>
 <p>然后有的时候合并或删除区间是要特判区间首尾或者条件的（甚至是<strong>分条件</strong>讨论合并）（下面的三道例题都是）</p>
@@ -379,6 +387,8 @@
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>tips：这种题一般那个if（限制）动手脚的地方都是考虑一整个区间的首尾。</p>
+<p>所以从首尾开始考虑转移就行。</p>
 <h4 id="Problems-1"><a href="#Problems-1" class="headerlink" title="Problems:"></a>Problems:</h4><ul>
 <li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1132F">CF1132F</a></p>
 </li>
@@ -387,6 +397,9 @@
 <li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4170"> [CQOI2007]涂色</a></p>
 </li>
 </ul>
+<hr>
+<p>其他的新东西请见例题选讲。</p>
+<p>因为所有区间DP都实际上是这两个的变式。</p>
 
     </div>
 
@@ -457,7 +470,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">black_trees</span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

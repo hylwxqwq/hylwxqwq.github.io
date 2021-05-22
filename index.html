@@ -175,7 +175,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -191,6 +191,12 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
       </span>
   </div>
 
@@ -228,6 +234,650 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/05/22/%E6%9D%82-%E9%A2%98%E8%A7%A3%E5%9E%83%E5%9C%BE%E7%AE%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Hina Miller Han">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/22/%E6%9D%82-%E9%A2%98%E8%A7%A3%E5%9E%83%E5%9C%BE%E7%AE%B1/" class="post-title-link" itemprop="url">杂-题解垃圾箱</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-22 23:02:33 / 修改时间：23:03:20" itemprop="dateCreated datePublished" datetime="2021-05-22T23:02:33+08:00">2021-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="这里是用来放一些懒得写长篇题解的题的。"><a href="#这里是用来放一些懒得写长篇题解的题的。" class="headerlink" title="这里是用来放一些懒得写长篇题解的题的。"></a>这里是用来放一些懒得写长篇题解的题的。</h3><hr>
+<h4 id="P1734"><a href="#P1734" class="headerlink" title="P1734:"></a>P1734:</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>选取和不超过S的若干个不同的正整数，使得所有数的约数（不含它本身）之和最大。</p>
+</blockquote>
+<p> <strong>sol</strong>：01背包裸题。</p>
+<p> 因为每个数是有cost的。那么把数的值看做c，约数和看做 v 求解就行了。</p>
+<hr>
+<h4 id="auoj-158-（rmj随堂1）"><a href="#auoj-158-（rmj随堂1）" class="headerlink" title="auoj#158 （rmj随堂1）"></a>auoj#158 （rmj随堂1）</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/ingmiller/solution-for-auoj158-post">https://www.luogu.com.cn/blog/ingmiller/solution-for-auoj158-post</a></li>
+</ul>
+<hr>
+<h4 id="P6018-Ynoi2010-Fusion-tree"><a href="#P6018-Ynoi2010-Fusion-tree" class="headerlink" title="P6018 [Ynoi2010]Fusion tree"></a>P6018 [Ynoi2010]Fusion tree</h4><p><strong>sol</strong>： <strong>BY：FZzzz</strong></p>
+<p>首先这种题其实是个很经典的 trick 就是对于每个点只维护它的所有儿子。然后对于父亲单独处理。对于父亲的处理是平凡的，不再赘述。</p>
+<p>然后考虑一个节点，我们要处理的就是单点修改和全局加，然后要查询全局异或和。</p>
+<p>不对啊你发现每次全局加的都是一啊，这个肯定得有用啊。</p>
+<p>考虑加上一到底会对一个数造成什么样的影响。</p>
+<p>不就是把最低位的零变成一然后把它下面的所有一都变成零吗，这个怎么处理啊。</p>
+<p>我们从低位到高位建一个 trie，然后按位考虑每一位，对于零就直接把它变成一，然后对于一就变成零，但是还要递归下去。</p>
+<p>所以直接就交换一下儿子然后递归下去修改，维护一下子树异或和就行了。</p>
+<hr>
+<h4 id="P2580-于是他错误的点名开始了"><a href="#P2580-于是他错误的点名开始了" class="headerlink" title="P2580 于是他错误的点名开始了"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">P2580 于是他错误的点名开始了</a></h4><p><strong>sol</strong>：Trie树水题。</p>
+<p>直接套板子就可以了。</p>
+<p><code>RE</code> 的重复情况直接建一个map判断就可以了。</p>
+<hr>
+<h4 id="CF414B"><a href="#CF414B" class="headerlink" title="CF414B"></a>CF414B</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>如果一个数列中，后一个数都能被前面一个数整除，那么就叫这个数列为好数列。输入n，k，求数列中最大元素为n，数列长度为k的好数列的种数。</p>
+</blockquote>
+<p><strong>sol</strong>：比较简单。我们根据题目的要求搞就可以了。</p>
+<p>不过在设计状态的时候就要把枚举长度的放在外面了。</p>
+<p>然后再开一维枚举k，就是乘上去的那个数。</p>
+<p>然后根据状态定义有这么一个方程：$f[i][j]=(f[i][j]+f[i-1][k*j])$;</p>
+<p>记得取模。</p>
+<hr>
+<h4 id="P4551"><a href="#P4551" class="headerlink" title="P4551"></a>P4551</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>给定一棵n个点的带权树，结点下标从1开始到N。寻找树中找两个结点，求最长的异或路径。</p>
+</blockquote>
+<blockquote>
+<p>异或路径指的是指两个结点之间唯一路径上的所有边权的异或。</p>
+</blockquote>
+<p><strong>sol</strong>：根据我们异或的性质（异或两次就是它本身），有一个想法:</p>
+<p>先DFS求出root到每一个点的dist。</p>
+<p>然后$dist[x]\ xor\ dist[y]$ 就是 $x -&gt; y$ 的异或路径长。</p>
+<p>用一颗01Trie来维护就行了。</p>
+<hr>
+<h4 id="P1060"><a href="#P1060" class="headerlink" title="P1060"></a>P1060</h4><p><strong>sol</strong> ：01背包稍微变化了一下。</p>
+<p>只是我们的 $c[i]$ 现在在转移的时候变成了 $v[i]*c[i]$ 。</p>
+<hr>
+<h4 id="AUOJ-1345"><a href="#AUOJ-1345" class="headerlink" title="AUOJ 1345"></a>AUOJ 1345</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>已知神犇ZJK有p元钱，商店里有q个本子，第i个本子可以记录ci个知识点，需要花费ci元购买。</p>
+</blockquote>
+<blockquote>
+<p>现在，神犇ZJK想知道，他用手里的钱，最多能记多少知识点。</p>
+</blockquote>
+<p><strong>sol</strong>：还是比较简单的01背包。只是$c[i]$ 和 $v[i]$变成了一个数组。</p>
+<hr>
+<h4 id="P3879-TJOI2010-阅读理解"><a href="#P3879-TJOI2010-阅读理解" class="headerlink" title="P3879 [TJOI2010]阅读理解"></a>P3879 [TJOI2010]阅读理解</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>有 $n$ 篇文章，每个文章有一个 $L_i$ ，表示单词数，给定 $m$ 次询问。</p>
+</blockquote>
+<blockquote>
+<p>对于每个生词输出一行，统计其在哪几篇短文中出现过，并按从小到大输出短文的序号，序号不应有重复，序号之间用一个空格隔开（注意第一个序号的前面和最后一个序号的后面不应有空格）。如果该单词一直没出现过，则输出一个空行。</p>
+</blockquote>
+<p><strong>乱搞</strong> ：</p>
+<p>目前自己觉得这是一道 $Trie$ 。</p>
+<p>对于全部短文，我们建一颗 Trie。</p>
+<p>不过为了区分每一篇文章，$end$ 要改成 二维的。</p>
+<p>而且和 Phonelist 那一题差不多，我们把$end$ 改成 <code>int </code>，表示一共出现了多少次。</p>
+<p>然后在查询的时候改一点点操作就可以了。</p>
+<hr>
+<h4 id="ZJK-AK-AUOJ1346"><a href="#ZJK-AK-AUOJ1346" class="headerlink" title="ZJK-AK AUOJ1346"></a>ZJK-AK AUOJ1346</h4><p><strong>des</strong>：</p>
+<blockquote>
+<p>现在神犇ZJK==有n场比赛可以AK，对于第i场比赛，神犇ZJK需要花费ti的时间和ei的精力去AK，同时AK了该场比赛就会为他增加vi的影响力。</p>
+</blockquote>
+<blockquote>
+<p>他最多只能用p的时间和q的精力去AK比赛。</p>
+</blockquote>
+<blockquote>
+<p>求神犇ZJK最多能获得的影响力。</p>
+</blockquote>
+<p><strong>sol</strong>:一道比较简单的背包。只是我们的$c[]$ 变成了两维，开两层循环就可以了。不过记得滚动数组优化一下。</p>
+<hr>
+<h4 id="ticket-AUOJ1361"><a href="#ticket-AUOJ1361" class="headerlink" title="ticket AUOJ1361"></a>ticket AUOJ1361</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>一条高铁线路G39依次经过n个火车站，编号1~n,现在有未来K天的m条的订票信息，请问每次安排至少多少座位可满足订票信息。</p>
+</blockquote>
+<blockquote>
+<p>信息形式为“i j k”,表示第i天出行，从j上车，从k下车。座位可同时使用，但两人不可同时占用同一座位。（比如第一位乘客在3号站下车，同时第二位乘客在3号火车站上车，这样只需要一个座位即可） 。</p>
+</blockquote>
+<blockquote>
+<p>求最少的座位量，对于每一天有一个输出。</p>
+</blockquote>
+<p><strong>sol</strong>:二维差分，根据差分的性质，和这个题的特殊性，我们只需要维护 $[l,r]$区间，不用维护 $r+1$ 了。</p>
+<p>然后对于每一天，我们找出一个max值就是答案。（根据最坏原则可以知道）。</p>
+<hr>
+<h4 id="P5149"><a href="#P5149" class="headerlink" title="P5149"></a>P5149</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>现在校长在校园网上公布了一份座位表，n 位老师从左到右依次排成一行。老师们都对这个座位很满意。</p>
+</blockquote>
+<blockquote>
+<p>然而到了开会时，校长不小心把座位表打乱了，老师们很不满。老师们并不在意自己的位置变了多少，但如果有一对老师 a 和 b，他们原来的座位是 a 在 b 左边，现在变成了 a在 b 右边，那么这一对老师便会贡献一单位不满值。</p>
+</blockquote>
+<blockquote>
+<p>校长想知道这些老师的总不满值是多少。</p>
+</blockquote>
+<p><strong>sol</strong> :对于每一个字符串，第一遍用map编一个号。第二遍直接用树状数组求一次逆序对个数就好了,复杂度 $ \text{O} (n \log n)$。</p>
+<hr>
+<h4 id="P1102"><a href="#P1102" class="headerlink" title="P1102"></a>P1102</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>好吧，题目是这样的：给出一串数以及一个数字 C，要求计算出所有 A−B=C 的数对的个数（不同位置的数字一样的数对算不同的数对）。</p>
+</blockquote>
+<p><strong>sol</strong>:</p>
+<p>如果这个数组是有序的，那么对于每一个A的值，在它的后方就只有一个数值B满足A,B的差值为C。</p>
+<p>这时我们只需要二分求出数组中对于每个A,A+C的这两个位置，它们的差即为数组中数值为A+C的元素个数。将这个数加到ans中。</p>
+<p>（lowerbound和upperbound）。：</p>
+<p><code>((upper_bound(a+1,a+n+1,a[i]+c)-a)-(lower_bound(a+1,a+n+1,a[i]+c)-a))</code></p>
+<hr>
+<h4 id="AUOJ1365-C老师的母鸡"><a href="#AUOJ1365-C老师的母鸡" class="headerlink" title="AUOJ1365 C老师的母鸡"></a>AUOJ1365 C老师的母鸡</h4><p><strong>des</strong>: </p>
+<blockquote>
+<p>给定 $n,t$ ，在长度为 $n$ 的序列中找到长度最小的一个子段，使得字段和大于等于 $t$。 （均为正整数）。</p>
+</blockquote>
+<p><strong>sol</strong>:: 尺取法模板。我们让 $l$ 从 $[1,n]$ 之间循环。从 $l$ 开始往后枚举 $r$ （每次往后加一） 如果当前长度的满足要求（往后就不会更优了），记录当前的长度，和原来的最优解比较。最后输出最优解就可以了。</p>
+<hr>
+<h4 id="P1824-cow’s-new-house"><a href="#P1824-cow’s-new-house" class="headerlink" title="P1824 cow’s new house"></a>P1824 cow’s new house</h4><p><strong>des:</strong>:</p>
+<blockquote>
+<p>Farmer John建造了一个有N(2&lt;=N&lt;=100,000)个隔间的牛棚，这些隔间分布在一条直线上，坐标是x1,…,xN (0&lt;=xi&lt;=1,000,000,000)。</p>
+</blockquote>
+<blockquote>
+<p>他的C(2&lt;=C&lt;=N)头牛不满于隔间的位置分布，它们为牛棚里其他的牛的存在而愤怒。为了防止牛之间的互相打斗，Farmer John想把这些牛安置在指定的隔间，所有牛中相邻两头的最近距离越大越好。那么，这个最大的最近距离是多少呢？</p>
+</blockquote>
+<p><strong>sol</strong>:看到 <code>这个最大的最近距离</code> 这种东西，应该能直接先想到二分答案。</p>
+<p>定义变量ans，储存当前优解。定义闭区间[left, right]，代表程序当前正在此闭区间内寻找答案（寻找潜在的比ans更优的解）（与前两种方法不同的是，最优解不一定要属于该闭区间）。</p>
+<p>令 $mid = (left + right)/2$</p>
+<p>若$mid$为解，则$ans = max(ans, mid), left = mid + 1.$此时我们更新了最优解，同时在最优解的右侧寻找潜在的更有解。</p>
+<p>若$mid$不为解，则$right = mid - 1$.$mid$不是解，因此我们在$mid$左边寻找更优解。</p>
+<p>重复上述过程，直到$left &gt; right$时跳出循环，$ans$即为最优解.</p>
+<p>注意，当$left == right$时，也必须要在此区间内进行判断，因为当前还不能确定该区间内是否存在更优解。</p>
+<hr>
+<h4 id="AUOJ1367"><a href="#AUOJ1367" class="headerlink" title="AUOJ1367"></a>AUOJ1367</h4><p><strong>des</strong> ：</p>
+<blockquote>
+<p>给定长度为 $n$ 的序列。将其分为 $k$ 段，使得每一段的最大值-最小值 最小。</p>
+</blockquote>
+<p><strong>sol</strong> ：二分答案，主要是这个题面是我简化了的。</p>
+<p>所以很明显可以想到二分答案。</p>
+<p>其实二分答案的核心就是那个 $check()$ 。</p>
+<p>我们每一次二分<strong>答案</strong>的<strong>值</strong>是 $mid$ .</p>
+<p>那么对于 $check$ 函数所传的参数，我们只需要结合题目条件判断它是否可行就好（这里一般是 $\text{O}(n)$ 的。</p>
+<p>那么这一道题就有几种情况。</p>
+<ol>
+<li><p>当前枚举到的 $maxvalue-minvalue$ 大于 $mid$ 那么要重新分一次段。</p>
+</li>
+<li><p>当前所枚举出的总段数太大了。不可行。</p>
+</li>
+<li><p>枚举完之后 满足要求，当前解可行。</p>
+</li>
+</ol>
+<p>不过要稍微注意一下细节。</p>
+<p>这里给出check的实现： </p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">valid</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> tot<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//当前分了多少段 </span>
+	<span class="token keyword">int</span> maxv<span class="token operator">=</span><span class="token operator">-</span>inf<span class="token punctuation">,</span>minv<span class="token operator">=</span>inf<span class="token punctuation">;</span> 
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		maxv<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>maxv<span class="token punctuation">,</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>minv<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>minv<span class="token punctuation">,</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>maxv<span class="token operator">-</span>minv<span class="token operator">></span>value<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token operator">++</span>tot<span class="token punctuation">,</span>maxv<span class="token operator">=</span>minv<span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span><span class="token comment">//update</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>tot<span class="token operator">></span>k<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token operator">++</span>tot<span class="token punctuation">;</span><span class="token comment">//这里一定要记得加上！</span>
+	<span class="token keyword">return</span> tot<span class="token operator">&lt;=</span>k<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h4 id="P2678-跳石头"><a href="#P2678-跳石头" class="headerlink" title="P2678 跳石头"></a>P2678 跳石头</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>一年一度的“跳键盘”比赛又要开始了!</p>
+</blockquote>
+<blockquote>
+<p>这项比赛将在一条笔直的大道中进行，大道中分布着一些巨大键盘。组委会已经选择好了两块键盘作为比赛起点和终点。在起点和终点之间，有N 块键盘（不含起点和终点的键盘）。在比赛过程中，选手们将从起点出发，每一步跳向相邻的键盘，直至到达终点。</p>
+</blockquote>
+<blockquote>
+<p>，组委会计划移走一些键盘，使得选手们在比赛过程中的最短跳跃距离尽可能长。由于预算限制，组委会至多从起点和终点之间移走M 块键盘（不能移走起点和终点的键盘）。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行包含三个整数L,N,M，分别表示起点到终点的距离，起点和终点之间的键盘数，以及组委会至多移走的键盘数。</p>
+</blockquote>
+<blockquote>
+<p>接下来N 行，每行一个整数，第 i 行的整数 Di( 0 &lt; Di &lt; L)， 表示第 i 块键盘与起点的距离。这些键盘按与起点距离从小到大的顺序给出，且不会有两个键盘出现在同一个位置。</p>
+</blockquote>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<blockquote>
+<p>一个整数，即最短跳跃距离的最大值。</p>
+</blockquote>
+<p><strong>sol</strong>: </p>
+<p>还是简单的二分答案。</p>
+<p>对于每一个mid我们枚举一下它可不可行就好了。</p>
+<hr>
+<h4 id="AUOJ-1368-save"><a href="#AUOJ-1368-save" class="headerlink" title="AUOJ 1368 save"></a>AUOJ 1368 save</h4><p><strong>des</strong> :</p>
+<blockquote>
+<p>这天摩天大楼起火了,n个人都被困在了顶层狭长的走廊上,大家排着长长的队伍等着逃离险境,但是火势很猛,消防员升起的救生舱只有m次运人下来的机会,并且每次运的人还不能太重.此时如何将这一排人分割成m个连续的小组,并且让这m个组中总重量最重的那个组的重量尽量小.这样大家才能快速逃脱.</p>
+</blockquote>
+<blockquote>
+<p>现在告诉你n个人的体重,请你找出一种分组方案,让这m个组中总重量最重的那个组的重量尽量小.并且输出这个组的总重量</p>
+</blockquote>
+<p><strong>sol</strong> :和1367比较像，只是我们现在是在枚举总和。不过记得在check里加上 : <code>if(a[i]&gt;value)&#123;return false;&#125;</code></p>
+<hr>
+<h4 id="P1542-Postman"><a href="#P1542-Postman" class="headerlink" title="P1542 Postman"></a>P1542 Postman</h4><p><strong>des</strong>:</p>
+<p><strong>sol</strong>:</p>
+<hr>
+<h4 id="AUOJ-1366-wings"><a href="#AUOJ-1366-wings" class="headerlink" title="AUOJ 1366 wings"></a>AUOJ 1366 wings</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>描述</p>
+</blockquote>
+<blockquote>
+<p>LTY在梦境里进入了天堂。他看到每个人都带着一双隐形翅膀，他也想要。</p>
+</blockquote>
+<blockquote>
+<p>C老师告诉LTY，每只翅膀都有长度，两只翅膀的长度之比越接近黄金分割比例，就越完美。</p>
+</blockquote>
+<blockquote>
+<p>现在C老师给了LTY N只翅膀，LTY想挑出一对最完美的。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行有一个数N(2&lt;=N&lt;=30000)</p>
+</blockquote>
+<blockquote>
+<p>第二行有N个不超过1e5的正整数，表示N只翅膀的长度。</p>
+</blockquote>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<blockquote>
+<p>对每组测试数据输出两个整数，表示LTY挑选出来的一对翅膀，一行一个整数</p>
+</blockquote>
+<p><strong>sol</strong>:无脑二分。每次算一下当前数和找到的数和0.681……的误差.</p>
+<p>找到最优的输出就行。</p>
+<hr>
+<h4 id="AUOJ-1375-Graph"><a href="#AUOJ-1375-Graph" class="headerlink" title="AUOJ 1375 Graph"></a>AUOJ 1375 Graph</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>在2117年c国为了缓减交通压力开发了空中汽车，为了保证夜间行驶的安全在各个路段安装了一系列路<br>灯进行照明。</p>
+</blockquote>
+<blockquote>
+<p>已知路灯的照明范围是一个以路灯所在的点为顶点的道路最低的直线为底边的等腰直角三<br>角形。</p>
+</blockquote>
+<blockquote>
+<p>汽车的行驶区域必须有路灯的照明。我们为了简化问题将道路简化为一条直线。建立平面直角坐<br>标系，并定义道路的最低点所在的直线为X轴。</p>
+</blockquote>
+<blockquote>
+<p>给定所有路灯在直角坐标系的位置以及一个车辆需要从点<br>a行驶到点b</p>
+</blockquote>
+<blockquote>
+<p>问这辆汽车所能行驶的最高高度。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行一个整数n表示路灯的数量</p>
+</blockquote>
+<blockquote>
+<p>接下来n行每行两个整数(x,y)表示第i个路灯所在的位置</p>
+</blockquote>
+<blockquote>
+<p>第n+2行每行两个整数x1,x2，表示a,b两点的x坐标位置</p>
+</blockquote>
+<blockquote>
+<p>输入数据保证n&lt;=1e5所有的坐标均为正整数且小于等于1e4<br>输出<br>一个数表示能够行驶的最高高度<br>精确到小数点后3位</p>
+</blockquote>
+<p><strong>sol</strong> ：</p>
+<p>题面有一点长，大意是给定一堆直角三角形的坐标。求一条函数<br> $y=mid$ 使得它在 $[a,b]$ 之间的每一个点都有三角形覆盖。</p>
+<p>求 $mid_{\text{max}}$ 。</p>
+<p>考虑二分答案。因为题目要求的是那一条常数函数的解析式，直接二分它的那个$y$ 值。</p>
+<p>为了避免实数二分。我们直接将<strong>所有读入</strong>的坐标倍增一下。</p>
+<p>一倍就够了。（等腰RT三角形）</p>
+<p>然后在check里面，我们维护一个差分数组。</p>
+<p>看图：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/dvha5myc.png"></p>
+<p>比如说我们要维护 $B$ ，那么很明显在我们二分的值为 <code>2</code> 的时候，我们要维护一下差分数组的 $[2,6]$ 。</p>
+<p>现在推广到一般情况。</p>
+<p>若 $B(x,y)$ ，当前二分的值为 $value$ 。</p>
+<p>那么我们做一条垂线 $BF$ （很明显$\tan \angle ABF =1$）</p>
+<p>因为 $BF=y_B-value$</p>
+<p>所以我们要维护的区间左端点 : $x-y+value$</p>
+<p>右端点 : $x+y-value$</p>
+<p>还有，因为二分答案的check总是有很多细节。所以每一次写的时候都要考虑全。</p>
+<p>这里我们维护一次差分数组的大前提一定是 $y_B &gt;= value$</p>
+<p>（要不然您怎么算）</p>
+<p>然后在看它的 $[a,b]$ （给出来的）的时候。我们还要看它和我们所有的 右端点 $x+y-value$ 的大小。如果不满足，那根本就没法覆盖。</p>
+<p>然后我们 $\text{O}(n)$ 还原一下数组。</p>
+<p>从 $[a,b]$ 扫一下看一下有没有 $0$ 即可（其实这个差分数组的本质就是 $i,value$ 这个点被几个三角形覆盖了，0就是没有）（另外这是要多次二分的，记得<code>memset 0</code>）。</p>
+<p>记得二分开始的时候 $r$ 是所有三角形顶点的最大值，这样二分次数会少一些。</p>
+<p>还有，输出的时候强制转类型，一定要先除2再变！！（gua了好几次）。</p>
+<hr>
+<h4 id="AUOJ1414-pots"><a href="#AUOJ1414-pots" class="headerlink" title="AUOJ1414 pots"></a>AUOJ1414 pots</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>C老师亲自上阵AK IOI后，为了开庆功宴派你负责采购自嗨锅;</p>
+</blockquote>
+<blockquote>
+<p>你一共有资金$n$元，而市场有$m$种自嗨锅，每种自嗨锅都是口装产品，其价格不等，并且只能整口购买。每种自嗨锅有$c_i$个。</p>
+</blockquote>
+<blockquote>
+<p>请问：你用有限的资金最多能采购多少自嗨锅呢？</p>
+</blockquote>
+<p><strong>sol</strong> : </p>
+<p>多重背包，其中 n 元代表背包容量，m 代表物品种类数，价格 p[i] 代表第 i 种物品重量，重量 h[i] 代表物品价值，袋数 c[i] 代表物品数量</p>
+<p>那么问题就转为：在背包容量为 n 的情况下，有 m 种物品，每种物品的重量是 p[i]，价值是 h[i]，个数是 c[i]，求最大价值。</p>
+<p>不过有一种奇怪的做法（二进制优化然后转成01背包）：</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/4rr2gi9v">https://www.luogu.com.cn/paste/4rr2gi9v</a></p>
+<hr>
+<h4 id="AUOJ1384-flowey"><a href="#AUOJ1384-flowey" class="headerlink" title="AUOJ1384 flowey"></a>AUOJ1384 flowey</h4><p><strong>des</strong>:</p>
+<blockquote>
+<p>在机房的生活是如此的寂寞，以至于以C老师为首的同志们只能够天天上农场种菜来打发时间。</p>
+</blockquote>
+<blockquote>
+<p>W老师日复一日地种着她的玫瑰，Z老师则毫不疲倦地偷着他的花……尽管天天花被偷掉一半，W老师始终没有动摇她种花的决心。原来，一个宏伟计划的蓝图早已埋藏在她的心中。</p>
+</blockquote>
+<blockquote>
+<p>众所周知，农场的花一共有4种颜色，W老师喜欢不喜欢老旧的东西，所以，她希望每天种花的方案都不一样。特别地，她也觉得两种一样颜色的花种在相邻的位置会很无聊。现在，她想知道，一共有多少种花的方案。</p>
+</blockquote>
+<blockquote>
+<p>这里要注意的是，农场的种花的位置是不规则的。因此我们给出一对一对的相邻的位置的关系。</p>
+</blockquote>
+<blockquote>
+<p>输入</p>
+</blockquote>
+<blockquote>
+<p>第一行两个数N和M，表示种花的位置的个数和相邻的位置的对数</p>
+</blockquote>
+<blockquote>
+<p>接下来M行，每行一组数A，B表示A，B相邻</p>
+</blockquote>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<blockquote>
+<p>一个数表示染色方法数</p>
+</blockquote>
+<p><strong>sol</strong>:</p>
+<p>图上爆搜。</p>
+<p>对于每一个点 搞一个$color[]$表示他的颜色。</p>
+<p>然后check一下这个点。看他是不是可行的。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">valid</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>g<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">==</span>a<span class="token punctuation">[</span>g<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> step<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>step<span class="token operator">></span>n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token operator">++</span>tot<span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">4</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		a<span class="token punctuation">[</span>step<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">valid</span><span class="token punctuation">(</span>step<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token function">dfs</span><span class="token punctuation">(</span>step<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		a<span class="token punctuation">[</span>step<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<hr>
+<h4 id="P2563"><a href="#P2563" class="headerlink" title="P2563"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2563">P2563</a></h4><p><strong>des</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2563">https://www.luogu.com.cn/problem/P2563</a></p>
+<dl><dt><strong>sol</strong></dt><dd>背包计数。</dd></dl><p>懒得说了，直接看代码……</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">long</span> <span class="token keyword">long</span> pri<span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">36</span><span class="token punctuation">,</span><span class="token number">49</span><span class="token punctuation">,</span><span class="token number">64</span><span class="token punctuation">,</span><span class="token number">81</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">121</span><span class="token punctuation">,</span><span class="token number">144</span><span class="token punctuation">,</span><span class="token number">169</span><span class="token punctuation">,</span><span class="token number">196</span><span class="token punctuation">,</span><span class="token number">225</span><span class="token punctuation">,</span><span class="token number">256</span><span class="token punctuation">,</span><span class="token number">289</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+f<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">17</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> j<span class="token operator">=</span>pri<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span><span class="token number">300</span><span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token operator">-</span>pri<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+=</span>f<span class="token punctuation">[</span>j<span class="token operator">-</span>pri<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>表打完直接 $\text{O}(1)$ 查询一下……</p>
+<p>啊，对了，记得背包的时候 花费是 $v[]$ ，回报是 $c[]$</p>
+<p>（按照我现在的写法。）</p>
+<p>以后看到不是的记得改。</p>
+<hr>
+<h4 id="AUOJ-1423"><a href="#AUOJ-1423" class="headerlink" title="AUOJ 1423"></a>AUOJ 1423</h4><pre class="line-numbers language-none"><code class="language-none">C老师在玩植物大战僵尸时，可以控制僵尸进攻植物；
+
+僵尸有m种，每种僵尸无限多，c老师可任意选择，使用第i种僵尸需要花费wi的资源，可以得到pi的攻击效果，多个僵尸的总攻击效果为各攻击效果的代数和；地图有n行，第i行最左端有若干植物，这些植物至少受到qi的攻击才能被全部消灭，然后这一行被视为攻破；c老师希望你给出花费最小的方案
+
+输入
+
+第一行两个非负整数，m,n;
+
+第二行m个正整数，wi；
+
+第三行m个正整数，pi；
+
+第四行n个非负整数 qi；
+
+输出
+
+输出攻破所有行的最小值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>sol</strong> ：</p>
+<p>设 $f[i]$ 表示凑出 i 的效果的最小花费。</p>
+<p>那么对于n个询问，我们把 $\Sigma^{i=1}_{f[q[i]]}$ 加起来就好了。</p>
+<p>然后就是个普通背包了……</p>
+<hr>
+<h4 id="P2078-friends"><a href="#P2078-friends" class="headerlink" title="P2078 friends"></a>P2078 friends</h4><pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P2078<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>sol</strong></p>
+<p>两个并查集维护。</p>
+<p>坑点：负数，一夫一妻制。</p>
+<hr>
+<h3 id="AUOJ-201："><a href="#AUOJ-201：" class="headerlink" title="AUOJ #201："></a>AUOJ #201：</h3><p>A: 欧拉路。</p>
+<p>B: 拓扑一下完事儿。（记得写一下长一点的）</p>
+<p>C: 拓扑模板</p>
+<p>D：tarjan求一下强连通分量即可。</p>
+<p>E：因为街道一定是一个能一笔画的图。所以统计每条边的长度除以速度即可。</p>
+<p>F：欧拉回路。</p>
+<p>G：考虑对于每个比较之后更小的点连一条从另外一个点和他连一条有向边。</p>
+<p>如果一个点，可以到达它的点不小于 （n+1）/2，cnt++；<br>cnt就是答案。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/05/22/DZD%E5%85%88%E7%94%9F%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%AF%AD%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Hina Miller Han">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="black_trees">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/22/DZD%E5%85%88%E7%94%9F%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%AF%AD%E5%BD%95/" class="post-title-link" itemprop="url">DZD先生的一部分语录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-22 22:56:44 / 修改时间：22:57:40" itemprop="dateCreated datePublished" datetime="2021-05-22T22:56:44+08:00">2021-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="瞎扯部分"><a href="#瞎扯部分" class="headerlink" title="瞎扯部分"></a>瞎扯部分</h2><p>上课到一半就被华子哥叫出去……</p>
+<p>然后发现是去高中部听讲座。</p>
+<p>（开始以为是从后门出去所以白跑了一趟）</p>
+<p>进去之后发现没有座位，于是他们叫我们做到后面空的地方。</p>
+<p>（看见了lyx和ybc等一众巨佬）</p>
+<p>之后被$\text{C}$老师叫到前排去坐（lyx旁边）</p>
+<p>然后聊了大概10多分钟。</p>
+<p>$\text{Professor.Dzd}$ 就出现了。说实话，他给我的第一印象就是那种“领导式”的人物。</p>
+<p>不过为什么教授已经是白头发了啊？</p>
+<p>然后$\text{ZK}$ 简单介绍了一下 $\text{Professor.Dzd}$ 。</p>
+<p>然后就开始了。</p>
+<p>他说了挺多。而且对于我也真的有帮助。</p>
+<p>比如他讲“内卷”和“两商” 还有“大学” 这三部分的时候。</p>
+<p>我觉得他改变了我原来的一些 naive 到爆的想法……</p>
+<p>他演讲的时候有提到过他的女儿——以为南京大学天文学毕业但是NB到爆的人物。</p>
+<p>他说“夸人”很重要，确实，不过我不太认同他的“夸孩子”的想法。</p>
+<p>人在小的时候被夸奖可以，但是到长大了他迟早要面对挫折，如果一直是在积极的心态下生活，也不是好事。</p>
+<p>我小学就是一直“被夸”，但是到初中就不太一样了，熬了一年多终于成长了许多（特别是心态）</p>
+<p>然后他还提到一个很多人问了很多次的问题：</p>
+<blockquote>
+<p>我现在学的这些到底有用吗？</p>
+</blockquote>
+<p>他说，我们学习，学习的都是“常识”。</p>
+<p>常识才能不让我们犯错。</p>
+<p>然后就有了下面的“名言之一”</p>
+<p>我觉得这解释挺好。</p>
+<p>之后发现dzd的一位老师是黄埔毕业的（</p>
+<p>他还说了中国的教育体制现状（拿了两个他资助过得山村小学和克罗地亚的一个条件不是很好的学校（他当IOI主席的时候访问过）作对比）</p>
+<p>然后后面提问部分我举手问了一个问题：</p>
+<blockquote>
+<p>怎么样均衡whk和OI?</p>
+</blockquote>
+<blockquote>
+<p>我文化课一直很烂。</p>
+</blockquote>
+<p>然后被所有人说“假”……</p>
+<p>dzd说：</p>
+<blockquote>
+<p>NOI是给学有余力的同学准备的，你不要因为OI耽误whk这种基础的东西。</p>
+</blockquote>
+<blockquote>
+<p>不过你应该不至于这样子（他后面合照的时候和我说的）</p>
+</blockquote>
+<p>然后就合了影（ZJK为什么也来了啊）</p>
+<h2 id="语录部分"><a href="#语录部分" class="headerlink" title="语录部分"></a>语录部分</h2><h3 id="名言之一-：没-有-常-识"><a href="#名言之一-：没-有-常-识" class="headerlink" title="名言之一 ：没 有 常 识"></a>名言之一 ：没 有 常 识</h3><blockquote>
+<p>信息学是欧洲那边的人发明的，他们不管信息学叫 “computer”</p>
+</blockquote>
+<blockquote>
+<p>*语里说 电脑是 ‘informatic***‘，我就觉得我们这翻译不对。</p>
+</blockquote>
+<blockquote>
+<p>还有CCF，我觉得这也是有问题的，这学会应该叫 society</p>
+</blockquote>
+<blockquote>
+<p>所以CCF应该叫 CIS,但我也没办法改了……毕竟都那么久了。</p>
+</blockquote>
+<blockquote>
+<p>信息学竞赛原来不叫信息学竞赛，是informatic，你们知道吗？这就叫做没有常识。</p>
+</blockquote>
+<h3 id="名言之二：biaji"><a href="#名言之二：biaji" class="headerlink" title="名言之二：biaji"></a>名言之二：biaji</h3><p>（此处指49中事件）</p>
+<blockquote>
+<p>从楼上掉下来，bia ji，人挂了。</p>
+</blockquote>
+<blockquote>
+<p>是吧，所以我一直都是一个乐观的人，我也没得抑郁症什么的。</p>
+</blockquote>
+<h3 id="名言之三：见上"><a href="#名言之三：见上" class="headerlink" title="名言之三：见上"></a>名言之三：见上</h3><blockquote>
+<p>NOI是给学有余力的同学准备的，你不要因为OI耽误whk这种基础的东西。</p>
+</blockquote>
+<blockquote>
+<p>不过你应该不至于这样子（他后面合照的时候和我说的）</p>
+</blockquote>
+<h3 id="名言之四：你是省队的对吗？"><a href="#名言之四：你是省队的对吗？" class="headerlink" title="名言之四：你是省队的对吗？"></a>名言之四：你是省队的对吗？</h3><p>当我和xzq上去合影的时候，C老师说我们是信息竞赛的。</p>
+<p>然后dzd就问:</p>
+<blockquote>
+<p>你们是省队的吗？</p>
+</blockquote>
+<p>草</p>
+<hr>
+<p>完整录音请看：</p>
+<p><a href="waiting%5Cit%5Cis%5Cunready">record-dzd-cw-518-by_bte.mp3</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/04/17/%E6%9D%82-%E5%AF%B9%E4%BA%8EDP%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -251,10 +901,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-04-17 20:35:24 / 修改时间：20:36:13" itemprop="dateCreated datePublished" datetime="2021-04-17T20:35:24+08:00">2021-04-17</time>
+      <time title="创建时间：2021-04-17 20:35:24" itemprop="dateCreated datePublished" datetime="2021-04-17T20:35:24+08:00">2021-04-17</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-22 22:58:18" itemprop="dateModified" datetime="2021-05-22T22:58:18+08:00">2021-05-22</time>
+      </span>
 
   
 </div>
@@ -293,6 +949,7 @@
 <p>转移的时候方程一般都是：$f_{i,j}=\operatorname{fuction}(f_{i,j},f_{……})$</p>
 <p>为了保证“无后效性”，就要做到等式左边未知而右边全部已知。</p>
 <p>如果你觉得方程是对的，但是右边有未知，就尝试用条件把它变成已知（或者再看看你的方程是不是推错了）。</p>
+<p>（请把 $f$ 当做已知的东西用，在保证无后效性的情况下）</p>
 <h3 id="边界"><a href="#边界" class="headerlink" title="边界"></a>边界</h3><p>初始值，根据状态来就好。</p>
 <p>如果在外面初始化了就不用再循环里初始化，</p>
 <p>当然如果你在循环里初始化那就没必要在外面写了（只要不漏就行）。</p>
@@ -1356,7 +2013,7 @@ $1\le n\le50$，$1\le c\le n$。<span class="token tag"><span class="token tag">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-16 12:45:30" itemprop="dateModified" datetime="2021-05-16T12:45:30+08:00">2021-05-16</time>
+        <time title="修改时间：2021-05-16 12:57:27" itemprop="dateModified" datetime="2021-05-16T12:57:27+08:00">2021-05-16</time>
       </span>
 
   
@@ -2018,6 +2675,9 @@ Tb 12 没什么难度，扭扭就过了。
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>rep扔在github里了，就是博客的source目录里的repy文件夹。</p>
+<p>点击即可下载。</p>
+<p><a href="https://hylwxqwq.github.io/repy/th15_06.rpy">Tb12 miss</a></p>
+<p><a href="https://hylwxqwq.github.io/repy/th15_07.rpy">Tb 06 Get Spell card</a></p>
 
       
     </div>
@@ -2628,404 +3288,6 @@ stack<span class="token operator">&lt;</span><span class="token keyword">int</sp
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/20/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-MST/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
-      <meta itemprop="name" content="black_trees">
-      <meta itemprop="description" content="Hina Miller Han">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="black_trees">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/20/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-MST/" class="post-title-link" itemprop="url">算法笔记-MST</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-20 20:25:45 / 修改时间：20:26:45" itemprop="dateCreated datePublished" datetime="2021-03-20T20:25:45+08:00">2021-03-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这个东西是老早就该补的坑了……</p>
-<p>所以现在有时间了。</p>
-<p>回来写一写。</p>
-<hr>
-<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>简单来说，最小生成树是一张带权无向图里面由全部 $n$ 个顶点，和边集中的 $n-1$ 条边构成的原图的一颗生成树，且所有边权之和是所有生成树中最小的（可能有多个情况）。</p>
-<p>而且它一定包含原图中最小的边。</p>
-<h3 id="推论："><a href="#推论：" class="headerlink" title="推论："></a>推论：</h3><p>设一张无向图 $G=(V,E)$ ，从 $E$ 中选出 $k&lt;|V|-1$条边构成 $G$ 的一个生成森林，然后再从剩余的 $|E|-k$ 条边中选出 $|V|-1-k$ 条边加入森林中，让它成为 $G$ 的生成树，并且选出的$\sum w$最小。</p>
-<p>那么，这个生成树一定包含 $|E|-k$ 条边里面连接生成森林的两个不连通节点的权值最小的边。</p>
-<p>很拗口对吧？</p>
-<p>不过请好好理解，因为这个推论就是接下来的 $\text{Kruskal}$ 的基础了。</p>
-<h3 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h3><p>这是一种求最小生成树的高效算法。</p>
-<p>它维护图的最小生成森林。</p>
-<p>开始的时候生成森林是空的，每一个节点就是一颗独立的树。</p>
-<p>然后我们用上述推论维护森林就好了。</p>
-<p>首先先搞一个并查集出来。对于每一个点初始化。</p>
-<p>接下来按照边权升序排个序。</p>
-<p>然后扫一遍每个边。</p>
-<p>如果这一条边所连得两条边$(u,v)$已经联通了。那么继续。</p>
-<p>but，如果没有联通，根据这一条：</p>
-<blockquote>
-<p>这个生成树一定包含 $|E|-k$ 条边里面连接生成森林的<strong>两个不连通节点</strong>的权值最小的边。</p>
-</blockquote>
-<p>所以满足了条件，那么我们就把这一条边加入到最小生成树里。</p>
-<p>顺便合并一下 $(u,v)$ （相当于让它联通）</p>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> <span class="token keyword">int</span> si<span class="token operator">=</span><span class="token number">2e6</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
-<span class="token keyword">int</span> ans<span class="token punctuation">;</span>
-<span class="token keyword">int</span> pa<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">struct</span> <span class="token class-name">edge</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>val<span class="token punctuation">;</span>
-    <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">const</span> edge <span class="token operator">&amp;</span>u<span class="token punctuation">)</span><span class="token keyword">const</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> val<span class="token operator">&lt;</span>u<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>ed<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">bool</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> rx<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>ry<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>rx<span class="token operator">==</span>ry<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    pa<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">=</span>ry<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        cin<span class="token operator">>></span>ed<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token operator">>></span>ed<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token operator">>></span>ed<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">sort</span><span class="token punctuation">(</span>ed<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>ed<span class="token operator">+</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        pa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Union</span><span class="token punctuation">(</span>ed<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">,</span>ed<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span> ans<span class="token operator">+=</span>ed<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<h3 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h3><p>这个算法实际上不是很常用。</p>
-<p>因为在没有堆优化的情况下，$\text{Prim}$ 的复杂度是 $\text{O} (n^2)$<br>的。</p>
-<p>而且写了堆优化以后会比 $\text{Kruskal}$ 麻烦的多（某次十一集训的时候xzq就是想写 $\text{Prim}$ ，结果我用 $\text{Kruskal}$ A了几道题了他还没调好/xyx）</p>
-<p>那么大概说一下思路。</p>
-<p>现在已经知道 $\text{Kruskal}$  是维护一整个生成森林。</p>
-<p>其实 $\text{Prim}$ 就和它稍微有点不同而已，它只是维护了最小生成树的一部分。而且它最开始确定 $1$ 号节点属于最小生成树。</p>
-<p>它每一次找到一条权值最小的，且满足它连接的其中一个点 $u$ 已经被选入最小生成树里，另一个点 $v$ 则未被选中的边。</p>
-<p>具体实现是这样子的：</p>
-<p>维护一个数组 $dis[\ ]$ ,如果 $u$ 没有被选入，那么 $dis[u]$ 就等于 $u$ 和已经被选中点之间的连边中权值最小的边的权值。</p>
-<p>反之 $dis[u]$ 就等于 $u$ 被选中的时候选出来那条权值最小边的权值。</p>
-<p>然后怎么判是否选中呢？</p>
-<p>维护一个$vis[]$ 即可。然后从 $vis[]=\text{false}$的节点中 （也就是未被选中的节点） 选出一个 $dis[]$ 最小的标记它</p>
-<p>然后扫描和这个被选点的所有直接连它的边，更新另外一个端点的 $dis$ 。</p>
-<p>最后生成树的权值和就是 $\sum^{n}_{i=2} dis[i]$。</p>
-<h4 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> <span class="token keyword">int</span> si<span class="token operator">=</span><span class="token number">5e3</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
-<span class="token keyword">int</span> a<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> dis<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">bool</span> vis<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
-	<span class="token function">memset</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token number">0x3f</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>u<span class="token punctuation">,</span>v<span class="token punctuation">,</span>w<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		cin<span class="token operator">>></span>u<span class="token operator">>></span>v<span class="token operator">>></span>w<span class="token punctuation">;</span>
-		a<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token comment">//Prim</span>
-	<span class="token function">memset</span><span class="token punctuation">(</span>dis<span class="token punctuation">,</span><span class="token number">0x3f</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span> dis<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">memset</span><span class="token punctuation">(</span>vis<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span> vis<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	dis<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>u<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		u<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span><span class="token punctuation">(</span>u<span class="token operator">==</span><span class="token number">0</span><span class="token operator">||</span>dis<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&lt;</span>dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> u<span class="token operator">=</span>j<span class="token punctuation">;</span>
-		<span class="token punctuation">&#125;</span>
-		vis<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> v<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>v<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>v<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span> dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token comment">//answer</span>
-	<span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		ans<span class="token operator">+=</span>dis<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<h3 id="Boruvka"><a href="#Boruvka" class="headerlink" title="Boruvka"></a>Boruvka</h3><p>该算法并不常用，以后有时间会填坑。</p>
-<hr>
-<h3 id="习题："><a href="#习题：" class="headerlink" title="习题："></a>习题：</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1194">P1194 买礼物</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1119">P1119 灾后重建</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1195">P1195 口袋的天空</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1265">P1265 公路修建</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1340">P1340 兽径管理</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1396">P1396 营救</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1536">P1536 村村通</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2212">P2212 [USACO14MAR]Watering the Fields S</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2330">P2330 [SCOI2005]繁忙的都市</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3366">P3366 【模板】最小生成树</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/03/14/CF713C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
-      <meta itemprop="name" content="black_trees">
-      <meta itemprop="description" content="Hina Miller Han">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="black_trees">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/14/CF713C/" class="post-title-link" itemprop="url">CF713C</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-14 10:08:08" itemprop="dateCreated datePublished" datetime="2021-03-14T10:08:08+08:00">2021-03-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-27 22:41:06" itemprop="dateModified" datetime="2021-03-27T22:41:06+08:00">2021-03-27</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】"><a href="#题解-CF713C-【Sonya-and-Problem-Wihtout-a-Legend】" class="headerlink" title="题解 CF713C 【Sonya and Problem Wihtout a Legend】"></a>题解 CF713C 【Sonya and Problem Wihtout a Legend】</h1><h3 id="O-n-2-DP方法"><a href="#O-n-2-DP方法" class="headerlink" title="$O(n^2)$ DP方法"></a>$O(n^2)$ DP方法</h3><hr>
-<p>$update; in ;  2020.7.31$：原来的证明有一点问题，合并后的函数应该是满足严格递增的。已修改。</p>
-<p>这一道题的重点在于离散化，网上有九成的题解都讲的不清晰，所以我在这里细细的讲一讲。</p>
-<hr>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>既然这是线性 $DP$ 。</p>
-<p>从以下两个角度出发：</p>
-<ul>
-<li><p>我从哪里来？（当前状态可以由哪些状态得到？）</p>
-</li>
-<li><p>我到哪里去？（当前状态可以去到哪几个状态？）</p>
-</li>
-</ul>
-<p>我们不难想到：</p>
-<p>设 $f[i][j]$ 表示 $a[i]$ 变成 $re[j]$ 所需的最小操作次数。</p>
-<p>路人：诶诶诶，你 $a[i]$ 和 $re[j]$ 哪里来的啊？</p>
-<p>这台子拆的好！</p>
-<p>我们设原序列为 $a[]$ ，我们想要达到的“理想”序列为 $re[]$。</p>
-<p>那么，代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">   for(register long long i&#x3D;1;i&lt;&#x3D;n;++i)&#123;
-	cin&gt;&gt;a[i];
-	a[i]-&#x3D;i;
-	re[i]&#x3D;a[i];
-&#125;
-sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<p>接下来我就讲讲为什么要这样做：</p>
-<hr>
-<h3 id="为什么是-re-i-a-i-i"><a href="#为什么是-re-i-a-i-i" class="headerlink" title="为什么是 $re[i]=a[i]-i$"></a>为什么是 $re[i]=a[i]-i$</h3><p>很好理解，我在这里举个例子。</p>
-<p>（这里举的例子是<a target="_blank" rel="noopener" href="http://poj.org/problem?id=3666">POJ3666</a>，因为离散的方法和此题一样，所以我就以POJ3666作为例子讲解这题的离散化）</p>
-<p>先不管这道题的要求。我们先假设加一减一的操作变为了修改操作（POJ3666）。</p>
-<p>那么：</p>
-<p>$n=5$</p>
-<p>$a[]:{1,3,2,3,5}$</p>
-<p>如果我们想要修改它，使得它是单调不减（这里也是POJ3666）的。要怎么修改？</p>
-<p>很明显，我们的第一思路是这么修改：</p>
-<p>$a[]:{1,2,3,4,5}$</p>
-<p>很明显，因为这里有重复的 $3$ 。所以，我们需要更多的次数去修改它。</p>
-<p>为了避免这种情况，我们给每个 $a[i]$ 减去 $i$。</p>
-<p>为什么呢？</p>
-<p>因为 $i$ 在这里一定是严格递增的（你从头往后扫，下标难道不递增？），现在看一下减去 $i$ 之后是怎么样的：</p>
-<p>$re[]:{ 0,1,-1,-1,0}$</p>
-<p>现在还是有重复的，不过先不要着急。</p>
-<p>我画一个图。</p>
-<p>这是你的 $re$ 序列（不下降）：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSK6C4"><img src="https://z3.ax1x.com/2021/03/27/cSK6C4.png" alt="cSK6C4.png"></a></p>
-<p>这是你的 $i$ （所有的 $i$ 组成的序列）</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSKc8J"><img src="https://z3.ax1x.com/2021/03/27/cSKc8J.png" alt="cSKc8J.png"></a></p>
-<p>那我们将这两个序列合并，这个合并的序列一定是这样的：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cSKc8J"><img src="https://z3.ax1x.com/2021/03/27/cSKc8J.png" alt="cSKc8J.png"></a></p>
-<p>其实就是一个不等式的加减。</p>
-<p>举个例子：</p>
-<p>$re[]={ 1,2,3,3,3}$</p>
-<p>$i[]={1,2,3,4,5}$</p>
-<p>合并之后：</p>
-<p>$2,4,6,7,8$,是不是满足严格递增？</p>
-<p>好的，这里可能会有一点绕（看完就能理解的）。</p>
-<p>我们再重新看一看:</p>
-<p>$re[]:{ 0,1,-1,-1,0}$</p>
-<p>现在我们只需要使这一个 $re$ 中不下降的元素尽量多，那么我们需要修改的次数就会尽量的少（最优）（也就是要求一个最长不下降子序列再减去元素个数）。</p>
-<p>好了，把这一个离散的思路放到我们这一题，只需要改一下条件就可以啦。</p>
-<p>（没听懂自行返回再来几遍，我讲的已经比网上绝大部分的题解要清晰了。）</p>
-<hr>
-<p>现在离散化已经搞定了。那么是时候看方程了。</p>
-<p>方程（这里推得过程省去，都做到这种题了，这种普通的线性 $DP$ 方程不可能推不出来）：</p>
-<p>$$ \begin{cases}minn=\min(minn,f[i-1][j])\f[i][j]=minn+|a[i]-re[j]|\end{cases}$$</p>
-<p>（最开始的时候 $minn$ 要赋值为一个超级大的值）</p>
-<hr>
-<p>很好，到这里这道题就基本完成了，如果没有听懂的同学请自觉从头再多看几遍。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/36064380">AC记录</a></p>
-<p>下面给出代码实现（数据太恶心所以用long long）：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span> </span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">long</span> <span class="token keyword">long</span> f<span class="token punctuation">[</span><span class="token number">3001</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3001</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//f[i][j]表示a[i]变为re[j]时的最小操作次数 </span>
-<span class="token keyword">long</span> <span class="token keyword">long</span> n<span class="token punctuation">;</span>
-<span class="token keyword">long</span> <span class="token keyword">long</span> a<span class="token punctuation">[</span><span class="token number">3001</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//原序列 </span>
-<span class="token keyword">long</span> <span class="token keyword">long</span> re<span class="token punctuation">[</span><span class="token number">3001</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//目标序列 </span>
-<span class="token keyword">long</span> <span class="token keyword">long</span> minn<span class="token punctuation">,</span>res<span class="token operator">=</span><span class="token number">2e18</span><span class="token punctuation">;</span><span class="token comment">//这里要赋很大的值，否则以CF的毒瘤数据你会WA。</span>
-
-<span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token function">abs_ll</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span> a<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	<span class="token keyword">return</span> a<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">?</span>a<span class="token operator">:</span><span class="token operator">-</span>a<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">namespace</span> Accepted<span class="token punctuation">&#123;</span>
-	<span class="token keyword">void</span> <span class="token function">zjk_ak_ioi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		cout<span class="token operator">&lt;&lt;</span>res<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-		<span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span><span class="token comment">//对神zjk的膜拜 （这里不用管啦，你直接输出res就可以了）</span>
-<span class="token punctuation">&#125;</span> 
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		cin<span class="token operator">>></span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-		a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-=</span>i<span class="token punctuation">;</span>
-		re<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//离散化 </span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token function">sort</span><span class="token punctuation">(</span>re<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>re<span class="token operator">+</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//排一遍，使目标序列严格递增 </span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		f<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">abs_ll</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>re<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//给f一个初值，这里是预处理</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		minn<span class="token operator">=</span><span class="token number">2e18</span><span class="token punctuation">;</span><span class="token comment">//这里每一次都要赋值，否则会错（因为每次操作都要用 ） </span>
-		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">long</span> <span class="token keyword">long</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-			minn<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>minn<span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>minn<span class="token operator">+</span><span class="token function">abs_ll</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>re<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//转移方程 </span>
-		<span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		res<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span>f<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//从整个序列的情况去找最小值 </span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token class-name">Accepted</span><span class="token operator">::</span><span class="token function">zjk_ak_ioi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//喊出zjkAKIOI，借用神的力量，让我AC！ </span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>代码里那个奇怪的函数不用管啦（个人习惯），你只需要直接输出 $res$ 就好了。</p>
-<hr>
-<p>管理员求过，看在我已经讲得比较清晰了的份上了吧QAQ。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -3065,7 +3327,7 @@ sort(re+1,re+n+1);<span aria-hidden="true" class="line-numbers-rows"><span></spa
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">black_trees</span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
