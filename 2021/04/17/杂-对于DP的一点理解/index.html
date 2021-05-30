@@ -31,7 +31,7 @@
 <meta property="og:description" content="关于DP四要素状态（重中之重） 都说推方程式 $\text{dp}$ 里最简单的，设计出好的状态才是难的。  一般我们都是设 $f_{i,j}$ 表示什么什么东西。 然后个人觉得状态就分了两个部分：阶段和条件。  阶段  这种东西都是在循环最外层枚举的（比如 $\text{Floyd}$ 的 $k$），在状态里面体现出来也就是： 前i个,第i个,对于前i段…… 当然你也可以有多个“阶段”，不过要分">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-17T12:35:24.000Z">
-<meta property="article:modified_time" content="2021-05-22T14:58:18.411Z">
+<meta property="article:modified_time" content="2021-05-30T01:27:18.932Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
@@ -163,7 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EDP"><span class="nav-number">1.</span> <span class="nav-text">关于DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">四要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%EF%BC%88%E9%87%8D%E4%B8%AD%E4%B9%8B%E9%87%8D%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">状态（重中之重）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C"><span class="nav-number">1.1.3.</span> <span class="nav-text">边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.4.</span> <span class="nav-text">目标</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EDP"><span class="nav-number">1.</span> <span class="nav-text">关于DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">四要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%EF%BC%88%E9%87%8D%E4%B8%AD%E4%B9%8B%E9%87%8D%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">状态（重中之重）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C"><span class="nav-number">1.1.3.</span> <span class="nav-text">边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.4.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%9C%E8%A5%BF%E3%80%82"><span class="nav-number">1.1.5.</span> <span class="nav-text">其它的一些东西。</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,7 +179,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -270,7 +270,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-22 22:58:18" itemprop="dateModified" datetime="2021-05-22T22:58:18+08:00">2021-05-22</time>
+        <time title="修改时间：2021-05-30 09:27:18" itemprop="dateModified" datetime="2021-05-30T09:27:18+08:00">2021-05-30</time>
       </span>
 
   
@@ -307,7 +307,7 @@
 <p>然后有些题式需要分类讨论的，所以分情况就好。</p>
 <p>不过注意，在找情况的时候要做到不重不漏，也就是不能少情况或者多情况。</p>
 <p>有限制的转移可以压进状态，也可以判断解决转移。</p>
-<p>转移的时候方程一般都是：$f_{i,j}=\operatorname{fuction}(f_{i,j},f_{……})$</p>
+<p>转移的时候方程一般都是：$f_{i,j}=\operatorname{function}(f_{i,j},f_{……})$</p>
 <p>为了保证“无后效性”，就要做到等式左边未知而右边全部已知。</p>
 <p>如果你觉得方程是对的，但是右边有未知，就尝试用条件把它变成已知（或者再看看你的方程是不是推错了）。</p>
 <p>（请把 $f$ 当做已知的东西用，在保证无后效性的情况下）</p>
@@ -318,6 +318,31 @@
 <h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>也就是答案，根据你设的状态就行。</p>
 <p>不过有的时候要在全部 $f$ 里面累加或者取最值。</p>
 <p>也有可能循环出来了还要和原来的某种情况取最值（牛的旅行那道$\text{Floyd}$就是）。</p>
+<hr>
+<h3 id="其它的一些东西。"><a href="#其它的一些东西。" class="headerlink" title="其它的一些东西。"></a>其它的一些东西。</h3><ul>
+<li>关于 $f[i][…][0/1]$ 之类的状态。</li>
+</ul>
+<p>一般在出现转移时有多重情况（状态），而且这个东西会影响转移和决策。</p>
+<p>比如：必须先卖出才能买入，在这个区间的左右端点（关路灯），最大值可以由两个最小值相乘得到（Polygon）</p>
+<p>然后我们就把这个多重情况放进 $f$ 里面分情况转移就好了。</p>
+<p>说白了就是不够就加。</p>
+<ul>
+<li>小部分推出大部分。</li>
+</ul>
+<p>比如选讲里面的AUOJ 969 和 968。</p>
+<p>968 是设 $f[i][j]$ 为 考虑 $s[1,i]$ 中有多少子序列 $t[1,j]$ 。</p>
+<p>（部分(s)中有多少子序列(t)的部分）</p>
+<p>969 是设 $f[i][j]$ 为 考虑 $s3[1,i+j]$ 能否被分成 $s1[1,i]$ 和 $s2[1,j]$ 这两个子序列。</p>
+<p>（部分(s3)中有多少两个子序列(s1,s2)的部分）</p>
+<p>它们都是把大问题分成了小问题而且小问题都能凑出大问题。</p>
+<ul>
+<li><p>最优子结构的一部分事项 （摘录整理自算法导论）</p>
+<ol>
+<li>对于一个给定的（子）问题的第一步的决策（其实就是转移方程）,假定已经知道怎样选才会有（最优）解， 但 <strong>不 需 要</strong> 关心它是怎么得来的。（也就是推方程的时候把 $f$ 当已知），只是当做已经知道了这种选择。</li>
+<li>确定一次选择（决策\转移） 之后出现的新子问题（集）（继承状态，确定含义）</li>
+</ol>
+</li>
+</ul>
 <hr>
 <p>unfinished.</p>
 
