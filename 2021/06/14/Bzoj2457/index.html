@@ -23,20 +23,25 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="[保留]缅怀袁隆平院士，吴孟超院士，夏德昭老爷子和杨伯达院长！  replay download th15-marisa-ex-1  th15-marisa-ex-2  th8-yk&amp;ym-ac  th13-reimu-e-ac">
-<meta property="og:type" content="website">
-<meta property="og:title" content="replay">
-<meta property="og:url" content="http://hylwxqwq.github.io/replay/index.html">
+<meta name="description" content="Description：Sherry现在碰到了一个棘手的问题，有Ｎ个整数需要排序。 Sherry手头能用的工具就是若干个双端队列。 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事： 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数； 2．将当前数放入已有的队列的头之前或者尾之后。 对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。  Input">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bzoj2457">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/06/14/Bzoj2457/index.html">
 <meta property="og:site_name" content="Fujihara&#39;s Blog">
-<meta property="og:description" content="[保留]缅怀袁隆平院士，吴孟超院士，夏德昭老爷子和杨伯达院长！  replay download th15-marisa-ex-1  th15-marisa-ex-2  th8-yk&amp;ym-ac  th13-reimu-e-ac">
+<meta property="og:description" content="Description：Sherry现在碰到了一个棘手的问题，有Ｎ个整数需要排序。 Sherry手头能用的工具就是若干个双端队列。 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事： 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数； 2．将当前数放入已有的队列的头之前或者尾之后。 对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。  Input">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-22T05:07:00.000Z">
-<meta property="article:modified_time" content="2021-05-30T01:35:27.897Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/06/11/2Wfief.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/06/11/2Wh7VK.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/06/11/2WhO8H.png">
+<meta property="article:published_time" content="2021-06-14T03:15:13.000Z">
+<meta property="article:modified_time" content="2021-06-14T03:16:04.419Z">
 <meta property="article:author" content="black_trees">
+<meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/06/11/2Wfief.png">
 
 
-<link rel="canonical" href="http://hylwxqwq.github.io/replay/">
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/06/14/Bzoj2457/">
 
 
 <script class="page-configurations">
@@ -44,12 +49,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>replay | Fujihara's Blog
-</title>
+<title>Bzoj2457 | Fujihara's Blog</title>
   
 
 
@@ -163,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%9D%E7%95%99"><span class="nav-number">1.</span> <span class="nav-text">[保留]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#replay-download"><span class="nav-number">1.1.</span> <span class="nav-text">replay download</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Description：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">solution</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,48 +232,153 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/06/14/Bzoj2457/">
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Fujihara Nobuyuki">
+    </span>
 
-<h1 class="post-title" itemprop="name headline">replay
-</h1>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fujihara's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bzoj2457
+        </h1>
 
-<div class="post-meta-container">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-06-14 11:15:13 / 修改时间：11:16:04" itemprop="dateCreated datePublished" datetime="2021-06-14T11:15:13+08:00">2021-06-14</time>
+    </span>
+
+  
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          <h1 id="保留"><a href="#保留" class="headerlink" title="[保留]"></a>[保留]</h1><p>缅怀袁隆平院士，吴孟超院士，夏德昭老爷子和杨伯达院长！</p>
-<hr>
-<h2 id="replay-download"><a href="#replay-download" class="headerlink" title="replay download"></a>replay download</h2><ul>
-<li><p><a href="/repy/th15_06.rpy">th15-marisa-ex-1</a></p>
-</li>
-<li><p><a href="/repy/th15_07.rpy">th15-marisa-ex-2</a></p>
-</li>
-<li><p><a href="/repy/th8_bt-gooded4.rpy">th8-yk&amp;ym-ac</a></p>
-</li>
-<li><p><a href="/repy/th13_06.rpy">th13-reimu-e-ac</a></p>
-</li>
-</ul>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Description："><a href="#Description：" class="headerlink" title="Description："></a>Description：</h2><pre class="line-numbers language-none"><code class="language-none">Sherry现在碰到了一个棘手的问题，有Ｎ个整数需要排序。
+Sherry手头能用的工具就是若干个双端队列。
+她需要依次处理这N个数，对于每个数，Sherry能做以下两件事：
+1．新建一个双端队列，并将当前数作为这个队列中的唯一的数；
+2．将当前数放入已有的队列的头之前或者尾之后。
+对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。
 
-      </div>
-      
-      
-      
+Input
+第一行包含一个整数N，表示整数的个数。接下来的N行每行包含一个整数Di，其中Di表示所需处理的整数。
+Output
+其中只包含一行，为Sherry最少需要的双端队列数。
+Sample Input
+6 
+3 6 0 9 6 3
+Sample Output
+2
+Hint
+100%的数据中N≤200000。
+Source
+Bejing Day1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><p>考虑这道题从何入手，正常想法都是正着取按照要求模拟一下。</p>
+<p>但是这道题有些恶心，如果一个双端队列中存在一个<strong>相邻</strong>的二元组 $(u,v)$。</p>
+<p>且在原序列当中 $(u,v)$ <strong>不相邻</strong>。那么就有可能出现一个元素 $o$。</p>
+<p>满足 $pos[o] \in (pos[u],pos[v])$ 且 $o \in (u,v)$。</p>
+<p>（$pos$ 表示元素在原序列的位置）</p>
+<p>那么很明显就是无解了。</p>
+<p>因为我们要 <strong>按顺序</strong> 对原序列进行操作。</p>
+<p>最要命的是，这道题很容易出现这种情况，随便构造一个数据就行了。</p>
+<p>做数学题的时候有个思想叫 “正难则反” 。</p>
+<p>所以我们不妨考虑直接把这个序列变成不下降的，然后再倒推回去（显然这个不下降的序列是唯一的（有相同元素也无妨））。</p>
+<p>那么问题可以转化为：</p>
+<blockquote>
+<p>把一个不下降的序列划分成连续的 $k$ 的子段，使得每一个子段都是可以由原序列经过合法操作得来的。<br>并求 $k$ 的最小值。</p>
+</blockquote>
+<p>因为题目的要求是<strong>按顺序</strong>，所以我们离散化一下，排序的时候记录一下这个元素在原序列的位置 $pos$ 。</p>
+<p>现在考虑一下，怎么样的一个（离散后序列中的）子段才是合法的？</p>
+<p>不难得出：对于一个子段，它想要合法，那么它不可能有形如 $pos={1,7,2}$<br>这样子的排列。 </p>
+<p>因为你不可能把 $a[1],a[2]$ 插入之后再在它们<strong>之间</strong>插入一个 $a[7]$ 啊（$a[1],a[2]$ 又不能出队）。</p>
+<p>说白了就是 $pos$ 要有单调性，但我们这里是双端队列，两边都能入队（扩展）。</p>
+<p>那么分析一下，就有一个性质：</p>
+<blockquote>
+<p>对于一个子段里的 $pos$ 最小（大）的数，一定满足它两边分别单调。</p>
+</blockquote>
+<blockquote>
+<p>或者整段单调，甚至可以是就只有他一个元素。</p>
+</blockquote>
+<p>也就是这样子的：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2Wfief"><img src="https://z3.ax1x.com/2021/06/11/2Wfief.png" alt="2Wfief.png"></a></p>
+<p>现在随便来一组数据模拟一下：</p>
+<pre class="line-numbers language-none"><code class="language-none">n&#x3D;8,a&#x3D;&#123;3,9,4,8,8,9,7,2&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>离散之后：</p>
+<pre class="line-numbers language-none"><code class="language-none">a&#x3D;&#123;2,3,4,7,8,8,9,9&#125;
+pos&#x3D;&#123;8,1,3,7,4,5,2,6&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>很明显其中一种最优划分是</p>
+<pre class="line-numbers language-none"><code class="language-none">a : |2 3 4 7|,|8 8 9|,|9|。
+
+pos:|8 1 3 7|,|4 5 2|,|6|。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>画一个图：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2Wh7VK"><img src="https://z3.ax1x.com/2021/06/11/2Wh7VK.png" alt="2Wh7VK.png"></a></p>
+<p>拆出来就是这样的三段函数：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2WhO8H"><img src="https://z3.ax1x.com/2021/06/11/2WhO8H.png" alt="2WhO8H.png"></a></p>
+<p>满足性质。</p>
+<p>（实际上就是一个单谷性质）</p>
+<p>那么我们离散之后统计一下 $pos$ 的单调性然后随便贪一贪，分一下就可以了。</p>
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solution/" rel="tag"># solution</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/30/%E7%AC%94%E8%AE%B0%E4%BE%8B%E9%A2%98%E9%80%89%E8%AE%B22/" rel="prev" title="笔记例题选讲2">
+                  <i class="fa fa-chevron-left"></i> 笔记例题选讲2
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 

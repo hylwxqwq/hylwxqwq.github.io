@@ -23,18 +23,20 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="动态规划*号标注的题系待做的。 *Auoj 969 字符串合并description给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。  输入 三个字符串 s1,s2,s3  输出 判断s3是否由s1和s2交叉构成  intput: aabcc  dbbca  aadbbcbcac output: true 挑战： 要求时间复杂度为O(n^2)或者更好  注意： 判断S3是否由S">
+<meta name="description" content="动态规划*号标注的题系待做的。 Auoj 982 coins;description给出不同面额的硬币以及一个总金额. 写一个方法来计算给出的总金额可以换取的最少的硬币数量. 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回 -1.你可以假设每种硬币均有无数个，总金额不会超过10000，硬币的种类数不会超过500, 每种硬币的面额不会超过100。  输入 第一行，若干个整数，表示若干不同的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记例题选讲2">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/05/30/%E7%AC%94%E8%AE%B0%E4%BE%8B%E9%A2%98%E9%80%89%E8%AE%B22/index.html">
 <meta property="og:site_name" content="Fujihara&#39;s Blog">
-<meta property="og:description" content="动态规划*号标注的题系待做的。 *Auoj 969 字符串合并description给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。  输入 三个字符串 s1,s2,s3  输出 判断s3是否由s1和s2交叉构成  intput: aabcc  dbbca  aadbbcbcac output: true 挑战： 要求时间复杂度为O(n^2)或者更好  注意： 判断S3是否由S">
+<meta property="og:description" content="动态规划*号标注的题系待做的。 Auoj 982 coins;description给出不同面额的硬币以及一个总金额. 写一个方法来计算给出的总金额可以换取的最少的硬币数量. 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回 -1.你可以假设每种硬币均有无数个，总金额不会超过10000，硬币的种类数不会超过500, 每种硬币的面额不会超过100。  输入 第一行，若干个整数，表示若干不同的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z3.ax1x.com/2021/06/04/2J4YR0.png">
 <meta property="article:published_time" content="2021-05-30T01:22:58.000Z">
-<meta property="article:modified_time" content="2021-05-30T01:24:18.289Z">
+<meta property="article:modified_time" content="2021-06-14T03:14:20.466Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/06/04/2J4YR0.png">
 
 
 <link rel="canonical" href="http://hylwxqwq.github.io/2021/05/30/%E7%AC%94%E8%AE%B0%E4%BE%8B%E9%A2%98%E9%80%89%E8%AE%B22/">
@@ -163,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-969-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%88%E5%B9%B6"><span class="nav-number">1.1.</span> <span class="nav-text">*Auoj 969 字符串合并</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description"><span class="nav-number">1.1.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-970-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV"><span class="nav-number">1.2.</span> <span class="nav-text">*Auoj 970 买卖股票的最佳时机 IV</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-972-%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84-III"><span class="nav-number">1.3.</span> <span class="nav-text">*Auoj 972 最大子数组 III</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-973-%E6%9C%80%E5%B0%8F%E8%B0%83%E6%95%B4%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.4.</span> <span class="nav-text">*Auoj 973 最小调整代价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-975-%E5%90%B9%E6%B0%94%E7%90%83"><span class="nav-number">1.5.</span> <span class="nav-text">*Auoj 975 吹气球</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-978-%E6%89%B0%E4%B9%B1%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.6.</span> <span class="nav-text">*Auoj 978 扰乱字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-984-%E4%B8%80%E5%92%8C%E9%9B%B6"><span class="nav-number">1.7.</span> <span class="nav-text">*Auoj 984  一和零</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-6"><span class="nav-number">1.7.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-985-%E4%BF%84%E7%BD%97%E6%96%AF%E5%A5%97%E5%A8%83"><span class="nav-number">1.8.</span> <span class="nav-text">*Auoj 985 俄罗斯套娃</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-7"><span class="nav-number">1.8.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-986-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD%E9%97%AE%E9%A2%98"><span class="nav-number">1.9.</span> <span class="nav-text">*Auoj 986 鸡蛋掉落问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-8"><span class="nav-number">1.9.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-993-%E8%8C%B6%E5%87%A0%E9%97%AE%E9%A2%98"><span class="nav-number">1.10.</span> <span class="nav-text">*Auoj 993 茶几问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-9"><span class="nav-number">1.10.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-1323-%E5%8D%88%E9%A4%90"><span class="nav-number">1.11.</span> <span class="nav-text">*Auoj 1323 午餐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-10"><span class="nav-number">1.11.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2501-HAOI2006-%E6%95%B0%E5%AD%97%E5%BA%8F%E5%88%97"><span class="nav-number">1.12.</span> <span class="nav-text">*P2501 [HAOI2006]数字序列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-11"><span class="nav-number">1.12.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.13.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">树上问题</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-982-coins"><span class="nav-number">1.1.</span> <span class="nav-text">Auoj 982 coins;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description"><span class="nav-number">1.1.1.</span> <span class="nav-text">description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.2.</span> <span class="nav-text">solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-969-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%88%E5%B9%B6"><span class="nav-number">1.2.</span> <span class="nav-text">*Auoj 969 字符串合并</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-970-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV"><span class="nav-number">1.3.</span> <span class="nav-text">Auoj 970 买卖股票的最佳时机 IV</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">description</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solution-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-972-%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84-III"><span class="nav-number">1.4.</span> <span class="nav-text">*Auoj 972 最大子数组 III</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-973-%E6%9C%80%E5%B0%8F%E8%B0%83%E6%95%B4%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.5.</span> <span class="nav-text">*Auoj 973 最小调整代价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-975-%E5%90%B9%E6%B0%94%E7%90%83"><span class="nav-number">1.6.</span> <span class="nav-text">*Auoj 975 吹气球</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-978-%E6%89%B0%E4%B9%B1%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.7.</span> <span class="nav-text">*Auoj 978 扰乱字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-6"><span class="nav-number">1.7.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-984-%E4%B8%80%E5%92%8C%E9%9B%B6"><span class="nav-number">1.8.</span> <span class="nav-text">*Auoj 984  一和零</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-7"><span class="nav-number">1.8.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-985-%E4%BF%84%E7%BD%97%E6%96%AF%E5%A5%97%E5%A8%83"><span class="nav-number">1.9.</span> <span class="nav-text">*Auoj 985 俄罗斯套娃</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-8"><span class="nav-number">1.9.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-986-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD%E9%97%AE%E9%A2%98"><span class="nav-number">1.10.</span> <span class="nav-text">*Auoj 986 鸡蛋掉落问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-9"><span class="nav-number">1.10.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-993-%E8%8C%B6%E5%87%A0%E9%97%AE%E9%A2%98"><span class="nav-number">1.11.</span> <span class="nav-text">*Auoj 993 茶几问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-10"><span class="nav-number">1.11.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auoj-1323-%E5%8D%88%E9%A4%90"><span class="nav-number">1.12.</span> <span class="nav-text">*Auoj 1323 午餐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-11"><span class="nav-number">1.12.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2501-HAOI2006-%E6%95%B0%E5%AD%97%E5%BA%8F%E5%88%97"><span class="nav-number">1.13.</span> <span class="nav-text">*P2501 [HAOI2006]数字序列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#description-12"><span class="nav-number">1.13.1.</span> <span class="nav-text">description</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.14.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">树上问题</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,7 +181,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -262,10 +264,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-05-30 09:22:58 / 修改时间：09:24:18" itemprop="dateCreated datePublished" datetime="2021-05-30T09:22:58+08:00">2021-05-30</time>
+      <time title="创建时间：2021-05-30 09:22:58" itemprop="dateCreated datePublished" datetime="2021-05-30T09:22:58+08:00">2021-05-30</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-14 11:14:20" itemprop="dateModified" datetime="2021-06-14T11:14:20+08:00">2021-06-14</time>
+      </span>
 
   
 </div>
@@ -278,7 +286,67 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p><code>*</code>号标注的题系待做的。</p>
-<h3 id="Auoj-969-字符串合并"><a href="#Auoj-969-字符串合并" class="headerlink" title="*Auoj 969 字符串合并"></a>*Auoj 969 字符串合并</h3><h4 id="description"><a href="#description" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。
+<h3 id="Auoj-982-coins"><a href="#Auoj-982-coins" class="headerlink" title="Auoj 982 coins;"></a>Auoj 982 coins;</h3><h4 id="description"><a href="#description" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给出不同面额的硬币以及一个总金额. 写一个方法来计算给出的总金额可以换取的最少的硬币数量. 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回 -1.你可以假设每种硬币均有无数个，总金额不会超过10000，硬币的种类数不会超过500, 每种硬币的面额不会超过100。
+
+输入
+第一行，若干个整数，表示若干不同的面额硬币
+
+第二行，一个整数，表示 要换取的总金额
+
+输出
+给出的总金额可以换取的最少的硬币数量。如果无法换取，输出-1，否则输出最少的硬币数量.
+
+输入：
+1  2  5
+11
+输出：
+3
+解释：
+11 &#x3D; 5 + 5 + 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h4><p>是个人都知道这是背包。</p>
+<p>但是我死在了读入上面。</p>
+<p>按照我的读入方式， $m$ 会读不到（被读到了 $a[]$ 里面）,$n$ 会变大2。</p>
+<p>所以调了很久，输入的问题自己看代码理解吧。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> si<span class="token operator">=</span><span class="token number">510</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> si_<span class="token operator">=</span><span class="token number">40100</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> inf<span class="token operator">=</span><span class="token number">1e9</span><span class="token operator">+</span><span class="token number">7</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>si_<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>m<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">while</span><span class="token punctuation">(</span>cin<span class="token operator">>></span>a<span class="token punctuation">[</span><span class="token operator">++</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	m<span class="token operator">=</span>a<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>n<span class="token operator">-=</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token comment">//注意顺序</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>inf<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">//for(register int i=1;i&lt;=m;++i)&#123;</span>
+	<span class="token comment">//	cout&lt;&lt;f[i]&lt;&lt;" ";</span>
+	<span class="token comment">//&#125;</span>
+	<span class="token comment">//cout&lt;&lt;endl;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> c<span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token comment">//	cout&lt;&lt;"a[i]="&lt;&lt;c&lt;&lt;endl;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> j<span class="token operator">=</span>c<span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//		cout&lt;&lt;f[j]&lt;&lt;"->";</span>
+			f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>j<span class="token operator">-</span>c<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//		cout&lt;&lt;f[j]&lt;&lt;endl;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token operator">==</span>inf<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Auoj-969-字符串合并"><a href="#Auoj-969-字符串合并" class="headerlink" title="*Auoj 969 字符串合并"></a>*Auoj 969 字符串合并</h3><h4 id="description-1"><a href="#description-1" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。
 
 输入
 三个字符串 s1,s2,s3
@@ -297,7 +365,7 @@ true
 
 s1,s2的长度不大于1000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Auoj-970-买卖股票的最佳时机-IV"><a href="#Auoj-970-买卖股票的最佳时机-IV" class="headerlink" title="*Auoj 970 买卖股票的最佳时机 IV"></a>*Auoj 970 买卖股票的最佳时机 IV</h3><h4 id="description-1"><a href="#description-1" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定数组 prices, 其中第 i 个元素代表某只股票在第 i 天第价格.你最多可以完成 k 笔交易. 问最大的利润是多少? 你不可以同时参与多笔交易(你必须在再次购买前出售掉之前的股票)
+<h3 id="Auoj-970-买卖股票的最佳时机-IV"><a href="#Auoj-970-买卖股票的最佳时机-IV" class="headerlink" title="Auoj 970 买卖股票的最佳时机 IV"></a>Auoj 970 买卖股票的最佳时机 IV</h3><h4 id="description-2"><a href="#description-2" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定数组 prices, 其中第 i 个元素代表某只股票在第 i 天第价格.你最多可以完成 k 笔交易. 问最大的利润是多少? 你不可以同时参与多笔交易(你必须在再次购买前出售掉之前的股票)
 
 输入
 第一行，一个数字，输入k
@@ -334,7 +402,62 @@ O(nk) 时间复杂度. n 是 prices 数组的大小.
 
 数据范围
 元素个数n&lt;&#x3D;20000,k&lt;&#x3D;500<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-972-最大子数组-III"><a href="#Auoj-972-最大子数组-III" class="headerlink" title="*Auoj 972 最大子数组 III"></a>*Auoj 972 最大子数组 III</h3><h4 id="description-2"><a href="#description-2" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定一个整数数组和一个整数 k，找出 k 个不重叠子数组使得它们的和最大。每个子数组的数字在数组中的位置应该是连续的。
+<h4 id="solution-1"><a href="#solution-1" class="headerlink" title="solution"></a>solution</h4><p>终于过了。</p>
+<p>好恶心的初始化啊。</p>
+<p>我们发现题中有几个限制：日期，交易次数，买入卖出。</p>
+<p>那么很容易得到 $f[i][j][0/1]$ 为考虑第 $i$ 天，当前是第 $j$ 次交易，操作为买入(0)还是卖出(1)。</p>
+<p>其实最开始我没有设 $j$ ，后来发现不够才加的。</p>
+<p>然后考虑怎么转移。</p>
+<p>我们可以把每一个状态($f[i][j][0 , 1]$ （0与1合在一起）)都看作一个长度为 2 的区间：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2J4YR0"><img src="https://z3.ax1x.com/2021/06/04/2J4YR0.png" alt="2J4YR0.png"></a></p>
+<p>这就是一次交易。</p>
+<p>用这个理解不难得到：</p>
+<p>$f[i][j][1]=max(f[i-1][j][1],f[i-1][j][0]+w[i])$</p>
+<p>$f[i][j][0]=max(f[i-1][j][0],f[i-1][j-1][1]-w[i])$</p>
+<p>加减就是买入卖出的花费。</p>
+<p>但是问题在于初始化。</p>
+<p>原本思路是：</p>
+<p>卖出了算一次交易。</p>
+<p>但是这样会导致一个问题，也就是如果初始化为0，那么就不可能买入。</p>
+<p>因此，需要把代码修改为买入算一次交易。</p>
+<p>初始化0次交易无货状态同理，如果不初始化为0，则不可能执行买入操作。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41576467/article/details/113804398">https://blog.csdn.net/qq_41576467/article/details/113804398</a></p>
+<ul>
+<li>code:</li>
+</ul>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> si<span class="token operator">=</span><span class="token number">20001</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> si_2<span class="token operator">=</span><span class="token number">501</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> f<span class="token punctuation">[</span>si<span class="token punctuation">]</span><span class="token punctuation">[</span>si_2<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span>w<span class="token punctuation">;</span>
+<span class="token keyword">int</span> K<span class="token punctuation">,</span>n<span class="token punctuation">,</span>iu<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>K<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    w<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cin<span class="token operator">>></span>iu<span class="token punctuation">)</span> w<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>iu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    n<span class="token operator">=</span>w<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">0x3f</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    	f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>K<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>K<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    	res<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span>f<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Auoj-972-最大子数组-III"><a href="#Auoj-972-最大子数组-III" class="headerlink" title="*Auoj 972 最大子数组 III"></a>*Auoj 972 最大子数组 III</h3><h4 id="description-3"><a href="#description-3" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定一个整数数组和一个整数 k，找出 k 个不重叠子数组使得它们的和最大。每个子数组的数字在数组中的位置应该是连续的。
 
 返回最大的和。子数组最少包含一个数
 
@@ -363,7 +486,7 @@ output sample:
 子数组最少包含一个数
 
 k&lt;&#x3D;300, 数组元素个数&lt;&#x3D;10000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-973-最小调整代价"><a href="#Auoj-973-最小调整代价" class="headerlink" title="*Auoj 973 最小调整代价"></a>*Auoj 973 最小调整代价</h3><h4 id="description-3"><a href="#description-3" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给一个整数数组，调整每个数的大小，使得相邻的两个数的差不大于一个给定的整数target，调整每个数的代价为调整前后的差的绝对值，求调整代价之和最小是多少。你可以假设数组中每个整数都是正整数，且小于等于100。
+<h3 id="Auoj-973-最小调整代价"><a href="#Auoj-973-最小调整代价" class="headerlink" title="*Auoj 973 最小调整代价"></a>*Auoj 973 最小调整代价</h3><h4 id="description-4"><a href="#description-4" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给一个整数数组，调整每个数的大小，使得相邻的两个数的差不大于一个给定的整数target，调整每个数的代价为调整前后的差的绝对值，求调整代价之和最小是多少。你可以假设数组中每个整数都是正整数，且小于等于100。
 
 输入格式
 第一行若干个数，表示题目背景中的整数数组 第二行 题目背景中的target
@@ -386,7 +509,7 @@ output2
 最小的调整方案是调整为[2, 3, 2, 3]，调整代价之和是2。返回2。
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-975-吹气球"><a href="#Auoj-975-吹气球" class="headerlink" title="*Auoj 975 吹气球"></a>*Auoj 975 吹气球</h3><h4 id="description-4"><a href="#description-4" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">有n个气球，编号为0到n-1，每个气球都有一个分数，存在nums数组中。每次吹气球i可以得到的分数为 nums[left] * nums[i] * nums[right]，left和right分别表示i气球相邻的两个气球。 当i气球被吹爆后，其左右两气球即为相邻。要求吹爆所有气球，得到最多的分数。下面两个提醒：
+<h3 id="Auoj-975-吹气球"><a href="#Auoj-975-吹气球" class="headerlink" title="*Auoj 975 吹气球"></a>*Auoj 975 吹气球</h3><h4 id="description-5"><a href="#description-5" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">有n个气球，编号为0到n-1，每个气球都有一个分数，存在nums数组中。每次吹气球i可以得到的分数为 nums[left] * nums[i] * nums[right]，left和right分别表示i气球相邻的两个气球。 当i气球被吹爆后，其左右两气球即为相邻。要求吹爆所有气球，得到最多的分数。下面两个提醒：
 1.你可以假设nums[-1] &#x3D; nums[n] &#x3D; 1。-1和n位置上的气球不真实存在，因此不能吹爆它们。
 2. 0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100
 
@@ -407,7 +530,7 @@ nums &#x3D; [4, 5, 10] 吹爆 5, 得分 4 * 5 * 10 &#x3D; 200
 nums &#x3D; [4, 10] 吹爆 4, 得分 1 * 4 * 10 &#x3D; 40
 nums &#x3D; [10] 吹爆 10, 得分 1 * 10 * 1 &#x3D; 10
 总得分 20 + 200 + 40 + 10 &#x3D; 270<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-978-扰乱字符串"><a href="#Auoj-978-扰乱字符串" class="headerlink" title="*Auoj 978 扰乱字符串"></a>*Auoj 978 扰乱字符串</h3><h4 id="description-5"><a href="#description-5" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定一个字符串 s1, 将其递归地分割成两个非空子字符串, 然后可以得到一棵二叉树. 下面是 s1 &#x3D; &quot;great&quot; 可能得到的一棵二叉树:
+<h3 id="Auoj-978-扰乱字符串"><a href="#Auoj-978-扰乱字符串" class="headerlink" title="*Auoj 978 扰乱字符串"></a>*Auoj 978 扰乱字符串</h3><h4 id="description-6"><a href="#description-6" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定一个字符串 s1, 将其递归地分割成两个非空子字符串, 然后可以得到一棵二叉树. 下面是 s1 &#x3D; &quot;great&quot; 可能得到的一棵二叉树:
 
       great
      &#x2F;    \
@@ -457,7 +580,7 @@ b
 输出2:
 false
 s1,s2的字符串长度&lt;&#x3D;500<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-984-一和零"><a href="#Auoj-984-一和零" class="headerlink" title="*Auoj 984  一和零"></a>*Auoj 984  一和零</h3><h4 id="description-6"><a href="#description-6" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">在计算机世界中, 由于资源限制, 我们一直想要追求的是产生最大的利益.现在，假设你分别是 m个 0 和 n个 1 的统治者. 另一方面, 有一个只包含 0 和 1 的字符串构成的数组. 现在你的任务是找到可以由 m个 0 和 n个 1 构成的字符串的最大个数. 每一个 0 和 1 均只能使用一次.(给出的 0 和 1 的个数不会超过 100,给出的字符串数组的大小不会超过 600)
+<h3 id="Auoj-984-一和零"><a href="#Auoj-984-一和零" class="headerlink" title="*Auoj 984  一和零"></a>*Auoj 984  一和零</h3><h4 id="description-7"><a href="#description-7" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">在计算机世界中, 由于资源限制, 我们一直想要追求的是产生最大的利益.现在，假设你分别是 m个 0 和 n个 1 的统治者. 另一方面, 有一个只包含 0 和 1 的字符串构成的数组. 现在你的任务是找到可以由 m个 0 和 n个 1 构成的字符串的最大个数. 每一个 0 和 1 均只能使用一次.(给出的 0 和 1 的个数不会超过 100,给出的字符串数组的大小不会超过 600)
 
 输入
 第一行，若干个01字符串，中间以空格隔开 第二行 一个整数 m 第三行 一个整数 n
@@ -483,7 +606,7 @@ s1,s2的字符串长度&lt;&#x3D;500<span aria-hidden="true" class="line-numbers
 5
 解释： 所有字符串都可以由7个 0s 和 7个 1s来构成.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Auoj-985-俄罗斯套娃"><a href="#Auoj-985-俄罗斯套娃" class="headerlink" title="*Auoj 985 俄罗斯套娃"></a>*Auoj 985 俄罗斯套娃</h3><h4 id="description-7"><a href="#description-7" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定一些标记了宽度和高度的信封，宽度和高度以整数对形式 (w, h) 出现。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。请计算最多能有多少个信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。不允许旋转信封。
+<h3 id="Auoj-985-俄罗斯套娃"><a href="#Auoj-985-俄罗斯套娃" class="headerlink" title="*Auoj 985 俄罗斯套娃"></a>*Auoj 985 俄罗斯套娃</h3><h4 id="description-8"><a href="#description-8" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">给定一些标记了宽度和高度的信封，宽度和高度以整数对形式 (w, h) 出现。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。请计算最多能有多少个信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。不允许旋转信封。
 
 输入
 若干行，每行两个整数，第i行两个整数，表示第i个信封的宽和第i个信封的高
@@ -502,7 +625,7 @@ s1,s2的字符串长度&lt;&#x3D;500<span aria-hidden="true" class="line-numbers
 最多信封的个数为 3, 组合为: [2,3] &#x3D;&gt; [5,4] &#x3D;&gt; [6,7]。
 
 信封的总个数N&lt;&#x3D;100000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-986-鸡蛋掉落问题"><a href="#Auoj-986-鸡蛋掉落问题" class="headerlink" title="*Auoj 986 鸡蛋掉落问题"></a>*Auoj 986 鸡蛋掉落问题</h3><h4 id="description-8"><a href="#description-8" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">你将获得K个鸡蛋，并可以使用一栋从1到N共有N层楼的建筑。每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。你知道存在楼层F，满足0 &lt;&#x3D; F &lt;&#x3D; N 任何从高于F的楼层落下的鸡蛋都会碎，从F楼层或比它低的楼层落下的鸡蛋都不会破。每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层X扔下（满足 1 &lt;&#x3D; X &lt;&#x3D; N）。 你的目标是确切地知道 F 的值是多少。无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？
+<h3 id="Auoj-986-鸡蛋掉落问题"><a href="#Auoj-986-鸡蛋掉落问题" class="headerlink" title="*Auoj 986 鸡蛋掉落问题"></a>*Auoj 986 鸡蛋掉落问题</h3><h4 id="description-9"><a href="#description-9" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">你将获得K个鸡蛋，并可以使用一栋从1到N共有N层楼的建筑。每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。你知道存在楼层F，满足0 &lt;&#x3D; F &lt;&#x3D; N 任何从高于F的楼层落下的鸡蛋都会碎，从F楼层或比它低的楼层落下的鸡蛋都不会破。每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层X扔下（满足 1 &lt;&#x3D; X &lt;&#x3D; N）。 你的目标是确切地知道 F 的值是多少。无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？
 
 输入
 第一行，两个整数，分别表示K和N
@@ -527,7 +650,7 @@ K &#x3D; 2, N &#x3D; 6
 1 &lt;&#x3D; N &lt;&#x3D; 10000
 
 题解参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;xym4869&#x2F;p&#x2F;12581145.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-993-茶几问题"><a href="#Auoj-993-茶几问题" class="headerlink" title="*Auoj 993 茶几问题"></a>*Auoj 993 茶几问题</h3><h4 id="description-9"><a href="#description-9" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">Description
+<h3 id="Auoj-993-茶几问题"><a href="#Auoj-993-茶几问题" class="headerlink" title="*Auoj 993 茶几问题"></a>*Auoj 993 茶几问题</h3><h4 id="description-10"><a href="#description-10" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">Description
 n 个沙茶，被编号 1~n。排完队之后，每个沙茶希望，自己的相邻的两人只要无一个人的编号和自己的编号相差为 1（+1 或-1）就行； 现在想知道，存在多少方案满足沙茶们如此不苛刻的条件。
 
 Input
@@ -544,7 +667,7 @@ Sample Output
 有两种方案 2 4 1 3 和 3 1 4 2
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Auoj-1323-午餐"><a href="#Auoj-1323-午餐" class="headerlink" title="*Auoj 1323 午餐"></a>*Auoj 1323 午餐</h3><h4 id="description-10"><a href="#description-10" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">描述
+<h3 id="Auoj-1323-午餐"><a href="#Auoj-1323-午餐" class="headerlink" title="*Auoj 1323 午餐"></a>*Auoj 1323 午餐</h3><h4 id="description-11"><a href="#description-11" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">描述
 上午的训练结束了，THU ACM小组集体去吃午餐，他们一行N人来到了著名的十食堂。这里有两个打饭的窗口，每个窗口同一时刻只能给一个人打饭。由于每个人的口味（以及胃口）不同，所以他们要吃的菜各有不同，打饭所要花费的时间是因人而异的。另外每个人吃饭的速度也不尽相同，所以吃饭花费的时间也是可能有所不同的。
 
 THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并安排好每队中各人的排列顺序，然后一号队伍到一号窗口去排队打饭，二号队伍到二号窗口去排队打饭。每个人打完饭后立刻开始吃，所有人都吃完饭后立刻集合去六教地下室进行下午的训练。
@@ -579,7 +702,7 @@ THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并�
 6 4 8 5
 2 2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="P2501-HAOI2006-数字序列"><a href="#P2501-HAOI2006-数字序列" class="headerlink" title="*P2501 [HAOI2006]数字序列"></a>*P2501 [HAOI2006]数字序列</h3><h4 id="description-11"><a href="#description-11" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">Description
+<h3 id="P2501-HAOI2006-数字序列"><a href="#P2501-HAOI2006-数字序列" class="headerlink" title="*P2501 [HAOI2006]数字序列"></a>*P2501 [HAOI2006]数字序列</h3><h4 id="description-12"><a href="#description-12" class="headerlink" title="description"></a>description</h4><pre class="line-numbers language-none"><code class="language-none">Description
 　　现在我们有一个长度为n的整数序列A。但是它太不好看了，于是我们希望把它变成一个单调严格上升的序列。 但是不希望改变过多的数，也不希望改变的幅度太大。
 
 Input
@@ -619,6 +742,9 @@ Sample Output
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/06/14/Bzoj2457/" rel="next" title="Bzoj2457">
+                  Bzoj2457 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -23,18 +23,20 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="前言因为发现自己对好多算法的理解都不深，所以想起来写这么个东西。 SSSPSSSP(单源最短路径)是求从源点 $s$ 到其它所有点的最短路径问题。 也可以说是：对在权图 $G&#x3D;(V,E)$,从一个源点 $s$ 到汇点 $t$ 有很多路径，其中路径上权和最少的路径，称从 $s$ 到 $t$ 的最短路径。 一般常用的有几种算法：  Dijkstra SPFA Bellman-ford Floyd  那">
+<meta name="description" content="前言因为发现自己对好多算法的理解都不深，所以想起来写这么个东西。 一些基础的东西 我们每一次设的 $dist$ 都是“对于最短路径的估计”。 也就是说它最先是不确定的。  只有当我们求了最短路过了之后它才真正是“最短路径”。  关于松弛  说白了就是这样子的一个图：   我们对于任意的 $u,v$ ，如果 $dist[s -&gt; u] &gt; dist[s-&gt;v]+w[v-&gt;v]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法笔记-SSSP">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-SSSP/index.html">
 <meta property="og:site_name" content="Fujihara&#39;s Blog">
-<meta property="og:description" content="前言因为发现自己对好多算法的理解都不深，所以想起来写这么个东西。 SSSPSSSP(单源最短路径)是求从源点 $s$ 到其它所有点的最短路径问题。 也可以说是：对在权图 $G&#x3D;(V,E)$,从一个源点 $s$ 到汇点 $t$ 有很多路径，其中路径上权和最少的路径，称从 $s$ 到 $t$ 的最短路径。 一般常用的有几种算法：  Dijkstra SPFA Bellman-ford Floyd  那">
+<meta property="og:description" content="前言因为发现自己对好多算法的理解都不深，所以想起来写这么个东西。 一些基础的东西 我们每一次设的 $dist$ 都是“对于最短路径的估计”。 也就是说它最先是不确定的。  只有当我们求了最短路过了之后它才真正是“最短路径”。  关于松弛  说白了就是这样子的一个图：   我们对于任意的 $u,v$ ，如果 $dist[s -&gt; u] &gt; dist[s-&gt;v]+w[v-&gt;v]">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z3.ax1x.com/2021/06/05/2N96pt.png">
 <meta property="article:published_time" content="2021-03-14T01:54:17.000Z">
-<meta property="article:modified_time" content="2021-04-03T10:44:47.099Z">
+<meta property="article:modified_time" content="2021-06-14T03:17:02.545Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="algorithm note">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/06/05/2N96pt.png">
 
 
 <link rel="canonical" href="http://hylwxqwq.github.io/2021/03/14/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-SSSP/">
@@ -163,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSSP"><span class="nav-number">2.</span> <span class="nav-text">SSSP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">Dijkstra 算法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-amp-%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">定义&amp;过程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="nav-number">2.1.2.</span> <span class="nav-text">例题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bellman-frod-amp-SPFA"><span class="nav-number">2.2.</span> <span class="nav-text">bellman-frod &amp; SPFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bellman-%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">Bellman-定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPFA-%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.2.</span> <span class="nav-text">SPFA-定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">例题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88P3371%EF%BC%89%EF%BC%9A"><span class="nav-number">2.2.4.</span> <span class="nav-text">代码（P3371）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8ESPFA%E5%92%8CBellman%E5%88%A4%E6%96%AD%E8%B4%9F%E7%8E%AF"><span class="nav-number">2.3.</span> <span class="nav-text">关于SPFA和Bellman判断负环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bellman%EF%BC%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">Bellman：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPFA"><span class="nav-number">2.3.2.</span> <span class="nav-text">SPFA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%EF%BC%9A%E5%85%B3%E4%BA%8E%E8%B4%9F%E8%BE%B9%E6%9D%83%E5%A4%84%E7%90%86"><span class="nav-number">2.3.3.</span> <span class="nav-text">附：关于负边权处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Floyd"><span class="nav-number">2.4.</span> <span class="nav-text">Floyd</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85"><span class="nav-number">2.4.2.</span> <span class="nav-text">传递闭包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">练习题：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">2.</span> <span class="nav-text">一些基础的东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSSP"><span class="nav-number">3.</span> <span class="nav-text">SSSP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">Dijkstra 算法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-amp-%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">3.1.1.</span> <span class="nav-text">定义&amp;过程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="nav-number">3.1.2.</span> <span class="nav-text">例题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">3.1.3.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bellman-frod-amp-SPFA"><span class="nav-number">3.2.</span> <span class="nav-text">bellman-frod &amp; SPFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bellman-%E5%AE%9A%E4%B9%89"><span class="nav-number">3.2.1.</span> <span class="nav-text">Bellman-定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPFA-%E5%AE%9A%E4%B9%89"><span class="nav-number">3.2.2.</span> <span class="nav-text">SPFA-定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">例题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88P3371%EF%BC%89%EF%BC%9A"><span class="nav-number">3.2.4.</span> <span class="nav-text">代码（P3371）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8ESPFA%E5%92%8CBellman%E5%88%A4%E6%96%AD%E8%B4%9F%E7%8E%AF"><span class="nav-number">3.3.</span> <span class="nav-text">关于SPFA和Bellman判断负环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bellman%EF%BC%9A"><span class="nav-number">3.3.1.</span> <span class="nav-text">Bellman：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPFA"><span class="nav-number">3.3.2.</span> <span class="nav-text">SPFA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%EF%BC%9A%E5%85%B3%E4%BA%8E%E8%B4%9F%E8%BE%B9%E6%9D%83%E5%A4%84%E7%90%86"><span class="nav-number">3.3.3.</span> <span class="nav-text">附：关于负边权处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Floyd"><span class="nav-number">3.4.</span> <span class="nav-text">Floyd</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">3.4.1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85"><span class="nav-number">3.4.2.</span> <span class="nav-text">传递闭包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%9A"><span class="nav-number">3.5.</span> <span class="nav-text">练习题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">3.6.</span> <span class="nav-text">Bellman_Ford的证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijsktra%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">3.7.</span> <span class="nav-text">Dijsktra的证明</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,7 +181,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -270,7 +272,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-03 18:44:47" itemprop="dateModified" datetime="2021-04-03T18:44:47+08:00">2021-04-03</time>
+        <time title="修改时间：2021-06-14 11:17:02" itemprop="dateModified" datetime="2021-06-14T11:17:02+08:00">2021-06-14</time>
       </span>
 
   
@@ -284,6 +286,17 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为发现自己对好多算法的理解都不深，所以想起来写这么个东西。</p>
+<h2 id="一些基础的东西"><a href="#一些基础的东西" class="headerlink" title="一些基础的东西"></a>一些基础的东西</h2><ol>
+<li><p>我们每一次设的 $dist$ 都是“对于最短路径的估计”。</p>
+<p>也就是说它最先是不确定的。</p>
+<p> 只有当我们求了最短路过了之后它才真正是“最短路径”。</p>
+</li>
+<li><p>关于松弛</p>
+<p> 说白了就是这样子的一个图：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2N96pt"><img src="https://z3.ax1x.com/2021/06/05/2N96pt.png" alt="2N96pt.png"></a></p>
+<p> 我们对于任意的 $u,v$ ，如果 $dist[s -&gt; u] &gt; dist[s-&gt;v]+w[v-&gt;v]$<br>也就是说存在新的更短的路径那么就更新估计。</p>
+</li>
+</ol>
 <h2 id="SSSP"><a href="#SSSP" class="headerlink" title="SSSP"></a>SSSP</h2><p>SSSP(单源最短路径)是求从源点 $s$ 到其它所有点的最短路径问题。</p>
 <p>也可以说是：对在权图 $G=(V,E)$,从一个源点 $s$ 到汇点 $t$ 有很多路径，其中路径上权和最少的路径，称从 $s$ 到 $t$ 的最短路径。</p>
 <p>一般常用的有几种算法：</p>
@@ -309,11 +322,14 @@
 </ol>
 <p>$\alpha$ : <code>源点 到 S 中的任意一个点的距离都不大于源点到 T 中的任意一个点的最短路长度</code>。 </p>
 <p>$\beta$ ： <code>S中的点的 dist = 源点到这个点的距离，T中的点的 dist = 从源点到这个点的最短路长度，且中间经过的点只有在S中的顶点。</code></p>
-<p>那么有一个结论：源点到 $T$ 中顶点的，或是从源点到$T$ 中顶点的直接路径的权值；或是从源点经过 $S$ 中的顶点到该顶点的路径权值之和。</p>
+<p>那么有一个结论：</p>
+<blockquote>
+<p>源点到 $T$ 中顶点的，或是从源点到$T$ 中顶点的直接路径的权值；或是从源点经过 $S$ 中的顶点到该顶点的路径权值之和。</p>
+</blockquote>
 <p>不过这里有一个更加易于理解的过程：</p>
 <pre class="line-numbers language-none"><code class="language-none">1. memset(dist,INF,sizeof(dist);
 
-2. dist[1]&#x3D;0;
+2. dist[s]&#x3D;0;
 
 3.找出一个没有被标记的节点 v，标记一下。
 
@@ -395,10 +411,14 @@ priority_queue<span class="token operator">&lt;</span>pair<span class="token ope
 <h4 id="Bellman-定义"><a href="#Bellman-定义" class="headerlink" title="Bellman-定义"></a>Bellman-定义</h4><p>$\text{bellman}$ 是基于迭代思想的算法。</p>
 <p>做法十分简单。</p>
 <p>扫描所有边，如果 $dist[y] &gt; dist[x] + w[x][y]$ ,那么用 $dist[x] + w[x][y]$ 更新 $dist [y]$ 。直到它没有更新操作发生。</p>
+<p>说白了就是个暴力（</p>
 <p>很明显的，它的复杂度是 $O(nm)$ 级别的。</p>
 <h4 id="SPFA-定义"><a href="#SPFA-定义" class="headerlink" title="SPFA-定义"></a>SPFA-定义</h4><p>而 $\text{SPFA}$ ， 则是对$\text{bellman}$的一个队列优化。</p>
+<p>这个队列里的元素是“有更新潜力的”。</p>
+<p>也就是说它可能还能更新。</p>
+<p>所以每次松弛扩展的时候就把索扩展的元素放进队即可。</p>
 <p>开始的时候会有一个队列，让源点处在其中。</p>
-<p>每次执行$\text{bellman}$的那种松弛操作之后，将其放入队列，直到队列是空的为止。</p>
+<p>每次执行$\text{bellman}$的那种松弛操作之后，将其放入队列，直到队列是空的为止（没有有更新潜力的元素）。</p>
 <p>但是 $\text{SPFA}$ ，常常成为毒瘤出题人卡的主要对象。</p>
 <p>（在随机图上是比较优秀的，但是如果出题人构造了一个菊花图一类的东西……那您就可以原地去世了）。</p>
 <h4 id="例题：-1"><a href="#例题：-1" class="headerlink" title="例题："></a>例题：</h4><ul>
@@ -498,6 +518,7 @@ queue<span class="token operator">&lt;</span><span class="token keyword">int</sp
 <p>反之则亦然。</p>
 <p>$\text{SPFA}$ 就不放代码了。</p>
 <p>其实和上面的 $\text{bellman}$ 差不多。</p>
+<p>当然还有一种办法是判一个点的入队次数。</p>
 <hr>
 <h4 id="附：关于负边权处理"><a href="#附：关于负边权处理" class="headerlink" title="附：关于负边权处理"></a>附：关于负边权处理</h4><table>
 <thead>
@@ -525,7 +546,7 @@ queue<span class="token operator">&lt;</span><span class="token keyword">int</sp
 </tbody></table>
 <p>（您会发现，所有基于贪心的算法都不行，您可以想一想为什么（这应该很好想））。</p>
 <hr>
-<h3 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h3><p>本质上来说，Floyd是一个动态规划算法。</p>
+<h3 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h3><p>本质上来说，$\text{floyd}$ 是一个动态规划算法。</p>
 <p>它能够在 $\text{O}(n^3)$ 的复杂度里解决任意两点之间的最短距离问题。</p>
 <p>而且一般图比较稠密。</p>
 <p>假设 $f[k][i][j]$ 表示<strong>经过一些编号不超过k的节点，从i到j的最短路长度</strong></p>
@@ -539,8 +560,8 @@ queue<span class="token operator">&lt;</span><span class="token keyword">int</sp
 <p>不过注意在写循环的时候，k要放在最外层。</p>
 <p>因为它代表“阶段”，如果不是第一层那么转移顺序会炸开来。</p>
 <p>至于初始化。用邻接矩阵就可以了。</p>
-<p>根据定义 :$f[0][i][j]=a[i][j]$ ,然后跑一个$n^3$的DP就行了。</p>
-<p>当然因为转移的时候$k$只会从 $k-1$ 转移而来。</p>
+<p>根据定义 :$f[0][i][j]=a[i][j]$ ,然后跑一个 $n^3$ 的DP就行了。</p>
+<p>当然因为转移的时候 $k$ 只会从 $k-1$ 转移而来。</p>
 <p>所以也可以和背包一样滚动数组把第一维滚掉。</p>
 <p>也就是：</p>
 <p>$$f[i][j]=\min(f[i][j],(f[i][k]+f[k][j]))$$</p>
@@ -584,7 +605,7 @@ queue<span class="token operator">&lt;</span><span class="token keyword">int</sp
 <p>反之则没有。</p>
 <p>且 $f[i][i]=true$</p>
 <p>比如在上面的例子里就是 $f[a][b]=1,f[b][c]=1$</p>
-<p>然后跑一遍floyd。</p>
+<p>然后跑一遍$\text{floyd}$。</p>
 <p>在转移的时候将所有可以推出的关系更新即可。</p>
 <hr>
 <h3 id="练习题："><a href="#练习题：" class="headerlink" title="练习题："></a>练习题：</h3><ul>
@@ -595,6 +616,20 @@ queue<span class="token operator">&lt;</span><span class="token keyword">int</sp
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1522">P1522 [USACO2.4]牛的旅行 Cow Tours</a></li>
 </ul>
 <hr>
+<h3 id="Bellman-Ford的证明"><a href="#Bellman-Ford的证明" class="headerlink" title="Bellman_Ford的证明"></a>Bellman_Ford的证明</h3><ol>
+<li>经过一轮松弛，从起点出发到某个相邻点$u$的最短路径一定会被确定下来。（不可能出现：所有点都还不是最短路径值）</li>
+<li>再经过一轮松弛，从 $u$ 出发到某个相邻点$v$的最短路径一定会被确定下来。</li>
+<li>不含有负环的图中，一条简单路径最多 $n$ 个点，$n-1$ 条边。</li>
+<li>最多经过 $n-1$ 轮松弛，便可以把到最远的点的最短距离确定下来。</li>
+<li>$n-1$ 轮必然就能把最远点的最短路径确定下来，最远点的最短路径都确定下来了，其他点肯定在之前已经确定最短路径值。</li>
+</ol>
+<h3 id="Dijsktra的证明"><a href="#Dijsktra的证明" class="headerlink" title="Dijsktra的证明"></a>Dijsktra的证明</h3><ol>
+<li>没有负边权，那么路径值最小的点，就不可能在后续的过程中更新，将其染色。</li>
+<li>比如起点的路径值为 $0$，这个值就不可能被更新，所以先染色。</li>
+<li>因为每步都是走正边权，从其他路径绕过来，肯定路径值必然增加。</li>
+<li>被确定的最小值点，既然已经比其他点值小，就不可能从其他点迂回后更新它。</li>
+<li>所以每步的最小值，一定是路径值最小的时候，立即染色，不可能在后边更新了。</li>
+</ol>
 
     </div>
 
