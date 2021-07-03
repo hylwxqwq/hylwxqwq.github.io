@@ -23,18 +23,18 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Description：Sherry现在碰到了一个棘手的问题，有Ｎ个整数需要排序。 Sherry手头能用的工具就是若干个双端队列。 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事： 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数； 2．将当前数放入已有的队列的头之前或者尾之后。 对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。  Input">
+<meta name="description" content="Description：Sherry现在碰到了一个棘手的问题，有N个整数需要排序。 Sherry手头能用的工具就是若干个双端队列。 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事： 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数； 2．将当前数放入已有的队列的头之前或者尾之后。 对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。  Input">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bzoj2457">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/06/14/Bzoj2457/index.html">
 <meta property="og:site_name" content="Fujihara&#39;s Blog">
-<meta property="og:description" content="Description：Sherry现在碰到了一个棘手的问题，有Ｎ个整数需要排序。 Sherry手头能用的工具就是若干个双端队列。 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事： 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数； 2．将当前数放入已有的队列的头之前或者尾之后。 对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。  Input">
+<meta property="og:description" content="Description：Sherry现在碰到了一个棘手的问题，有N个整数需要排序。 Sherry手头能用的工具就是若干个双端队列。 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事： 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数； 2．将当前数放入已有的队列的头之前或者尾之后。 对所有的数处理完成之后，Sherry将这些队列排序后就可以得到一个非降的序列。  Input">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://z3.ax1x.com/2021/06/11/2Wfief.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/06/11/2Wh7VK.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/06/11/2WhO8H.png">
 <meta property="article:published_time" content="2021-06-14T03:15:13.000Z">
-<meta property="article:modified_time" content="2021-06-14T03:16:04.419Z">
+<meta property="article:modified_time" content="2021-07-03T13:31:49.873Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -266,10 +266,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-06-14 11:15:13 / 修改时间：11:16:04" itemprop="dateCreated datePublished" datetime="2021-06-14T11:15:13+08:00">2021-06-14</time>
+      <time title="创建时间：2021-06-14 11:15:13" itemprop="dateCreated datePublished" datetime="2021-06-14T11:15:13+08:00">2021-06-14</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-03 21:31:49" itemprop="dateModified" datetime="2021-07-03T21:31:49+08:00">2021-07-03</time>
+      </span>
 
   
 </div>
@@ -281,7 +287,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Description："><a href="#Description：" class="headerlink" title="Description："></a>Description：</h2><pre class="line-numbers language-none"><code class="language-none">Sherry现在碰到了一个棘手的问题，有Ｎ个整数需要排序。
+        <h2 id="Description："><a href="#Description：" class="headerlink" title="Description："></a>Description：</h2><pre class="line-numbers language-none"><code class="language-none">Sherry现在碰到了一个棘手的问题，有N个整数需要排序。
 Sherry手头能用的工具就是若干个双端队列。
 她需要依次处理这N个数，对于每个数，Sherry能做以下两件事：
 1．新建一个双端队列，并将当前数作为这个队列中的唯一的数；
@@ -370,6 +376,9 @@ pos:|8 1 3 7|,|4 5 2|,|6|。<span aria-hidden="true" class="line-numbers-rows"><
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/07/03/%E6%88%91%E6%98%AF%E6%80%8E%E4%B9%88%E5%85%A5%E5%9D%91%E4%B8%9C%E6%96%B9%E7%9A%84/" rel="next" title="我是怎么入坑东方的">
+                  我是怎么入坑东方的 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

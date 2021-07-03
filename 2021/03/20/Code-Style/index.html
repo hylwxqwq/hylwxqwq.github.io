@@ -23,15 +23,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="RT。 时间：20&#x2F;3&#x2F;8   万能头 快读板子封装 代码块和代码块，空行区别。 大括号不换行。 for里register while 和 if 如果后面能只用一行就不打括号。(if 后是return 除外 else if 打括号。 线段树Define来写。 写图论喜欢写 u，v ++i 和 i++ 随缘 一道题如果要多个数据结构，会用namespace封装。 如果不是撞关键字绝对不大写。 讨厌空">
+<meta name="description" content="RT。 时间：21&#x2F;7&#x2F;3   万能头 快读板子封装 代码块和代码块，空行区别。 大括号不换行。 for里register while 和 if 如果后面能只用一行就不打括号。(if 后是return 除外 else if 打括号。 线段树Define来写。 写图论喜欢写 u，v ++i 和 i++ 随缘 一道题如果要多个数据结构，会用namespace封装。 如果不是撞关键字绝对不大写。 讨厌空">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Code Style">
 <meta property="og:url" content="http://hylwxqwq.github.io/2021/03/20/Code-Style/index.html">
 <meta property="og:site_name" content="Fujihara&#39;s Blog">
-<meta property="og:description" content="RT。 时间：20&#x2F;3&#x2F;8   万能头 快读板子封装 代码块和代码块，空行区别。 大括号不换行。 for里register while 和 if 如果后面能只用一行就不打括号。(if 后是return 除外 else if 打括号。 线段树Define来写。 写图论喜欢写 u，v ++i 和 i++ 随缘 一道题如果要多个数据结构，会用namespace封装。 如果不是撞关键字绝对不大写。 讨厌空">
+<meta property="og:description" content="RT。 时间：21&#x2F;7&#x2F;3   万能头 快读板子封装 代码块和代码块，空行区别。 大括号不换行。 for里register while 和 if 如果后面能只用一行就不打括号。(if 后是return 除外 else if 打括号。 线段树Define来写。 写图论喜欢写 u，v ++i 和 i++ 随缘 一道题如果要多个数据结构，会用namespace封装。 如果不是撞关键字绝对不大写。 讨厌空">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-20T12:33:15.000Z">
-<meta property="article:modified_time" content="2021-03-20T12:33:42.362Z">
+<meta property="article:modified_time" content="2021-07-03T13:33:34.389Z">
 <meta property="article:author" content="black_trees">
 <meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -261,10 +261,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-03-20 20:33:15 / 修改时间：20:33:42" itemprop="dateCreated datePublished" datetime="2021-03-20T20:33:15+08:00">2021-03-20</time>
+      <time title="创建时间：2021-03-20 20:33:15" itemprop="dateCreated datePublished" datetime="2021-03-20T20:33:15+08:00">2021-03-20</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-03 21:33:34" itemprop="dateModified" datetime="2021-07-03T21:33:34+08:00">2021-07-03</time>
+      </span>
 
   
 </div>
@@ -277,7 +283,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>RT。</p>
-<p>时间：20/3/8</p>
+<p>时间：21/7/3</p>
 <hr>
 <ol>
 <li>万能头</li>
@@ -298,6 +304,7 @@
 <li>尖括号能不空格就不空。</li>
 <li>maxn不写，写si（size缩写）</li>
 <li>一个模块的变量定义到一起。</li>
+<li>if里多条件要打空格（new add）</li>
 </ol>
 <p>几份代码：</p>
 <p>tarjan：</p>
@@ -380,11 +387,11 @@ stack<span class="token operator">&lt;</span><span class="token keyword">int</sp
     <span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span><span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">read</span><span class="token punctuation">(</span>T <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token keyword">int</span> f<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token keyword">char</span> ch<span class="token operator">=</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>ch<span class="token operator">&lt;</span><span class="token string">'0'</span><span class="token operator">||</span>ch<span class="token operator">></span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>ch<span class="token operator">&lt;</span><span class="token string">'0'</span> <span class="token operator">||</span> ch<span class="token operator">></span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
             <span class="token keyword">if</span><span class="token punctuation">(</span>ch<span class="token operator">==</span><span class="token string">'-'</span><span class="token punctuation">)</span>f<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
             ch<span class="token operator">=</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>ch<span class="token operator">>=</span><span class="token string">'0'</span><span class="token operator">&amp;&amp;</span>ch<span class="token operator">&lt;=</span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>ch<span class="token operator">>=</span><span class="token string">'0'</span> <span class="token operator">&amp;&amp;</span> ch<span class="token operator">&lt;=</span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
             x<span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token operator">&lt;&lt;</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token punctuation">(</span>x<span class="token operator">&lt;&lt;</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token punctuation">(</span>ch<span class="token operator">^</span><span class="token number">48</span><span class="token punctuation">)</span><span class="token punctuation">,</span>ch<span class="token operator">=</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>x<span class="token operator">*=</span>f<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
@@ -460,7 +467,7 @@ stack<span class="token operator">&lt;</span><span class="token keyword">int</sp
 
 <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">,</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
 	<span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>nl<span class="token operator">=</span><span class="token function">l</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span>nr<span class="token operator">=</span><span class="token function">r</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>nl<span class="token operator">&amp;&amp;</span>nr<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>nl <span class="token operator">&amp;&amp;</span> nr<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> <span class="token function">sum</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">&#125;</span>
     <span class="token function">pushdown</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -476,7 +483,7 @@ stack<span class="token operator">&lt;</span><span class="token keyword">int</sp
 
 <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">,</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">,</span><span class="token keyword">int</span> v<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> nl<span class="token operator">=</span><span class="token function">l</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span>nr<span class="token operator">=</span><span class="token function">r</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>nl<span class="token operator">&amp;&amp;</span>nr<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">&lt;=</span>nl <span class="token operator">&amp;&amp;</span> nr<span class="token operator">&lt;=</span>r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token function">sum</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">+=</span>v<span class="token operator">*</span><span class="token punctuation">(</span>nr<span class="token operator">-</span>nl<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">tag</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">+=</span>v<span class="token punctuation">;</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -512,6 +519,8 @@ stack<span class="token operator">&lt;</span><span class="token keyword">int</sp
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果以前的代码和当前马蜂不一样以现在为准。</p>
 
     </div>
 
