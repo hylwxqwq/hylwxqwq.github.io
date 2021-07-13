@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="description描述 S城现有两座监狱，一共关押着N名罪犯，编号分别为1~N。他们之间的关系自然也极不和谐。 很多罪犯之间甚至积怨已久，如果客观条件具备则随时可能爆发冲突。 我们用“怨气值”（一个正整数值）来表示某两名罪犯之间的仇恨程度，怨气值越大，则这两名罪犯之间的积怨越多。 如果两名怨气值为c的罪犯被关押在同一监狱，他们俩之间会发生摩擦，并造成影响力为c的冲突事件。 每年年末，警察局会将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="luogu1525">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/07/13/luogu1525/index.html">
+<meta property="og:site_name" content="Fujihara&#39;s Blog">
+<meta property="og:description" content="description描述 S城现有两座监狱，一共关押着N名罪犯，编号分别为1~N。他们之间的关系自然也极不和谐。 很多罪犯之间甚至积怨已久，如果客观条件具备则随时可能爆发冲突。 我们用“怨气值”（一个正整数值）来表示某两名罪犯之间的仇恨程度，怨气值越大，则这两名罪犯之间的积怨越多。 如果两名怨气值为c的罪犯被关押在同一监狱，他们俩之间会发生摩擦，并造成影响力为c的冲突事件。 每年年末，警察局会将">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-13T03:23:48.000Z">
+<meta property="article:modified_time" content="2021-07-13T03:25:42.407Z">
+<meta property="article:author" content="black_trees">
+<meta property="article:tag" content="solution">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/07/13/luogu1525/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>luogu1525 | Fujihara's Blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Fujihara's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">缅怀袁隆平院士，吴孟超院士，夏德昭老爷子和杨伯达院长！</p>
+      <img class="custom-logo-image" src="https://z3.ax1x.com/2021/04/24/cjBERg.jpg" alt="Fujihara's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-th fa-fw"></i>友链</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-lau"><a href="/lau/" rel="section"><i class="fa fa-sitemap fa-fw"></i>一言</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#description"><span class="nav-number">1.</span> <span class="nav-text">description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">solution</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">Fujihara Nobuyuki</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/hylwxqwq" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/07/13/luogu1525/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Fujihara Nobuyuki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fujihara's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          luogu1525
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-13 11:23:48 / 修改时间：11:25:42" itemprop="dateCreated datePublished" datetime="2021-07-13T11:23:48+08:00">2021-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="description"><a href="#description" class="headerlink" title="description"></a>description</h2><pre class="line-numbers language-none"><code class="language-none">描述
+S城现有两座监狱，一共关押着N名罪犯，编号分别为1~N。他们之间的关系自然也极不和谐。
+很多罪犯之间甚至积怨已久，如果客观条件具备则随时可能爆发冲突。
+我们用“怨气值”（一个正整数值）来表示某两名罪犯之间的仇恨程度，怨气值越大，则这两名罪犯之间的积怨越多。
+如果两名怨气值为c的罪犯被关押在同一监狱，他们俩之间会发生摩擦，并造成影响力为c的冲突事件。
+每年年末，警察局会将本年内监狱中的所有冲突事件按影响力从大到小排成一个列表，然后上报到S城Z市长那里。
+公务繁忙的Z市长只会去看列表中的第一个事件的影响力，如果影响很坏，他就会考虑撤换警察局长。
+在详细考察了N名罪犯间的矛盾关系后，警察局长觉得压力巨大。
+他准备将罪犯们在两座监狱内重新分配，以求产生的冲突事件影响力都较小，从而保住自己的乌纱帽。
+假设只要处于同一监狱内的某两个罪犯间有仇恨，那么他们一定会在每年的某个时候发生摩擦。
+那么，应如何分配罪犯，才能使Z市长看到的那个冲突事件的影响力最小？这个最小值是多少？
+
+格式
+输入格式
+输入文件的每行中两个数之间用一个空格隔开。
+
+第一行为两个正整数N和M，分别表示罪犯的数目以及存在仇恨的罪犯对数。
+
+接下来的M行每行为三个正整数aj，bj，cj，表示aj号和bj号罪犯之间存在仇恨，其怨气值为cj。
+
+数据保证1&lt;&#x3D;aj&lt;&#x3D;bj&lt;&#x3D;N,0&lt;&#x3D;cj&lt;&#x3D;1000000000,且每对罪犯组合只出现一次。
+
+输出格式
+输出文件共1行，为Z市长看到的那个冲突事件的影响力。如果本年内监狱中未发生任何冲突事件，请输出0。
+
+样例输入
+4 6
+1 4 2534
+2 3 3512
+1 2 28351
+1 3 6618
+2 4 1805
+3 4 12884
+样例输出
+3512
+提示
+分配方法：市长看到的冲突事件影响力是3512（由2号和3号罪犯引发）。其他任何分法都不会比这个分法更优。
+对于30%的数据有N≤15。
+对于70%的数据有N≤2000，M≤50000。
+对于100%的数据有N≤20000，M≤100000。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><p>题目里面说了 :</p>
+<blockquote>
+<p>按影响力从大到小排成一个列表</p>
+</blockquote>
+<p>所以不妨我们就按照它说的来做。</p>
+<p>那么从大到小处理，如果能够通过“分配到两个不同的监狱”来避免这个冲突的发生，那么我们就分。</p>
+<p>反之如果没有办法分到两个不同的监狱，我们就输出（因为从大到小之后第一个矛盾的情况一定是答案，你后面不管怎么决策都不会影响答案了）。</p>
+<p>然后你会发现这里对于一个罪犯和其他罪犯之间的关系是可能有多条的。</p>
+<p>所以我们就需要用到并查集来维护这些不同的信息。</p>
+<p>考虑怎么样把两个罪犯分到不同监狱之后维护他们之间的位置（在哪个监狱）信息。</p>
+<p>第一个想法是建立两个集合 $A,B$ 来表示 A和B 两个监狱。</p>
+<p>但是这样做的话有可能一个人会被同时分到两个监狱里去，非常不好处理。</p>
+<p>怎么办？既然这里是会出现“一个人在两个监狱里面”。</p>
+<p>那么我们就把这个情况变得好处理一些。</p>
+<p>对于任意的一个罪犯 $x$ ，我们考虑建立一个他的在另一个监狱的镜像 $x^{‘}$。</p>
+<p>这个 $x^{‘}$ 有什么用呢？</p>
+<p>如果说 $x ,y$不能够相连（关在一起），那么我们就把 $y$ 和 $x^{‘}$ 合并。</p>
+<p>意味着 $x$ 和 $y$ 不在同一个监狱（因为 $x^{‘}$ 就代表$x$在另一个监狱的“镜像”，而镜像和本体是不在一起的 ）</p>
+<p>那么信息就得到了维护。</p>
+<p>考虑什么时候矛盾。</p>
+<p>很明显，假设新扫到的二元组 $(x,y)$ 已经因为前面的关系而关在一起了。</p>
+<p>那么矛盾必定发生，输出即可。</p>
+<p>代码：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> si_n<span class="token operator">=</span><span class="token number">2e4</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> si_m<span class="token operator">=</span><span class="token number">1e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> pa<span class="token punctuation">[</span>si_n<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">mir</span><span class="token expression"><span class="token punctuation">(</span>x<span class="token punctuation">)</span> x<span class="token operator">+</span>n </span><span class="token comment">// the mirror of element 'x'</span></span>
+
+<span class="token keyword">struct</span> <span class="token class-name">node</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> u<span class="token punctuation">,</span>v<span class="token punctuation">,</span>w<span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">const</span> node <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token keyword">const</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> w<span class="token operator">></span>b<span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>e<span class="token punctuation">[</span>si_m<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">!=</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> pa<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> rx<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>ry<span class="token operator">=</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rx<span class="token operator">==</span>ry<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    pa<span class="token punctuation">[</span>rx<span class="token punctuation">]</span><span class="token operator">=</span>ry<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">bool</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">==</span><span class="token function">root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        cin<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>u<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>v<span class="token operator">>></span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        pa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>e<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>e<span class="token operator">+</span><span class="token number">1</span><span class="token operator">+</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> x<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>u<span class="token punctuation">,</span>y<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>v<span class="token punctuation">,</span>w<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">query</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token operator">==</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+            <span class="token function">Union</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token function">mir</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">Union</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span><span class="token function">mir</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solution/" rel="tag"># solution</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/13/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Tarjan%E7%9A%84SCC%E7%AE%97%E6%B3%95/" rel="prev" title="算法笔记-Tarjan的SCC算法">
+                  <i class="fa fa-chevron-left"></i> 算法笔记-Tarjan的SCC算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

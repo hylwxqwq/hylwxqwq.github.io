@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hylwxqwq.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="前言我爱 Tarjan！ Tarjan万岁！ （高中部的生活太美好，赛扩你high铁鸭子大~ 一些基础流图和搜索树因为 $\text{Tarjan}$ 的 $\text{SCC}$ 算法是基于 $\text{dfs}$ 的。 所以需要一些关于“搜索树”的概念。 我们给定一张有向图 $G&#x3D;(V,E)$。 如果存在一个 $r \in V$ ，使得从 $r$ 出发能够到达 $V$ 中其它的所有点。 那么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-Tarjan的SCC算法">
+<meta property="og:url" content="http://hylwxqwq.github.io/2021/07/13/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Tarjan%E7%9A%84SCC%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Fujihara&#39;s Blog">
+<meta property="og:description" content="前言我爱 Tarjan！ Tarjan万岁！ （高中部的生活太美好，赛扩你high铁鸭子大~ 一些基础流图和搜索树因为 $\text{Tarjan}$ 的 $\text{SCC}$ 算法是基于 $\text{dfs}$ 的。 所以需要一些关于“搜索树”的概念。 我们给定一张有向图 $G&#x3D;(V,E)$。 如果存在一个 $r \in V$ ，使得从 $r$ 出发能够到达 $V$ 中其它的所有点。 那么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z3.ax1x.com/2021/07/11/WCYNrj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/07/11/WCUWZj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/07/11/WCd6bQ.png">
+<meta property="article:published_time" content="2021-07-13T03:22:31.000Z">
+<meta property="article:modified_time" content="2021-07-13T03:25:43.732Z">
+<meta property="article:author" content="black_trees">
+<meta property="article:tag" content="algorithm note">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/07/11/WCYNrj.png">
+
+
+<link rel="canonical" href="http://hylwxqwq.github.io/2021/07/13/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Tarjan%E7%9A%84SCC%E7%AE%97%E6%B3%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>算法笔记-Tarjan的SCC算法 | Fujihara's Blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Fujihara's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">缅怀袁隆平院士，吴孟超院士，夏德昭老爷子和杨伯达院长！</p>
+      <img class="custom-logo-image" src="https://z3.ax1x.com/2021/04/24/cjBERg.jpg" alt="Fujihara's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-th fa-fw"></i>友链</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-lau"><a href="/lau/" rel="section"><i class="fa fa-sitemap fa-fw"></i>一言</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">一些基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E5%9B%BE%E5%92%8C%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">2.1.</span> <span class="nav-text">流图和搜索树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%EF%BC%88Strongly-Connected-Component%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">强连通分量（Strongly Connected Component）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tarjan%E7%9A%84%E7%BA%BF%E6%80%A7SCC%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Tarjan的线性SCC算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%80%9D%E6%83%B3"><span class="nav-number">3.1.</span> <span class="nav-text">基础思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code%EF%BC%9A"><span class="nav-number">3.3.</span> <span class="nav-text">Code：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">例题：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="black_trees"
+      src="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+  <p class="site-author-name" itemprop="name">black_trees</p>
+  <div class="site-description" itemprop="description">Fujihara Nobuyuki</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hylwxqwq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hylwxqwq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:black_trees@foxmail.com" title="E-Mail → mailto:black_trees@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/blacktrees9" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;blacktrees9" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/384506244" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;384506244" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/hylwxqwq" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hylwxqwq.github.io/2021/07/13/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-Tarjan%E7%9A%84SCC%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z3.ax1x.com/2021/04/24/cjBERg.jpg">
+      <meta itemprop="name" content="black_trees">
+      <meta itemprop="description" content="Fujihara Nobuyuki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fujihara's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法笔记-Tarjan的SCC算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-13 11:22:31 / 修改时间：11:25:43" itemprop="dateCreated datePublished" datetime="2021-07-13T11:22:31+08:00">2021-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我爱 Tarjan！ Tarjan万岁！</p>
+<p>（高中部的生活太美好，赛扩你high铁鸭子大~</p>
+<h2 id="一些基础"><a href="#一些基础" class="headerlink" title="一些基础"></a>一些基础</h2><h3 id="流图和搜索树"><a href="#流图和搜索树" class="headerlink" title="流图和搜索树"></a>流图和搜索树</h3><p>因为 $\text{Tarjan}$ 的 $\text{SCC}$ 算法是基于 $\text{dfs}$ 的。</p>
+<p>所以需要一些关于“搜索树”的概念。</p>
+<p>我们给定一张有向图 $G=(V,E)$。</p>
+<p>如果存在一个 $r \in V$ ，使得从 $r$ 出发能够到达 $V$ 中其它的所有点。</p>
+<p>那么我们称 $G$ 是一张“流图”，记作 $(G,r)$。</p>
+<p>那么对于流图 $(G,r)$ ,我们对它进行 $\text{dfs}$，每个节点都只访问一次。</p>
+<p>我们可以得到一颗搜索树 $T$ ，它就是这个流图 $(G,r)$ 的搜索树。</p>
+<p>那么在 $(G,r)$ 的所有有向边 $(x,y) ,x \to y$ 中会出现这样子的四种情况：</p>
+<ol>
+<li>树边：搜索树 $T$ 中的边。</li>
+<li>正向边（前向边）： 在搜索树中 $x$ 是 $y$ 的祖先节点。</li>
+<li>反向边（后向边）： 在搜索树中 $y$ 是 $x$ 的祖先节点。</li>
+<li>交叉边（横叉边）： 在搜索树过程中不同子树之间的边（也就是 $dfn[y]&lt;dfn[x]$ （$dfn$ 是什么等会会说））。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WCYNrj"><img src="https://z3.ax1x.com/2021/07/11/WCYNrj.png" alt="WCYNrj.png"></a></p>
+<p>这是一个流图 $(G,r)$ 和它的搜索树 $T$。</p>
+<p>另外，在执行 $\text{dfs}$ 的过程当中，我们按照 <strong>访问</strong> 的次序以此给每一个节点 $u$ 打上一个标记 $dfn[u]$ （$dfn[u] \in N_+ , ,, dfn[u] \in [1,n]$）。</p>
+<p>这个标记 $dfn$ 被称作“时间戳”。</p>
+<h3 id="强连通分量（Strongly-Connected-Component）"><a href="#强连通分量（Strongly-Connected-Component）" class="headerlink" title="强连通分量（Strongly Connected Component）"></a>强连通分量（Strongly Connected Component）</h3><p>定义：</p>
+<p>在有向图 $G$ 中，如果任意两个顶点都是连通的，那么这个图就是强连通图。</p>
+<p>非强连通图的极大强连通子图，被称为强连通分量。</p>
+<p>下图中的子图 $ {1,2,3,5}$ 就是一个极大强连通子图，子图 ${4}$ 也是一个极大强连通子图。</p>
+<p>对于“极大”的理解，就是在一个局部子图中不能再大。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WCUWZj"><img src="https://z3.ax1x.com/2021/07/11/WCUWZj.png" alt="WCUWZj.png"></a></p>
+<p>另外有一个理解：</p>
+<p>每一个点都只能在一个 SCC 当中。</p>
+<p>如果你一个点连接着两个不同的强连通分量（他们实际上应该是强连通子图）。</p>
+<p>像下图那样，那么这两个强连通子图和这个点一定会构成一个新的更大的 SCC。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WCd6bQ"><img src="https://z3.ax1x.com/2021/07/11/WCd6bQ.png" alt="WCd6bQ.png"></a></p>
+<h2 id="Tarjan的线性SCC算法"><a href="#Tarjan的线性SCC算法" class="headerlink" title="Tarjan的线性SCC算法"></a>Tarjan的线性SCC算法</h2><h3 id="基础思想"><a href="#基础思想" class="headerlink" title="基础思想"></a>基础思想</h3><p>你会发现，如果在 $G$ 当中出现了一个 “环”，那么这个“环”一定是一个强连通子图。</p>
+<p>如果想要求强联通分量，那么我们就要尽可能地扩大这个强连通子图。</p>
+<p>思考一下，如果要构成一个环，那么反向边是一定有用的，交叉边有时也有用（能在图 $G$ 中找到回到在搜索树中是祖先的节点的路的时候）。</p>
+<p>所以 $\text{Tarjan}$的基本思路就是找到尽量多的环。</p>
+<p>那么就需要找到反向边和交叉边，这时 $\text{Tarjan}$就引入了一个叫“追溯值 $low[u]$”的东西。</p>
+<p>$low[u]$ 的定义：</p>
+<p>$low[u]$ 是所有满足一下两个条件节点 $v$ 的最小时间戳的值。</p>
+<ol>
+<li>这个点在搜索时建立的栈中（目前阶段被访问过了）</li>
+<li>存在一条从 $u$ 的子树中出发的有向边，终点是这个节点 $v$</li>
+</ol>
+<p>也就是以 $u$ 为起点，$u$ 或 $u$ 的子树能够追溯到的最早的栈中节点的 $dfn$。</p>
+<p>说白了就是要尽量快地找到更多“环”。</p>
+<p>至于这个栈是干什么的？</p>
+<p>它在搜索时，边搜边记录所有当前阶段已经被访问过的节点。</p>
+<p>用栈是为了符合 $\text{dfs}$ 的特点。</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><ol>
+<li><p>当节点 $u$ 第一次被访问时，入栈，标记在栈里面。并且初始化 $low[u]=dfn[u]$</p>
+</li>
+<li><p>从 $u$ 出发，扫描所有出边 $(u,v)$</p>
+</li>
+<li><p>如果 $v$ 没有被访问过，那么 $(u,v)$ 是树边，递归去搜 $v$，回溯之后令 $low[u]=\min(low[u],low[v])$</p>
+</li>
+<li><p>反之，如果 $v$ 已经被访问过而且在栈之中，令 $low[u]=\min(low[u],dfn[v])$ </p>
+</li>
+</ol>
+<p>（为什么是 $dfn[v]$ 请看 Tarjan 的论文，反正只能是这样子（有时不会出错但是不严谨））</p>
+<p>然后如果 $low[u]=dfn[u]$ ，那么就找到了一个 $\text{SCC}$ ，记录，然后把栈中节点一直弹栈并加入 $\text{SCC}$ ,直到 $u$ 出栈 （这里就可以看出来为什么要用栈）</p>
+<p>$low[u]=dfn[u]$  ，也就是以 $u$ 为根的搜索子树的所有栈中节点能够到达的最早节点是 $u$ 本身。</p>
+<p>为什么这个时候就一定是一个强连通分量了呢？</p>
+<p>假设这个SCC里面有一个节点 $v$，但是它不属于 $u$ 为根的搜索子树的所有栈中节点所构成的集合 $S$。</p>
+<p>那么也就是说在 $u \to v$ 的路径上面，一定有能够离开子树的一条反向边（去到比 $u$ 更早访问的节点），或者交叉边（从这个子树跳到另一个子树）。</p>
+<p>这个边的终点的 $dfn$ 就必须比 $dfn[u]$ 小，和上面的条件：</p>
+<blockquote>
+<p>“能够到达的最早节点是 $u$。”</p>
+</blockquote>
+<p>矛盾了，那么此时无法构成SCC，所以这样的 $v$ 不存在。</p>
+<p>那么很容易得知此时（$low[u]=dfn[u]$ ）已经构成了一个SCC。</p>
+<h3 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h3><p>（缩点 &amp; SCC）</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> si_n<span class="token operator">=</span><span class="token number">1e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> si_m<span class="token operator">=</span><span class="token number">1e6</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">pb</span> <span class="token expression">push_back</span></span>
+
+<span class="token keyword">struct</span> <span class="token class-name">Edge</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> ver<span class="token punctuation">,</span>Next<span class="token punctuation">,</span>head<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>e<span class="token punctuation">[</span>si_m<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> cnt_e<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span><span class="token keyword">int</span> v<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	e<span class="token punctuation">[</span><span class="token operator">++</span>cnt_e<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token operator">=</span>v<span class="token punctuation">,</span>e<span class="token punctuation">[</span>cnt_e<span class="token punctuation">]</span><span class="token punctuation">.</span>Next<span class="token operator">=</span>e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">;</span>
+	e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token operator">=</span>cnt_e<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+stack<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span>s<span class="token punctuation">;</span>
+<span class="token keyword">bool</span> ins<span class="token punctuation">[</span>si_n<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// in the stack or not</span>
+<span class="token keyword">int</span> c<span class="token punctuation">[</span>si_n<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//c[x] = the num of SCC which is x iside</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span>scc<span class="token punctuation">[</span>si_n<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// scc[i] -> all node in i-th scc (information of i-th scc)</span>
+<span class="token keyword">int</span> dfn<span class="token punctuation">[</span>si_n<span class="token punctuation">]</span><span class="token punctuation">,</span>low<span class="token punctuation">[</span>si_n<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>cnt_t<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>tot<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// tot = how many scc in the graph. </span>
+
+<span class="token keyword">void</span> <span class="token function">tarjan</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	dfn<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span>low<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">++</span>cnt_t<span class="token punctuation">;</span>
+	s<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">,</span>ins<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span>e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>Next<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> v<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>dfn<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token function">tarjan</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			low<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>low<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">,</span>low<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>ins<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span> low<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>low<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">,</span>dfn<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>dfn<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">==</span>low<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token operator">++</span>tot<span class="token punctuation">;</span>
+		<span class="token keyword">int</span> x<span class="token punctuation">;</span>
+		<span class="token keyword">do</span><span class="token punctuation">&#123;</span>
+			x<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>s<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>ins<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+			c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>tot<span class="token punctuation">,</span>scc<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">pb</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span><span class="token keyword">while</span><span class="token punctuation">(</span>u<span class="token operator">!=</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+Edge edag<span class="token punctuation">[</span>si_m<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//新图</span>
+<span class="token keyword">int</span> cnt_d<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">add_n</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span><span class="token keyword">int</span> v<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	edag<span class="token punctuation">[</span><span class="token operator">++</span>cnt_d<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token operator">=</span>v<span class="token punctuation">,</span>edag<span class="token punctuation">[</span>cnt_d<span class="token punctuation">]</span><span class="token punctuation">.</span>Next<span class="token operator">=</span>edag<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">;</span>
+	edag<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token operator">=</span>cnt_d<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">void</span> <span class="token function">contract</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> u<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>u<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>u<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span>e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>Next<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">int</span> v<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">==</span>c<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+			<span class="token function">add_n</span><span class="token punctuation">(</span>c<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">,</span>c<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token comment">//缩点</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>u<span class="token punctuation">,</span>v<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		cin<span class="token operator">>></span>u<span class="token operator">>></span>v<span class="token punctuation">;</span>
+		<span class="token function">add</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>dfn<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">tarjan</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">//......</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>缩点就是直接把每一个 SCC 缩成一个新点（这时可以缩出一个DAG，建新图）</p>
+<h2 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3387">P3387 【模板】缩点</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/B3609">B3609 [图论与代数结构 701] 强连通分量</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2863">P2863 [USACO06JAN]The Cow Prom S</a></p>
+</li>
+</ul>
+<p>以上为模板题。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2272">P2272 [ZJOI2007]最大半连通子图</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2341">P2341 [USACO03FALL][HAOI2006]受欢迎的牛 G</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2921">P2921 [USACO08DEC]Trick or Treat on the Farm G</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3627">P3627 [APIO2009]抢掠计划</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2746">P2746 [USACO5.3]校园网Network of Schools</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2515">P2515 [HAOI2010]软件安装</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2403">P2403 [SDOI2010]所驼门王的宝藏</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3119">P3119 [USACO15JAN]Grass Cownoisseur G</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/algorithm-note/" rel="tag"># algorithm note</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/03/%E6%88%91%E6%98%AF%E6%80%8E%E4%B9%88%E5%85%A5%E5%9D%91%E4%B8%9C%E6%96%B9%E7%9A%84/" rel="prev" title="我是怎么入坑东方的">
+                  <i class="fa fa-chevron-left"></i> 我是怎么入坑东方的
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/13/luogu1525/" rel="next" title="luogu1525">
+                  luogu1525 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fujihara_Nobuyuki | Miller Han | Black_Trees</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>
